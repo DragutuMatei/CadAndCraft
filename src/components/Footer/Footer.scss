@@ -1,10 +1,12 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Open+Sans:wght@400;600;700&display=swap');
+/* --- IMPORT FONTURI --- */
+@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
 
 // --- VARIABILE ---
 $green-brand: #208A39;
 $yellow-brand: #FFC300;
 $dark-blue: #003566;
 $white: #ffffff;
+$black-mobile: #1a1a1a; 
 
 .footer-section {
   position: relative;
@@ -13,275 +15,334 @@ $white: #ffffff;
   justify-content: center;
   padding: 40px 20px; 
   background-color: #ffffff; 
-  font-family: 'Open Sans', sans-serif;
+  
+  font-family: 'Raleway', sans-serif;
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Bricolage Grotesque', sans-serif !important;
+  }
 
   /* === CARDUL PRINCIPAL === */
-  .footer-bg-container {
+  .footer-card {
     position: relative;
     width: 100%;
     max-width: 1600px;
     height: 650px; 
     border-radius: 50px; 
     overflow: hidden;    
-    box-shadow: 0 30px 60px rgba(0, 0, 0, 0); 
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.1); 
+    background-color: transparent; 
 
-    svg {
+    /* 1. FUNDALUL SVG */
+    .footer-bg {
       position: absolute;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      display: block;
-      object-fit: cover; 
-    }
-  }
-
-  /* === STRATUL DE CONȚINUT === */
-  .footer-content {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 2;
-    display: flex;
-    padding: 60px 80px; 
-  }
-
-  /* --- ZONA STÂNGA (GALBEN) --- */
-  .left-section {
-    flex: 1; 
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between; 
-    padding-right: 50px;
-    height: 100%;
-
-    .logo-placeholder-svg {
-      h3 {
-        font-family: 'Montserrat', sans-serif;
-        font-size: 2.5rem;
-        font-weight: 800;
-        color: $dark-blue;
-        text-transform: uppercase;
-        margin: 0;
-      }
-    }
-
-    .text-content {
-      display: flex;
-      flex-direction: column;
-      gap: 40px; 
-      color: $dark-blue;
-      
-      .description {
-        font-size: 1.1rem;
-        line-height: 1.6;
-        font-weight: 600;
-        max-width: 450px; 
-      }
-
-      .copyright {
-        font-weight: 700;
-        font-size: 0.95rem;
-        margin-bottom: 20px; 
-      }
-    }
-  }
-
-  /* --- ZONA DREAPTA (VERDE) --- */
-  .right-section {
-    flex: 1.2; 
-    display: flex;
-    flex-direction: column;
-    position: relative;
-    align-items: flex-end; 
-    text-align: right;
-
-    /* 1. SLOGAN */
-    .right-header {
-      margin-top: 20px;
-      margin-bottom: 60px;
-      
-      h2 {
-        font-family: 'Montserrat', sans-serif;
-        font-size: 4rem; 
-        font-weight: 800;
-        line-height: 1.1;
-        margin: 0;
-        white-space: nowrap; 
-        
-        .dark-blue { color: $dark-blue; }
-        .yellow { color: $yellow-brand; }
-        .white { color: $white; }
-      }
-    }
-
-    /* 2. Link-urile */
-    .right-body {
-      display: flex;
-      gap: 100px;
-      margin-right: 50px; 
-      
-      .links-col {
-        text-align: left; 
-        
-        h4 {
-          font-family: 'Montserrat', sans-serif;
-          font-size: 1.4rem;
-          color: $white;
-          margin-bottom: 20px;
-          font-weight: 700;
-        }
-
-        ul {
-          list-style: none;
-          padding: 0;
-          
-          li {
-            margin-bottom: 12px;
-            a {
-              text-decoration: none;
-              color: rgba(255, 255, 255, 0.85);
-              font-size: 1.1rem;
-              font-weight: 500;
-              &:hover { color: $white; }
-            }
-          }
-        }
-      }
-    }
-
-    /* 3. INSULIȚA SOCIAL MEDIA */
-    .social-bubble {
-      position: absolute;
-      bottom: 0;
-      right: 0;
-      background-color: transparent; 
-      box-shadow: none; 
-      padding: 0 50px 20px 0; 
-      margin-right: -20px; 
-      margin-bottom: -65px; 
-      transform: translate(0, -40px);
-      
-      display: flex;
-      gap: 70px;
-      align-items: center;
-      height: 80px;
-
-      a {
-        color: $dark-blue; 
-        font-size: 2rem;
-        display: flex;
-        transition: transform 0.4s, color 0.4s;
-
-        &:hover {
-          color: $yellow-brand; 
-          transform: translateY(-5px);
-        }
-      }
-    }
-  }
-
-  /* ======================================= */
-  /* ===   RESPONSIVE / MOBILE DESIGN    === */
-  /* ======================================= */
-
-  @media (max-width: 1200px) {
-      .right-section .right-header h2 { font-size: 3rem; }
-  }
-
-  @media (max-width: 992px) {
-    padding: 20px; 
-
-    /* 1. Cardul devine înalt pe mobil */
-    .footer-bg-container {
-      height: auto; 
-      min-height: 950px; /* Destul loc pentru tot conținutul */
-      border-radius: 30px;
+      z-index: 0; 
 
       svg {
-        /* SECRETUL: Luăm o secțiune din centru (35% X-axis) */
-        /* Asta va prinde tranziția galben-verde frumos pe verticală */
-        object-fit: cover;
-        object-position: 35% center; 
-      }
-    }
-
-    /* 2. Conținutul se stivuiește vertical */
-    .footer-content {
-      flex-direction: column;
-      position: relative; 
-      padding: 60px 25px;
-    }
-
-    /* 3. Partea de sus (Logo + Text) */
-    .left-section {
-      width: 100%;
-      padding-right: 0;
-      text-align: center;
-      align-items: center;
-      margin-bottom: 50px;
-      justify-content: flex-start;
-      flex: none; /* Îl lăsăm să ocupe cât are nevoie */
-      
-      .logo-placeholder-svg h3 {
-          font-size: 2.2rem;
-      }
-      
-      .text-content {
-        align-items: center; 
-        gap: 20px;
-      }
-    }
-
-    /* 4. Partea de jos (Slogan + Linkuri + Social) */
-    .right-section {
-      width: 100%;
-      padding-left: 0;
-      align-items: center;
-      text-align: center;
-      flex: 1;
-
-      /* Sloganul trece pe mai multe rânduri pe mobil */
-      .right-header {
-          margin-top: 0;
-          h2 { 
-            font-size: 2.5rem; 
-            white-space: normal; /* IMPORTANT: Permite text wrap pe mobil */
-            line-height: 1.2;
-          }
-      }
-      
-      .right-body {
-        margin-right: 0;
-        gap: 50px;
-        flex-wrap: wrap;
-        justify-content: center;
-        text-align: center;
         width: 100%;
-        
-        .links-col { 
-            text-align: center; 
+        height: 100%;
+        display: block;
+        preserveAspectRatio: none; 
+      }
+    }
+
+    /* 2. CONȚINUTUL */
+    .footer-content {
+      position: relative;
+      z-index: 1; 
+      display: grid;
+      grid-template-columns: 0.35fr 0.65fr; 
+      height: 100%;
+      width: 100%;
+    }
+  }
+}
+
+/* === ZONA STÂNGA (GALBEN) === */
+.col-left {
+  padding: 60px 0 60px 60px; 
+  display: flex;
+  flex-direction: column;
+  justify-content: center; 
+  height: 100%;
+
+  .brand-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    max-width: 450px; 
+  }
+
+  .logo-svg svg {
+      width: 250px;
+      height: auto;
+      display: block;
+      margin-bottom: 30px;
+      margin-top: -50px;
+  }
+
+  .text-body {
+    color: $dark-blue;
+    margin-top: auto; 
+    
+    .description {
+      font-size: 1.1rem;
+      line-height: 1.6;
+      font-weight: 600;
+      margin-bottom: 30px;
+    }
+    
+    .copyright {
+      font-family: 'Raleway', sans-serif;
+      font-weight: 700;
+      font-size: 0.9rem;
+    }
+  }
+}
+
+/* === ZONA DREAPTA (VERDE) === */
+.col-right {
+  padding: 60px 60px 40px 0; 
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end; 
+  justify-content: space-between; 
+  text-align: right;
+  height: 100%;
+
+  .slogan-wrapper {
+    margin-top: 20px;
+    h2 {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-size: 4rem;
+      font-weight: 800;
+      line-height: 1;
+      margin: 0;
+      white-space: nowrap; 
+      
+      .text-dark { color: $dark-blue; }
+      .text-yellow { color: $yellow-brand; }
+      .text-white { color: $white; }
+    }
+  }
+
+  .links-wrapper {
+    display: flex;
+    gap: 80px;
+    margin-right: 80px; 
+    text-align: left;
+    
+    h4 {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-size: 1.3rem;
+      color: $white;
+      margin-bottom: 20px;
+      font-weight: 700;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      li {
+        margin-bottom: 10px;
+        a {
+          font-family: 'Raleway', sans-serif;
+          text-decoration: none;
+          color: rgba(255,255,255, 0.85);
+          font-weight: 600;
+          transition: 0.2s;
+          &:hover { color: $white; }
         }
       }
+    }
+  }
 
-      /* Iconițele simple jos */
-      .social-bubble {
-        position: relative;
-        bottom: auto;
-        right: auto;
-        margin: 50px 0 0 0;
-        transform: none;
-        padding: 0;
-        justify-content: center;
-        width: 100%;
-        gap: 40px;
-        
-        /* Pe mobil le facem albe sau albastre în funcție de fundalul SVG cropuit */
-        /* De obicei pe verde arată bine alb */
-        a { color: $white; } 
+  .social-icons {
+    display: flex;
+    gap: 80px;
+    margin-right: 0; 
+    margin-bottom: -25px;
+    
+    a {
+      color: $dark-blue;
+      font-size: 2rem;
+      transition: transform 0.2s;
+      &:hover {
+        color: $yellow-brand;
+        transform: translateY(-5px);
       }
+    }
+  }
+}
+
+/* ========================================= */
+/* ===       RESPONSIVE (TABLETĂ)        === */
+/* ========================================= */
+
+@media (max-width: 1300px) {
+    .col-right .slogan-wrapper h2 { font-size: 3rem; }
+}
+
+@media (max-width: 992px) {
+  .footer-section { padding: 20px; }
+
+  .footer-card {
+    border-radius: 30px !important;
+    height: auto !important; 
+    min-height: auto !important;
+    background-color: $black-mobile !important; 
+    
+    .footer-bg { display: none; } 
+
+    .footer-content {
+      display: flex;
+      flex-direction: column;
+      padding: 50px 30px !important;
+      height: auto !important;
+    }
+  }
+
+  .col-left {
+    padding: 0 0 40px 0;
+    justify-content: center;
+    text-align: center;
+    
+    .brand-wrapper {
+        align-items: center;
+        max-width: 100%;
+        justify-content: flex-start;
+        gap: 30px;
+    }
+
+    .logo-svg svg path { fill: $white; } 
+    
+    .text-body { 
+        color: rgba(255,255,255, 0.8); 
+        margin-top: 0;
+        .copyright { display: none; } 
+    }
+  }
+
+  .col-right {
+    padding: 0;
+    align-items: center; 
+    text-align: center;
+    gap: 50px;
+    justify-content: flex-start;
+
+    .slogan-wrapper h2 {
+      font-size: 1.8rem;
+      white-space: normal; 
+      line-height: 1.2;
+      .text-dark { color: $white; }
+      .text-yellow { color: $yellow-brand; }
+      .text-white { color: $green-brand; }
+    }
+
+    .links-wrapper {
+      margin-right: 0;
+      justify-content: center;
+      gap: 40px;
+      text-align: center;
+      .link-group { text-align: center; h4 { color: $yellow-brand; } }
+    }
+
+    .social-icons {
+      margin-top: 10px;
+      margin-right: 0;
+      gap: 40px;
+    }
+  }
+}
+
+/* ========================================= */
+/* ===     TELEFON SPECIFIC (Max 576px)  === */
+/* ========================================= */
+@media (max-width: 576px) {
+  /* "Dezbrăcăm" grid-ul și containerele ca să le punem în coloană simplă */
+  .footer-content {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    
+    .col-left, .col-right, .brand-wrapper {
+      display: contents !important; 
+    }
+  }
+
+  /* #1. LOGO (PRIMUL) */
+  .logo-svg {
+    order: 1;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin: 0 0 30px 0;
+    
+    svg {
+       margin: 0;
+       width: 200px;
+       path { fill: $white; }
+    }
+  }
+
+  /* #2. SLOGAN (AL DOILEA) */
+  .slogan-wrapper {
+    order: 2;
+    margin: 0 0 40px 0;
+    width: 100%;
+    text-align: center;
+    h2 { font-size: 1.6rem; }
+  }
+
+  /* #3. LINK-URILE (A TREIA POZIȚIE) */
+  .links-wrapper {
+    order: 3;
+    flex-direction: column;
+    gap: 30px;
+    margin: 0 0 40px 0;
+    width: 100%;
+    align-items: center;
+    text-align: center;
+    
+    .link-group h4 { font-size: 1.5rem; color: $yellow-brand; }
+  }
+
+  /* #4. TEXT MICROSOFT (PENULTIMUL) */
+  .text-body {
+    order: 4;
+    width: 100%;
+    text-align: center;
+    margin: 0 0 40px 0;
+    
+    .description {
+      font-size: 0.9rem;
+      line-height: 1.5;
+      margin-bottom: 20px;
+      color: rgba(255,255,255,0.7);
+    }
+    .copyright {
+       display: block !important;
+       color: rgba(255,255,255, 0.4);
+       font-size: 0.8rem;
+    }
+  }
+
+  /* #5. ICONIȚELE (ULTIMELE - EXACT CUM AI CERUT) */
+  .social-icons {
+    order: 5;
+    margin: 0 0 20px 0;
+    width: 100%;
+    justify-content: center;
+    gap: 30px;
+    
+    a { 
+      font-size: 1.8rem;
+      color: $white; 
     }
   }
 }

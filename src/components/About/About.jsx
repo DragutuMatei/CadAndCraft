@@ -530,6 +530,10 @@ const About = () => {
                 <p>
                   Fusce in ante in erat feugiat rutrum. Sed placerat odio ex, vel consectetur dolor 
                   blandit sit amet. Maecenas a massa id massa pharetra ultrices sed sit amet metus.
+                  Fusce in ante in erat feugiat rutrum. Sed placerat odio ex, vel consectetur dolor 
+                  blandit sit amet. Maecenas a massa id massa pharetra ultrices sed sit amet metus.
+                  Fusce in ante in erat feugiat rutrum. Sed placerat odio ex, vel consectetur dolor 
+                  blandit sit amet. Maecenas a massa id massa pharetra ultrices sed sit amet metus.
                 </p>
                 <p>
                   Integer laoreet faucibus dolor vitae feugiat. Mauris nec nibh vitae sem mattis 

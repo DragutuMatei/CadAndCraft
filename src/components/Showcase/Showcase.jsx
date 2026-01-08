@@ -73,9 +73,6 @@ const Showcase = () => {
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
                 Vestibulum viverra dignissim mauris ac tristique. Nulla 
                 hendrerit nec erat bibendum lacinia. Mama este mare.
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-                Vestibulum viverra dignissim mauris ac tristique. Nulla 
-                hendrerit nec erat bibendum lacinia. Mama este mare.
               </p>
             </div>
           </div>
