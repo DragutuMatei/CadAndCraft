@@ -1,3 +1,6 @@
+/* Importăm fonturile Montserrat și Open Sans */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Open+Sans:wght@400;600&display=swap');
+
 @import '../../styles/variables';
 
 $green-brand: #208A39;
@@ -34,7 +37,8 @@ $border-color: #e5e7eb;
     }
 
     .faq-title {
-        font-family: 'Bricolage Grotesque', sans-serif;
+        /* SCHIMBAT: Font Montserrat */
+        font-family: 'Montserrat', sans-serif;
         font-size: 3.5rem;
         text-align: center;
         color: $dark-text;
@@ -121,7 +125,8 @@ $border-color: #e5e7eb;
             align-items: center;
 
             h3 {
-                font-family: 'Bricolage Grotesque', sans-serif;
+                /* SCHIMBAT: Font Montserrat */
+                font-family: 'Montserrat', sans-serif;
                 font-size: 1.3rem;
                 font-weight: 700;
                 color: $dark-text;
@@ -147,11 +152,12 @@ $border-color: #e5e7eb;
             
             .faq-content {
                 padding: 0 30px 30px 30px;
-                font-family: 'Courier Prime', monospace;
+                /* SCHIMBAT: Font Open Sans */
+                font-family: 'Open Sans', sans-serif;
                 font-size: 1rem;
                 color: lighten($dark-text, 20%);
                 line-height: 1.6;
-                font-weight: 600;
+                font-weight: 400; /* Open Sans Regular e mai ușor de citit la text lung */
             }
         }
         

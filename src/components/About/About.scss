@@ -1,223 +1,257 @@
-@import '../../styles/variables';
+/* Importăm fonturile */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Open+Sans:wght@400;600&display=swap');
 
-$green-brand: #208A39;
+// Variabile de culoare
+$green-brand: #1e8538; 
 $yellow-brand: #FFC300;
-$dark-text: #1d1d1d;
 $white: #ffffff;
-$blue-icon: #003566;
+$dark: #111111;
 
-.about {
+/* --- ANIMAȚIE --- */
+@keyframes fadeSlideUp {
+  0% { opacity: 0; transform: translateY(40px) scale(0.98); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* Containerul Exterior */
+.about-section-wrapper {
+  width: 100%;
+  min-height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #ffffff;
+  /* Acesta este singurul lucru care îl oprește să atingă marginile ecranului */
+  padding: 40px 20px; 
+  box-sizing: border-box;
+}
+
+/* Cardul Principal */
+.main-card {
+  position: relative;
+  
+  /* --- MODIFICARE CRITICĂ AICI --- */
+  width: 100%; /* Ocupă tot spațiul disponibil */
+  max-width: 100%; /* SCOS limita de 1300px. Acum crește nelimitat */
+  
+  height: 600px; 
+  min-height: unset;
+  
+  border-radius: 30px;
+  overflow: hidden;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  background-color: $green-brand; 
+
+  animation: fadeSlideUp 1s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+
+  /* === LAYER 1: SVG BACKGROUND === */
+  .bg-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+
+    .svg-placeholder-gradient {
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(110deg, $green-brand 55%, $yellow-brand 55.1%);
+    }
+
+    svg, img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover; 
+      object-position: top center; 
+    }
+  }
+
+  /* === LAYER 2: CONTENT === */
+  .content-layer {
     position: relative;
-    width: 98vw;
-    margin: 60px auto;
-    
-    opacity: 0;
-    transform: translateY(60px);
-    transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    z-index: 2;
+    display: flex;
+    width: 100%;
+    height: 100%;
+    /* Pentru ecrane foarte mari, putem centra conținutul interior ca să nu fugă prea tare în laterale */
+    max-width: 1600px; 
+    margin: 0 auto; 
+  }
+}
 
-    &--visible {
-        opacity: 1;
-        transform: translateY(0);
-        
-        .stat-card {
-            animation-play-state: running !important;
-            opacity: 1 !important;
-            transform: translateY(0) !important;
-        }
-    }
+/* === STÂNGA: Text === */
+.content-left {
+  flex: 1;
+  display: flex;
+  align-items: flex-start; 
+  padding: 80px 0 0 80px; 
 
-    &__wrapper {
-        display: flex;
-        width: 100%;
-        // Înălțime automată pentru a se extinde în funcție de text
-        min-height: auto; 
-        border-radius: 40px;
-        overflow: hidden;
-        box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+  .text-wrapper {
+    max-width: 550px;
+  }
 
-        @media (max-width: 1024px) {
-            flex-direction: column;
-        }
-    }
+  .brand-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 3.5rem;
+    font-weight: 800;
+    color: $white;
+    line-height: 1.1;
+    margin-bottom: 25px;
+    text-transform: uppercase;
+  }
 
-    // --- COLOANA STÂNGA (VERDE) ---
-    &__left {
-        flex: 1; 
-        background-color: $green-brand;
-        position: relative;
-        z-index: 2; 
-        padding: 50px; 
-        
-        margin-right: -50px; 
-        // MODIFICARE: Rotunjire doar pe stânga
-        border-radius: 40px 0 0 40px;
+  .body-text {
+    font-family: 'Open Sans', sans-serif;
+    color: rgba(255, 255, 255, 0.95);
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 35px;
 
-        transform: skewX(-5deg); 
-        transform-origin: bottom right;
-        
-        // MODIFICARE: Separator alb DOAR pe dreapta (diagonala)
-        border-right: 8px solid $white;
-        
-        box-shadow: 10px 0 30px rgba(0,0,0,0.1); 
+    p { margin-bottom: 15px; }
+  }
 
-        .content {
-            transform: skewX(5deg);
-            max-width: 500px;
-            margin: 0 auto;
-        }
+  .action-buttons {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
 
-        .title {
-            font-family: 'Bricolage Grotesque', sans-serif;
-            font-size: 3.5rem; 
-            color: $white;
-            line-height: 1;
-            margin-bottom: 20px;
-            font-weight: 800; 
-        }
+    .btn-primary {
+      background-color: $yellow-brand;
+      color: $dark;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 0.9rem;
+      padding: 12px 30px;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
 
-        .description {
-            font-family: 'Courier Prime', monospace;
-            font-size: 1rem;
-            color: rgba(255,255,255, 0.95);
-            line-height: 1.5;
-            margin-bottom: 30px;
-            font-weight: 700; 
-        }
-
-        .actions {
-            display: flex;
-            gap: 20px;
-            
-            .btn {
-                background-color: $yellow-brand;
-                color: $dark-text;
-                border: none;
-                padding: 12px 25px;
-                border-radius: 30px;
-                font-family: 'Bricolage Grotesque', sans-serif;
-                font-weight: 800; 
-                font-size: 0.9rem;
-                cursor: pointer;
-                display: flex;
-                align-items: center;
-                gap: 8px;
-                transition: transform 0.3s;
-                
-                &:hover {
-                    transform: translateY(-3px);
-                    background-color: lighten($yellow-brand, 5%);
-                }
-                
-                .icon { font-size: 1rem; font-weight: bold; }
-            }
-        }
-
-        @media (max-width: 1024px) {
-            margin-right: 0;
-            transform: none;
-            border-radius: 40px; 
-            border: none; // Fără separator pe mobil când sunt una sub alta
-            border-bottom: 8px solid $white; // Separator orizontal jos
-            
-            .content { transform: none; text-align: center; }
-            .actions { justify-content: center; }
-        }
-    }
-
-    // --- COLOANA DREAPTA (GALBEN) ---
-    &__right {
-        flex: 1.2; 
-        background-color: $yellow-brand;
-        position: relative;
-        overflow: hidden; 
+      .icon-wrap {
+        width: 26px;
+        height: 26px;
+        border: 2px solid $dark;
+        border-radius: 50%;
         display: flex;
         align-items: center;
         justify-content: center;
-        padding: 40px;
-        // Asigurăm că se întinde pe toată înălțimea părintelui
-        align-self: stretch; 
+        font-size: 0.8rem;
+      }
 
-        .bg-pattern {
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            z-index: 0;
-            pointer-events: none;
-            
-            .bg-logo-wrapper {
-                position: absolute;
-                width: 100px; 
-                color: $blue-icon;
-                // MODIFICARE: Opacitate crescută pentru vizibilitate
-                opacity: 0.15; 
-                transform: rotate(-10deg);
-                svg { width: 100%; height: auto; display: block; }
-            }
-        }
-
-        // Grid Carduri
-        .cards-container {
-            position: relative;
-            z-index: 5;
-            display: grid;
-            grid-template-columns: repeat(2, 1fr); 
-            gap: 50px; 
-            width: 100%;
-            max-width: 500px; 
-
-            .stat-card {
-                background: $white;
-                padding: 20px;
-                border-radius: 20px; 
-                box-shadow: 0 15px 35px rgba(0,0,0,0.1);
-                text-align: center;
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                align-items: center;
-                
-                width: 130px; 
-                height: 130px;
-                margin: 0 auto; 
-                
-                opacity: 0;
-                transform: translateY(40px);
-                animation: floatUp 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
-                animation-play-state: paused; 
-
-                .stat-number {
-                    font-family: 'Bricolage Grotesque', sans-serif;
-                    font-size: 2.5rem; 
-                    color: $green-brand;
-                    margin: 0;
-                    line-height: 1;
-                    font-weight: 800;
-                }
-
-                .stat-label {
-                    font-family: 'Courier Prime', monospace;
-                    font-size: 0.9rem;
-                    color: $dark-text;
-                    margin-top: 5px;
-                    font-weight: 700; 
-                    line-height: 1.2;
-                }
-
-                &:nth-child(2) { margin-top: 40px; } 
-                &:nth-child(3) { margin-top: -30px; }
-            }
-        }
-        
-        @media (max-width: 768px) {
-            padding: 40px 20px;
-            .cards-container {
-                gap: 30px;
-                .stat-card { margin-top: 0 !important; }
-            }
-        }
+      &:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+      }
     }
+  }
 }
 
-@keyframes floatUp {
-    0% { opacity: 0; transform: translateY(40px); }
-    100% { opacity: 1; transform: translateY(0); }
+/* === DREAPTA: Carduri === */
+.content-right {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start; 
+  
+  /* Păstrat padding-ul pentru poziționare */
+  padding: 130px 40px 0 40px; 
+
+  .stats-grid {
+    display: flex;
+    /* Păstrat spațierea mare între coloane */
+    gap: 40px; 
+  }
+
+  .grid-col {
+    display: flex;
+    flex-direction: column;
+    gap: 35px; 
+    width: 170px; 
+
+    &.col-1 { margin-top: 60px; }
+    &.col-2 { margin-top: 0; }
+  }
+
+  .stat-box {
+    background: $white;
+    border-radius: 20px;
+    padding: 25px 15px;
+    text-align: center;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.08);
+    transition: transform 0.3s ease;
+
+    h3 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: $green-brand;
+      margin: 0 0 5px 0;
+    }
+
+    p {
+      font-family: 'Open Sans', sans-serif;
+      font-weight: 600;
+      color: #333;
+      margin: 0;
+      font-size: 0.95rem;
+    }
+
+    &:hover {
+      transform: scale(1.05);
+    }
+  }
+}
+
+/* === RESPONSIVE / MOBILE (Telefon) === */
+@media (max-width: 992px) {
+  .main-card {
+    height: auto; 
+    padding-bottom: 40px;
+  }
+
+  .content-layer {
+    flex-direction: column; 
+    max-width: 100%;
+  }
+
+  .content-left {
+    padding: 60px 30px 40px 30px; 
+    align-items: center; 
+    text-align: center;
+    
+    .brand-title {
+        font-size: 2.5rem;
+        color: #000000; /* NEGRU PE MOBIL */
+    }
+    
+    .body-text {
+        color: #000000; /* NEGRU PE MOBIL */
+    }
+
+    .action-buttons {
+      justify-content: center;
+    }
+  }
+
+  .content-right {
+    padding: 20px 20px;
+    align-items: center; 
+  }
+
+  .stats-grid {
+      gap: 20px;
+  }
+
+  .grid-col {
+    width: 140px; 
+    gap: 20px;
+    &.col-1 { margin-top: 30px; }
+    &.col-2 { margin-top: 0; }
+  }
 }
