@@ -102,9 +102,12 @@ const Showcase = () => {
             <img src={bigShowcaseImage} alt="Showcase Main" className="mobile-static-image" />
 
             {/* 3. Butonul Verde */}
-            <button className="btn-absolute">
-              VEZI MAI MULTE <span className="icon-circle"><BsArrowRight /></span>
-            </button>
+            <a
+                href="/about"
+                className="btn-absolute"
+              >
+                VEZI MAI MULTE <span className="icon-circle"><BsArrowRight /></span>
+              </a>
 
             {/* 4. Slider Carduri */}
             <div className="slider-container-absolute">

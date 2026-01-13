@@ -1,32 +1,46 @@
 import React from 'react';
-import Navbar from '../../components/Navbar/Navbar';
+
+// --- Components ---
+// Navbar și Footer sunt în App.jsx, deci nu le mai importăm aici
 import Hero from '../../components/Hero/Hero';
 import Countdown from '../../components/Countdown/Countdown';
 import About from '../../components/About/About';
-import Showcase from '../../components/Showcase/Showcase'; // Secțiunea "Editia I"
+import Showcase from '../../components/Showcase/Showcase';
 import FAQ from '../../components/FAQ/FAQ';
-import Footer from '../../components/Footer/Footer';
 
+// --- Styles ---
 import './Home.scss';
 
 const Home = () => {
   return (
-    <div className="page-home">
+    <main className="page-home">
       
-      <main>
+      {/* Secțiunea Hero (Landing) */}
+      <section id="home">
         <Hero />
-        
-        <Countdown />
-        
-        <Showcase />
-        
-        {/* Secțiunea Verde "Despre" */}
-        <About />
-        
-        <FAQ />
-      </main>
+      </section>
       
-    </div>
+      {/* Timer-ul */}
+      <section id="countdown">
+        <Countdown />
+      </section>
+      
+      {/* Showcase (Ediția I) */}
+      <section id="showcase">
+        <Showcase />
+      </section>
+      
+      {/* Despre */}
+      <section id="about">
+        <About />
+      </section>
+      
+      {/* Întrebări Frecvente */}
+      <section id="faq">
+        <FAQ />
+      </section>
+
+    </main>
   );
 };
 

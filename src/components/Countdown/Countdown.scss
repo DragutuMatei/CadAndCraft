@@ -13,63 +13,62 @@ $black-mobile: #1a1a1a;
   display: flex;
   justify-content: center;
   padding: 40px 20px; 
-  background-color: #ffffff; 
+  background-color: transparent; 
   font-family: 'Raleway', sans-serif;
 
-  /* === CARDUL (CONTAINER) === */
+  /* === CARDUL (CONTAINER PRINCIPAL) === */
   .countdown-card {
     position: relative;
     width: 100%;
-    max-width: 1700px; /* Card Uriaș pe Desktop */
-    min-height: 700px; 
+    max-width: 1700px;
+    min-height: 529px; // Înălțime minimă desktop
     border-radius: 30px;
-    overflow: hidden;
-    box-shadow: 0 25px 60px rgba(0,0,0,0.15);
-    
-    /* Pe desktop fundalul e dat de SVG, deci aici e transparent sau fallback */
+    // CRITIC: overflow hidden asigură colțurile rotunjite și pentru blocurile solide de pe mobil
+    overflow: hidden; 
+    box-shadow: 0 25px 60px rgba(0,0,0,0);
     background-color: transparent; 
 
-    /* 1. LAYER FUNDAL SVG (Desktop) */
+    /* 1. LAYER FUNDAL SVG (DOAR DESKTOP) */
     .bg-layer {
       position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 0;
-      svg {
-        width: 100%;
-        height: 100%;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      z-index: 0; 
+      
+      img {
+        width: 100%; height: 100%;
         display: block;
-        preserveAspectRatio: none; 
+        object-fit: fill; 
       }
     }
 
     /* 2. LAYER CONȚINUT */
     .content-layer {
       position: relative;
-      z-index: 1;
-      width: 100%;
+      z-index: 1; 
+      width: 100%; 
       height: 100%;
+      min-height: auto;
       display: flex;
       flex-direction: column;
-      min-height: 700px;
     }
   }
 
-  /* --- ZONA SUS (TITLURI) --- */
+  /* --- ZONA SUS (TEXTE) --- */
   .top-section {
     flex: 0.8; 
     display: flex;
     align-items: center;
-    padding: 0 5%;
+    padding: 40px 5%;
+    // Pe desktop nu avem culoare de fundal (o dă SVG-ul)
+    background-color: transparent;
     
     .text-wrapper {
       text-align: left;
       
       .subtitle {
         font-family: 'Bricolage Grotesque', sans-serif;
-        color: $white; /* Text ALB */
+        color: $white;
         font-weight: 700;
         text-transform: uppercase;
         margin-bottom: 0;
@@ -79,7 +78,7 @@ $black-mobile: #1a1a1a;
       
       .title {
         font-family: 'Bricolage Grotesque', sans-serif;
-        color: $white; /* Text ALB */
+        color: $white;
         font-weight: 900;
         text-transform: uppercase;
         margin: 0;
@@ -89,7 +88,7 @@ $black-mobile: #1a1a1a;
     }
   }
 
-  /* --- ZONA JOS (TIMER + BUTON) --- */
+  /* --- ZONA JOS (TIMER) --- */
   .bottom-section {
     flex: 1; 
     display: flex;
@@ -98,9 +97,11 @@ $black-mobile: #1a1a1a;
     align-items: center;
     gap: 30px;
     padding-bottom: 40px;
+    // Pe desktop nu avem culoare de fundal (o dă SVG-ul)
+    background-color: transparent;
   }
 
-  /* TIMER STYLE */
+  /* TIMER */
   .timer-container {
     display: flex;
     gap: clamp(20px, 4vw, 60px); 
@@ -142,15 +143,11 @@ $black-mobile: #1a1a1a;
     border-radius: 50px;
     border: none;
     cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 12px;
+    display: flex; align-items: center; gap: 12px;
     box-shadow: 0 10px 25px rgba(0,0,0,0.15);
     transition: transform 0.2s;
 
-    &:hover {
-      transform: translateY(-5px);
-    }
+    &:hover { transform: translateY(-5px); }
   }
 }
 
@@ -158,52 +155,63 @@ $black-mobile: #1a1a1a;
 /* ===            RESPONSIVE             === */
 /* ========================================= */
 
-/* --- TABLETĂ (Max 1100px) --- */
+/* --- TABLETĂ & MOBIL (Sub 1100px) --- */
 @media (max-width: 1100px) {
-  .countdown-card {
-    min-height: auto; 
-    height: auto;
-    
-    /* 1. ASCUNDEM SVG-ul */
-    .bg-layer { display: none; }
+  .countdown-section { padding: 20px; }
 
-    /* 2. SETĂM FUNDAL GALBEN PE TOT CARDUL */
-    background-color: $yellow-brand; 
+  .countdown-card {
+    min-height: auto !important; 
+    height: auto !important;
+    // Ne asigurăm că e transparent
+    background-color: transparent !important;
   }
   
   .content-layer {
-    min-height: auto;
+    min-height: auto !important;
+    height: auto !important;
   }
 
-  /* --- ZONA SUS (Devine bloc Verde solid) --- */
+  // --- MODIFICARE PRINCIPALĂ: ASCUNDEM SVG-UL PE MOBIL ---
+  .bg-layer {
+      display: none !important;
+  }
+
+  /* --- ZONA SUS (DREPTUNGHI VERDE SOLID) --- */
   .top-section {
-    background-color: $green-brand; /* Fundal Verde */
-    padding: 60px 20px; 
+    // APLICĂM CULOAREA VERDE
+    background-color: $green-brand !important;
+    flex: none;
+    width: 100%;
+    padding: 50px 20px; 
     justify-content: center;
-    
-    /* Pentru a avea colțurile de sus rotunjite, dar jos drepte (opțional) */
-    /* Deoarece cardul are overflow hidden și border-radius 30px, 
-       colțurile de sus vor fi tăiate automat. */
-    
+    text-align: center;
     .text-wrapper { text-align: center; }
+    
+    // Asigurăm că textul e alb
+    .subtitle, .title { color: $white !important; }
   }
 
-  /* --- ZONA JOS (Rămâne Galbenă de la fundalul cardului) --- */
+  /* --- ZONA JOS (DREPTUNGHI GALBEN SOLID) --- */
   .bottom-section {
-    padding: 50px 20px;
+    // APLICĂM CULOAREA GALBENĂ
+    background-color: $yellow-brand !important;
+    flex: none;
+    width: 100%;
+    padding: 40px 20px 50px 20px;
+    // Eliminăm eventuale spații între blocuri
+    margin-top: -1px;
   }
 }
 
-/* --- TELEFON (Max 768px) --- */
+/* --- TELEFON (Sub 768px) --- */
 @media (max-width: 768px) {
-  .countdown-section { padding: 20px; }
-  .bottom-section { background-color: #FFC300;}
-
+  .countdown-section { padding: 10px; }
+  
+  // Grid 2x2 pentru timer
   .timer-container {
-    /* Grid 2x2 pentru mobil */
     display: grid;
     grid-template-columns: 1fr 1fr; 
-    gap: 30px 10px; 
+    gap: 20px 10px; 
     text-align: center;
     width: 100%;
 
@@ -211,15 +219,10 @@ $black-mobile: #1a1a1a;
       flex-direction: column; 
       align-items: center;
       gap: 0;
-      
-      .number { font-size: 4rem; } 
-      .label { font-size: 1.1rem; }
+      .number { font-size: 3.5rem; } 
+      .label { font-size: 1rem; }
     }
   }
 
-  .btn-register {
-    width: 90%;
-    justify-content: center;
-    font-size: 1.2rem;
-  }
+  .btn-register { width: 90%; justify-content: center; }
 }
