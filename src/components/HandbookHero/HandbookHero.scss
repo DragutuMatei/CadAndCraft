@@ -12,7 +12,8 @@ $color-yellow: #FFC300;
 $color-blue: #003566;
 $color-white: #ffffff;
 
-.hero {
+// --- AM SCHIMBAT NUMELE CLASEI PRINCIPALE ---
+.handbook-hero {
   position: relative;
   width: 100%;
   height: 100vh;
@@ -22,7 +23,7 @@ $color-white: #ffffff;
   justify-content: center;
   overflow: hidden;
 
-  // --- 1. WRAPPERUL PRINCIPAL (Shake Effect) ---
+  // --- 1. WRAPPERUL PRINCIPAL ---
   &__wrapper {
     position: relative;
     z-index: 5;
@@ -31,11 +32,10 @@ $color-white: #ffffff;
     background-color: #ffffff; 
     overflow: hidden;
     
-    // Animația de impact (Shake) la 2.5s
     animation: impactShake 0.5s cubic-bezier(.36,.07,.19,.97) 2.5s forwards;
   }
 
-  // --- 2. LAYER BACKGROUND (Zoom Effect) ---
+  // --- 2. LAYER BACKGROUND ---
   &__full-image-layer {
       position: absolute; top: 0; left: 0; width: 100%; height: 100%;
       z-index: 1; 
@@ -47,21 +47,20 @@ $color-white: #ffffff;
           background-position: center;
           background-repeat: no-repeat;
           transform: scale(1.1);
-          // Zoom out ușor după ce apare
           animation: gentleZoom 10s ease-out 4s forwards;
       }
       
       .overlay {
           position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-          background: rgba(0,0,0,0.1); 
+          // Am întunecat puțin overlay-ul global pentru contrast mai bun
+          background: rgba(0,0,0,0); 
       }
 
       opacity: 0;
-      // Apare după ce logo-ul explodează (3.5s)
       animation: fadeInImage 1s ease-out 3.5s forwards; 
   }
 
-  // --- 3. LOGO INTRO (Drop & Expand) ---
+  // --- 3. LOGO INTRO ---
   &__intro-logo {
     position: absolute;
     top: -60%; left: 50%;
@@ -82,7 +81,7 @@ $color-white: #ffffff;
       fadeOutLogo 0.5s ease-out 4.5s forwards;                     
   }
 
-  // --- 4. CONȚINUTUL (Textul & Butoanele) ---
+  // --- 4. CONȚINUTUL ---
   &__content {
     position: relative;
     z-index: 60;
@@ -95,7 +94,6 @@ $color-white: #ffffff;
     opacity: 0; 
     transform: translateY(40px);
     
-    // Apare la 4.5s (după explozie)
     animation: fadeInUp 2s ease-out 4.5s forwards; 
 
     @media (max-width: 1366px) { padding-left: 150px; }
@@ -110,37 +108,46 @@ $color-white: #ffffff;
     }
   }
 
-  // --- TITLU ---
-  &__title {
+  // --- TITLU (REDENUMIT ȘI CU SHADOW) ---
+  &__hb-title {
     font-family: 'Bricolage Grotesque', sans-serif;
     font-size: 7rem; 
     font-weight: 1000; 
-    color: $color-white; 
+    color: #000000; 
     line-height: 0.95; 
     margin-bottom: 30px; 
     text-transform: uppercase;
     letter-spacing: -1px;
     
+    // === CONTRAST ADĂUGAT (Shadow Puternic) ===
+    text-shadow: 0 4px 30px rgba(0, 0, 0, 0.5); 
+    // Alternativ, dacă vrei stroke (contur), decomentează linia de mai jos:
+    // -webkit-text-stroke: 2px black;
+
     .text-highlight { 
         font-family: 'Raleway', sans-serif;
-        color: #ffffff; // DOAR ALB
+        color: #000000; 
         font-weight: 700; 
-        // Am scos animația accentPulse de aici
+        // Și highlight-ul primește shadow
+        text-shadow: 0 4px 30px rgba(0, 0, 0, 0.6);
     }
 
     @media (max-width: 1200px) { font-size: 5rem; }
     @media (max-width: 1024px) { font-size: 3.5rem; margin-bottom: 1rem; }
   }
 
-  // --- SUBTITLU ---
-  &__description {
+  // --- SUBTITLU (REDENUMIT ȘI CU SHADOW) ---
+  &__hb-description {
     font-family: 'Raleway', sans-serif;
     font-size: 1.4rem; 
-    font-weight: 600;
-    color: $color-white; 
+    font-weight: 700; // Am făcut fontul puțin mai bold
+    color: #000000; 
     margin-bottom: 50px; 
     max-width: 600px;
     line-height: 1.5;
+
+    // === CONTRAST ADĂUGAT (Shadow Mediu) ===
+    text-shadow: 0 2px 15px rgba(0, 0, 0, 0.7);
 
     @media (max-width: 1024px) {
         font-size: 1.1rem;
@@ -152,7 +159,6 @@ $color-white: #ffffff;
   &__actions {
     display: flex; gap: 20px; align-items: center;
     
-    // Container Float (plutire ușoară)
     animation: containerFloat 5s ease-in-out infinite alternate;
 
     @media (max-width: 1024px) { 
@@ -160,7 +166,6 @@ $color-white: #ffffff;
         animation: none; 
     }
     
-    // Buton Download
     .btn--download {
         background-color: $color-blue;
         color: $color-white;
@@ -176,9 +181,12 @@ $color-white: #ffffff;
         display: flex; align-items: center;
         transition: transform 0.3s ease, box-shadow 0.3s ease;
         
+        // Umbră la buton pentru a se distinge de fundal
+        box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+
         &:hover { 
             transform: translateY(-4px); 
-            box-shadow: 0 10px 20px rgba(0,0,0,0.25);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.4);
         }
 
         .icon-circle {
@@ -193,7 +201,6 @@ $color-white: #ffffff;
         @media (max-width: 1024px) { width: 80%; justify-content: center; }
     }
 
-    // Buton Signup
     .btn--signup {
       background-color: $color-yellow;
       color: $color-blue;
@@ -206,10 +213,13 @@ $color-white: #ffffff;
       font-weight: 800;
       font-size: 1.1rem;
       
+      // Umbră la buton
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+
       transition: transform 0.3s ease, box-shadow 0.3s ease;
       &:hover { 
           transform: translateY(-4px);
-          box-shadow: 0 10px 20px rgba(0,0,0,0.25);
+          box-shadow: 0 15px 40px rgba(0,0,0,0.4);
       }
       
       @media (max-width: 1024px) { width: 80%; justify-content: center; }
@@ -218,7 +228,7 @@ $color-white: #ffffff;
 }
 
 // =========================================
-// KEYFRAMES
+// KEYFRAMES (Aceleași ca înainte)
 // =========================================
 
 @keyframes impactShake {

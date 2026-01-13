@@ -10,10 +10,10 @@ const Sidebar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const menuItems = [
-    { label: 'About CAD&CRAFT', icon: <FaInfoCircle />, link: '#about' },
+    { label: 'Despre CAD&CRAFT', icon: <FaInfoCircle />, link: '/about' },
     { label: 'Event Timeline', icon: <FaHistory />, link: '#timeline' },
     { label: 'Event Format', icon: <FaListAlt />, link: '#format' },
-    { label: 'Rules', icon: <FaBook />, link: '#rules' },
+    { label: 'Rules', icon: <FaBook />, link: '/handbook' },
     { label: 'Awards', icon: <FaTrophy />, link: '#awards' },
     { label: 'Profilul candidatului', icon: <FaUserTie />, link: '#profile' },
     { label: 'Contact', icon: <FaEnvelope />, link: '#contact' },

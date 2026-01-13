@@ -357,9 +357,9 @@ const Footer = () => {
                     <div className="link-group">
                         <h4>Pages</h4>
                         <ul>
-                            <li><a href="#">Home</a></li>
-                            <li><a href="#">Blog</a></li>
-                            <li><a href="#">Partners</a></li>
+                            <li><a href="/">Acasa</a></li>
+                            <li><a href="/about">Despre</a></li>
+                            <li><a href="/handbook">Regulament</a></li>
                         </ul>
                     </div>
                     <div className="link-group">
@@ -373,9 +373,9 @@ const Footer = () => {
 
                 {/* Social Icons */}
                 <div className="social-icons">
-                    <a href="#"><FaFacebookF /></a>
-                    <a href="#"><FaInstagram /></a>
-                    <a href="#"><FaTiktok /></a>
+                    <a href="https://www.facebook.com/OSFIIR" target="_blank" rel="noopener noreferrer"><FaFacebookF /></a>
+                    <a href="https://www.instagram.com/osfiir" target="_blank" rel="noopener noreferrer"><FaInstagram /></a>
+                    <a href="https://www.tiktok.com/@o.s.f.i.i.r" target="_blank" rel="noopener noreferrer"><FaTiktok /></a>
                     <a href="#"><FaLinkedinIn /></a>
                 </div>
             </div>

@@ -1,9 +1,12 @@
 .page-home {
   width: 100%;
-  overflow-x: hidden; // Previne scroll orizontal accidental
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: #ffffff; // Sau culoarea ta de fundal generală
   
-  // Dacă vrei ca toate secțiunile să aibă o distanță consistentă
-  main > section {
-      // Poți defini reguli globale aici dacă e cazul
+  // Opțional: Spațiere între secțiuni dacă componentele nu au padding intern
+  section {
+    width: 100%;
   }
 }
