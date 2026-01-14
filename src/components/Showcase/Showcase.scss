@@ -58,25 +58,6 @@ $white: #ffffff;
       // & este acum negru solid, fără stroke
       .stroke {
         font-family: 'Raleway', sans-serif; 
-        color: $text-dark; // Culoare solidă
-        -webkit-text-stroke: 0; // Fără bordură
-      }
-    }
-
-    .quote-block {
-      position: relative;
-      margin: 100px 0 0 10px;
-      max-width: 320px; 
-
-      .quote-icon {
-        color: $yellow-brand;
-        font-size: 3.5rem;
-        position: absolute;
-        top: -40px; left: -10px;
-      }
-
-      p {
-        font-family: 'Raleway', sans-serif;
         // Mărime desktop
         font-size: 1.05rem; 
         line-height: 1.7; 
@@ -126,8 +107,6 @@ $white: #ffffff;
     font-size: clamp(10px, 1.5vw, 16px);
   }
 
-  // --- LOGICA IMAGINI ---
-  
   // 1. Imaginea Mascată (Desktop)
   .masked-image-layer {
     position: absolute;
@@ -141,7 +120,7 @@ $white: #ffffff;
     }
   }
 
-  // 2. Imaginea Statică (Mobil) - Implicit ASCUNSĂ pe desktop
+  // 2. Imaginea Statică (Mobil)
   .mobile-static-image {
       display: none; 
       width: 100%;
@@ -184,7 +163,7 @@ $white: #ffffff;
     &:hover { transform: scale(1.05); }
   }
 
-  // 4. Slider Container
+  // 4. Slider Container (Desktop - Default)
   .slider-container-absolute {
     position: absolute;
     bottom: 11%;
@@ -262,7 +241,9 @@ $white: #ffffff;
     }
   }
 
-  // --- MOBIL (Sub 768px) ---
+  // =========================================
+  // ===          MOBIL (SWIPE 2 CARDS)    ===
+  // =========================================
   @media (max-width: 768px) {
       .visual-anchor {
           aspect-ratio: auto; 
@@ -272,49 +253,73 @@ $white: #ffffff;
           font-size: 14px; 
       }
 
-      // 1. Ascundem SVG-ul
-      .masked-image-layer {
-          display: none; 
-      }
+      .masked-image-layer { display: none; }
 
-      // 2. Afișăm Imaginea Normală (A 2-a în ordine)
       .mobile-static-image {
           display: block; 
           order: 2; 
           margin-bottom: 20px;
       }
 
-      // 3. Butonul (Primul în ordine)
       .btn-absolute { 
-          position: relative; // Devine static
+          position: relative; 
           top: auto; 
           right: auto; 
-          
-          order: 1; // PRIMUL
+          order: 1; 
           margin-bottom: 30px; 
-          
           font-size: 0.85rem;
           padding: 12px 25px; 
       }
 
-      // 4. Sliderul (Al 3-lea în ordine)
+      // === SLIDER FULL WIDTH SWIPE ===
       .slider-container-absolute {
-          position: relative; 
-          width: 120%;
-          left: auto; bottom: auto;
+          // Tehnica de a ieși din containerul părinte și a ocupa tot ecranul
+          width: 100vw; 
+          position: relative;
+          left: 5%;
+          right: 5%;
+          margin-left: -50vw;
+          margin-right: -50vw;
+          
+          bottom: auto;
           margin-top: 0; 
           transform: none;
           
-          align-items: center; 
+          // Resetăm flex-ul de desktop
+          display: block;
+          order: 3;
           
-          order: 3; // ULTIMUL
-          
-          .slider-nav {
-              padding-right: 0; 
-              justify-content: center;
+          .slider-nav { display: none !important; }
+
+          .slider-viewport {
+              display: flex;
+              width: 100%;
+              overflow-x: auto; // Scroll orizontal
+              scroll-snap-type: x mandatory; // Efect de snap
+              -webkit-overflow-scrolling: touch;
+              
+              // Padding-ul din stânga/dreapta ca să nu fie lipit de margine
+              padding: 20px 20px 0px 20px; 
+              
+              &::-webkit-scrollbar { display: none; }
+              scrollbar-width: none;
           }
 
-          .slide-item { flex: 0 0 33.33%; } 
+          .slider-track {
+              display: flex;
+              gap: 30px; // Spațiu între carduri
+              width: max-content;
+              transform: none !important;
+          }
+
+          .slide-item { 
+              // 42vw înseamnă aprox 42% din lățimea ecranului.
+              // Două carduri (42+42=84%) + gap (aprox 5%) = încap aproape 2 carduri perfect.
+              flex: 0 0 42vw; 
+              max-width: 200px; // Limită să nu devină imense
+              padding: 0;
+              scroll-snap-align: start; // Se aliniază la stânga la scroll
+          } 
       }
   }
 }
