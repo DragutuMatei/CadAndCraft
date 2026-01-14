@@ -7,16 +7,16 @@ import teamImg from '../../assets/images/team1.jpg';
 import bigShowcaseImage from '../../assets/images/showcase.webp'; 
 
 const teamMembers = [
-  { id: 1, name: 'SQUAD CAL 1', img: teamImg },
-  { id: 2, name: 'SQUAD CAL 2', img: teamImg },
-  { id: 3, name: 'SQUAD CAL 3', img: teamImg },
-  { id: 4, name: 'SQUAD CAL 4', img: teamImg },
-  { id: 5, name: 'SQUAD CAL 5', img: teamImg },
-  { id: 6, name: 'SQUAD CAL 6', img: teamImg },
-  { id: 7, name: 'SQUAD CAL 7', img: teamImg },
-  { id: 8, name: 'SQUAD CAL 8', img: teamImg },
-  { id: 9, name: 'SQUAD CAL 9', img: teamImg },
-  { id: 10, name: 'SQUAD CAL 10', img: teamImg },
+  { id: 1, name: 'SQUAD CAL 1', img: bigShowcaseImage },
+  { id: 2, name: 'SQUAD CAL 2', img: bigShowcaseImage },
+  { id: 3, name: 'SQUAD CAL 3', img: bigShowcaseImage },
+  { id: 4, name: 'SQUAD CAL 4', img: bigShowcaseImage },
+  { id: 5, name: 'SQUAD CAL 5', img: bigShowcaseImage },
+  { id: 6, name: 'SQUAD CAL 6', img: bigShowcaseImage },
+  { id: 7, name: 'SQUAD CAL 7', img: bigShowcaseImage },
+  { id: 8, name: 'SQUAD CAL 8', img: bigShowcaseImage },
+  { id: 9, name: 'SQUAD CAL 9', img: bigShowcaseImage },
+  { id: 10, name: 'SQUAD CAL 10', img: bigShowcaseImage },
 ];
 
 const Showcase = () => {
