@@ -21,9 +21,8 @@ $black-mobile: #1a1a1a;
     position: relative;
     width: 100%;
     max-width: 1700px;
-    min-height: 529px; // Înălțime minimă desktop
+    min-height: 529px; 
     border-radius: 30px;
-    // CRITIC: overflow hidden asigură colțurile rotunjite și pentru blocurile solide de pe mobil
     overflow: hidden; 
     box-shadow: 0 25px 60px rgba(0,0,0,0);
     background-color: transparent; 
@@ -60,7 +59,6 @@ $black-mobile: #1a1a1a;
     display: flex;
     align-items: center;
     padding: 40px 5%;
-    // Pe desktop nu avem culoare de fundal (o dă SVG-ul)
     background-color: transparent;
     
     .text-wrapper {
@@ -97,11 +95,10 @@ $black-mobile: #1a1a1a;
     align-items: center;
     gap: 30px;
     padding-bottom: 40px;
-    // Pe desktop nu avem culoare de fundal (o dă SVG-ul)
     background-color: transparent;
   }
 
-  /* TIMER */
+  /* TIMER (Desktop Style - Flex Row) */
   .timer-container {
     display: flex;
     gap: clamp(20px, 4vw, 60px); 
@@ -162,7 +159,6 @@ $black-mobile: #1a1a1a;
   .countdown-card {
     min-height: auto !important; 
     height: auto !important;
-    // Ne asigurăm că e transparent
     background-color: transparent !important;
   }
   
@@ -171,14 +167,9 @@ $black-mobile: #1a1a1a;
     height: auto !important;
   }
 
-  // --- MODIFICARE PRINCIPALĂ: ASCUNDEM SVG-UL PE MOBIL ---
-  .bg-layer {
-      display: none !important;
-  }
+  .bg-layer { display: none !important; }
 
-  /* --- ZONA SUS (DREPTUNGHI VERDE SOLID) --- */
   .top-section {
-    // APLICĂM CULOAREA VERDE
     background-color: $green-brand !important;
     flex: none;
     width: 100%;
@@ -186,43 +177,57 @@ $black-mobile: #1a1a1a;
     justify-content: center;
     text-align: center;
     .text-wrapper { text-align: center; }
-    
-    // Asigurăm că textul e alb
     .subtitle, .title { color: $white !important; }
   }
 
-  /* --- ZONA JOS (DREPTUNGHI GALBEN SOLID) --- */
   .bottom-section {
-    // APLICĂM CULOAREA GALBENĂ
     background-color: $yellow-brand !important;
     flex: none;
     width: 100%;
     padding: 40px 20px 50px 20px;
-    // Eliminăm eventuale spații între blocuri
     margin-top: -1px;
   }
 }
 
-/* --- TELEFON (Sub 768px) --- */
+/* --- TELEFON (Sub 768px) - TIMER PE COLOANĂ --- */
 @media (max-width: 768px) {
   .countdown-section { padding: 10px; }
   
-  // Grid 2x2 pentru timer
   .timer-container {
-    display: grid;
-    grid-template-columns: 1fr 1fr; 
-    gap: 20px 10px; 
-    text-align: center;
+    // Schimbăm în Flex Column pentru a le pune una sub alta
+    display: flex !important; 
+    flex-direction: column !important;
+    align-items: center !important; // Centrare orizontală
+    gap: 25px; // Spațiu între elementele timer-ului (Zile vs Ore etc.)
+    
     width: 100%;
 
     .timer-item {
-      flex-direction: column; 
-      align-items: center;
-      gap: 0;
-      .number { font-size: 3.5rem; } 
-      .label { font-size: 1rem; }
+      // Fiecare item (ex: "37 zile") este centrat vertical
+      display: flex;
+      flex-direction: column !important; 
+      align-items: center !important; 
+      justify-content: center !important;
+      gap: 5px; 
+      
+      .number { 
+          font-size: 4rem; // Numere mari și vizibile
+          line-height: 1;
+          margin: 0;
+      } 
+      
+      .label { 
+          font-size: 1.2rem; 
+          margin: 0;
+          text-transform: uppercase; // Opțional, arată bine
+          letter-spacing: 1px;
+      }
     }
   }
 
-  .btn-register { width: 90%; justify-content: center; }
+  .btn-register { 
+      width: 90%; 
+      justify-content: center; 
+      margin-top: 30px; // Spațiu extra față de timer
+  }
 }

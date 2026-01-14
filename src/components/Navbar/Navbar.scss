@@ -1,4 +1,4 @@
-// 1. IMPORTUL FONTULUI NOU AICI SUS
+// 1. IMPORTUL FONTULUI
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Open+Sans:wght@400;600&display=swap');
 @import '../../styles/variables';
 
@@ -11,7 +11,15 @@ $bg-pill: rgba(0, 0, 0, 0.4);
   left: 0;
   width: 100%;
   
+  // Înălțime Desktop Standard
   height: 140px; 
+  
+  // === MODIFICARE PENTRU MOBIL/TABLETĂ ===
+  // Pe ecrane mici, o facem mai compactă din start (ca la scroll)
+  @media (max-width: 1024px) {
+      height: 90px; 
+      top: 0; // O lipim de sus pe mobil pentru a câștiga spațiu
+  }
   
   z-index: 100;
   background-color: transparent;
@@ -30,7 +38,7 @@ $bg-pill: rgba(0, 0, 0, 0.4);
     padding: 0 50px;
 
     @media (max-width: 1024px) {
-        padding: 0 30px;
+        padding: 0 20px; // Padding mai mic pe lateral
     }
   }
 
@@ -50,7 +58,7 @@ $bg-pill: rgba(0, 0, 0, 0.4);
     }
 
     @media (max-width: 768px) {
-        width: 160px;
+        width: 140px; // Logo un pic mai mic pe telefon
     }
   }
 
@@ -70,12 +78,11 @@ $bg-pill: rgba(0, 0, 0, 0.4);
     text-decoration: none;
     color: #fff;
     
-    // 2. AICI AM PUS FONTUL MONTSERRAT
     font-family: 'Montserrat', sans-serif; 
     font-size: 1.15rem;
-    font-weight: 700; // Folosim greutatea bold importată
+    font-weight: 700; 
     letter-spacing: 1px;
-    text-transform: uppercase; // De obicei Montserrat arată bine majuscule în meniuri (opțional)
+    text-transform: uppercase; 
 
     padding: 12px 35px;
     border: 2px solid $yellow-border;
@@ -108,14 +115,10 @@ $bg-pill: rgba(0, 0, 0, 0.4);
   // --- MENIU MOBIL / TABLETĂ (OVERLAY) ---
   &__mobile-overlay {
     position: fixed;
-    
-    // Fixul pentru spațiul de sus
-    top: -20px; 
+    top: 0; // Resetat pentru a acoperi tot ecranul
     left: 0;
     width: 100%;
-    
-    // Fixul pentru înălțime
-    height: calc(100vh + 20px); 
+    height: 100vh; // Înălțime completă
     
     background-color: rgba(0, 0, 0, 0.98); 
     display: flex;
@@ -141,9 +144,8 @@ $bg-pill: rgba(0, 0, 0, 0.4);
       color: #fff;
       font-size: 2rem;
       
-      // 3. AM PUS FONTUL ȘI AICI
       font-family: 'Montserrat', sans-serif;
-      font-weight: 800; // Extra bold pentru mobil
+      font-weight: 800; 
       text-transform: uppercase;
       
       transition: color 0.3s;
@@ -157,11 +159,14 @@ $bg-pill: rgba(0, 0, 0, 0.4);
   // --- STARE SCROLLED ---
   &--scrolled {
     background-color: rgba(255, 255, 255, 0.95);
-    height: 90px; 
+    height: 90px; // Înălțimea la scroll (pe desktop)
     box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-    
-    // Resetare top la scroll
     top: 0; 
+
+    // Pe mobil rămâne la fel de compactă (90px) și albă
+    @media (max-width: 1024px) {
+        height: 80px; // Poate chiar un pic mai compactă pe scroll
+    }
 
     .navbar__logo svg path { fill: #003566; }
     

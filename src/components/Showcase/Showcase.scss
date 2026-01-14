@@ -54,10 +54,12 @@ $white: #ffffff;
       margin-bottom: 40px;
       letter-spacing: -2px; 
 
+      // === MODIFICARE PRINCIPALĂ ===
+      // & este acum negru solid, fără stroke
       .stroke {
         font-family: 'Raleway', sans-serif; 
-        -webkit-text-stroke: 2px $text-dark;
-        color: transparent;
+        color: $text-dark; // Culoare solidă
+        -webkit-text-stroke: 0; // Fără bordură
       }
     }
 
@@ -75,7 +77,8 @@ $white: #ffffff;
 
       p {
         font-family: 'Raleway', sans-serif;
-        font-size: 1.05rem;
+        // Mărime desktop
+        font-size: 1.05rem; 
         line-height: 1.7; 
         color: #333;
         font-weight: 700; 
@@ -91,6 +94,14 @@ $white: #ffffff;
             margin: 50px auto 0; 
             max-width: 600px; 
             .quote-icon { left: 50%; transform: translateX(-50%); } 
+        }
+    }
+
+    // === MODIFICARE MOBIL PENTRU TEXT ===
+    @media (max-width: 768px) {
+        .quote-block p {
+            font-size: 0.9rem; // Text mai mic pe mobil
+            line-height: 1.5;
         }
     }
   }

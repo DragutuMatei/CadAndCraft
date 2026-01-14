@@ -196,8 +196,8 @@ $dark: #111111;
 
   .main-card {
     height: auto; 
-    padding-bottom: 0; // Eliminăm padding-ul cardului
-    background-color: transparent; // Fundalul e dat de secțiunile interne
+    padding-bottom: 0; 
+    background-color: transparent; 
   }
 
   .content-layer {
@@ -220,9 +220,15 @@ $dark: #111111;
         color: $white !important; 
     }
     
-    // Text ALB
+    // Text ALB - MICȘORAT PENTRU MOBIL
     .body-text {
         color: rgba(255, 255, 255, 0.95) !important;
+        
+        // --- MODIFICARE AICI ---
+        font-size: 0.9rem; // Redus de la 1.15rem
+        line-height: 1.5;
+        // -----------------------
+        
         p { opacity: 1; }
     }
 
