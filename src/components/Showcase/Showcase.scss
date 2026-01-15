@@ -58,7 +58,25 @@ $white: #ffffff;
       // & este acum negru solid, fără stroke
       .stroke {
         font-family: 'Raleway', sans-serif; 
-        // Mărime desktop
+        color: $text-dark; 
+        -webkit-text-stroke: 0; 
+      }
+    }
+
+    .quote-block {
+      position: relative;
+      margin: 100px 0 0 10px;
+      max-width: 320px; 
+
+      .quote-icon {
+        color: $yellow-brand;
+        font-size: 3.5rem;
+        position: absolute;
+        top: -40px; left: -10px;
+      }
+
+      p {
+        font-family: 'Raleway', sans-serif;
         font-size: 1.05rem; 
         line-height: 1.7; 
         color: #333;
@@ -78,10 +96,9 @@ $white: #ffffff;
         }
     }
 
-    // === MODIFICARE MOBIL PENTRU TEXT ===
     @media (max-width: 768px) {
         .quote-block p {
-            font-size: 0.9rem; // Text mai mic pe mobil
+            font-size: 0.9rem; 
             line-height: 1.5;
         }
     }
