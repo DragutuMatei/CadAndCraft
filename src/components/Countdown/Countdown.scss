@@ -190,44 +190,55 @@ $black-mobile: #1a1a1a;
 }
 
 /* --- TELEFON (Sub 768px) - TIMER PE COLOANĂ --- */
+/* --- TELEFON (Sub 768px) - MODIFICAT PENTRU LINIE --- */
 @media (max-width: 768px) {
   .countdown-section { padding: 10px; }
   
   .timer-container {
-    // Schimbăm în Flex Column pentru a le pune una sub alta
+    // 1. AICI ESTE SCHIMBAREA PRINCIPALĂ:
+    // Le punem în linie (row), nu una sub alta
     display: flex !important; 
-    flex-direction: column !important;
-    align-items: center !important; // Centrare orizontală
-    gap: 25px; // Spațiu între elementele timer-ului (Zile vs Ore etc.)
+    flex-direction: row !important; 
     
+    // Le centrăm și permitem să nu iasă din ecran
+    justify-content: center !important;
+    align-items: center !important;
+    flex-wrap: nowrap !important; // Forțăm să stea pe un rând
+    
+    // Reducem spațiul dintre elemente ca să încapă
+    gap: 15px; 
     width: 100%;
 
     .timer-item {
-      // Fiecare item (ex: "37 zile") este centrat vertical
+      // 2. MODIFICARE SECUNDARĂ:
+      // Punem eticheta SUB număr (Zile sub 30) ca să economisim lățime
       display: flex;
       flex-direction: column !important; 
       align-items: center !important; 
-      justify-content: center !important;
-      gap: 5px; 
+      gap: 0px; // Spațiu mic între număr și text
       
       .number { 
-          font-size: 4rem; // Numere mari și vizibile
+          // 3. MICȘORARE FONT:
+          // Era 4rem, îl facem mai mic pentru a încăpea 4 numere în linie
+          font-size: 2.2rem; 
           line-height: 1;
           margin: 0;
       } 
       
       .label { 
-          font-size: 1.2rem; 
+          // Textul (Zile/Ore) mai mic
+          font-size: 0.8rem; 
           margin: 0;
-          text-transform: uppercase; // Opțional, arată bine
-          letter-spacing: 1px;
+          text-transform: uppercase;
+          opacity: 0.8;
       }
     }
   }
 
   .btn-register { 
-      width: 90%; 
+      width: 100%; 
       justify-content: center; 
-      margin-top: 30px; // Spațiu extra față de timer
+      margin-top: 25px;
+      font-size: 1rem; // Puțin mai mic și butonul
   }
 }
