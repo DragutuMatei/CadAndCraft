@@ -54,6 +54,8 @@ $white: #ffffff;
       margin-bottom: 40px;
       letter-spacing: -2px; 
 
+      // === MODIFICARE PRINCIPALĂ ===
+      // & este acum negru solid, fără stroke
       .stroke {
         font-family: 'Raleway', sans-serif; 
         color: $text-dark; 
