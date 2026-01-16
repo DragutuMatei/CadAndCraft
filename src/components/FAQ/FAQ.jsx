@@ -5,28 +5,28 @@ import './FAQ.scss';
 const faqData = [
   {
     id: 1,
-    question: "Cine poate participa la CAD&CRAFT?",
-    answer: "Competiția este deschisă tuturor studenților pasionați de proiectare CAD și design de produs, indiferent de anul de studiu sau facultate. Echipele pot fi formate din 2-4 membri."
+    question: "Cine se poate înscrie și câți membri poate avea o echipă?",
+    answer: "Competiția este deschisă tuturor studenților (licență sau master) pasionați de inginerie. Echipele trebuie să fie formate din 3 membri. Dacă nu ai o echipă completă, te poți înscrie și vom încerca să te unim cu alți entuziaști."
   },
   {
     id: 2,
-    question: "Care este tema ediției de anul acesta?",
-    answer: "Tema va fi anunțată oficial în ziua deschiderii evenimentului. Totuși, pregătiți-vă pentru provocări legate de sustenabilitate și inovație tehnologică."
+    question: "Trebuie să fiu expert în modelare 3D ca să particip?",
+    answer: "Nu căutăm neapărat experți, ci oameni creativi și descurcăreți! Dacă ai cunoștințe de bază într-un soft CAD și poți vizualiza o soluție tehnică, ai toate șansele. CAD&CRAFT este și despre învățare și lucru în echipă."
   },
   {
     id: 3,
-    question: "Am nevoie de experiență avansată în CAD?",
-    answer: "Nu neapărat! Căutăm creativitate și ingeniozitate. Deși cunoștințele tehnice ajută, ideea și execuția practică sunt la fel de importante."
+    question: "Ce trebuie să am la mine în ziua concursului?",
+    answer: "Obligatoriu: Laptopul personal (cu softul CAD instalat), încărcător și un mouse (crede-ne, nu vrei să proiectezi pe touchpad). Recomandăm și un prelungitor per echipă. De restul (mâncare, materiale CRAFT, internet) ne ocupăm noi."
   },
   {
     id: 4,
-    question: "Ce echipamente trebuie să aducem?",
-    answer: "Fiecare echipă trebuie să vină cu propriile laptopuri. Noi vom asigura software-ul necesar (dacă este cazul), internetul, cafeaua și energia!"
+    question: "Ce programe de proiectare (CAD) putem folosi?",
+    answer: "Sunteți liberi să folosiți orice soft cu care vă simțiți confortabil: CATIA, SolidWorks, Siemens NX, Fusion 360, Inventor etc. Important este rezultatul final și respectarea temei."
   },
   {
     id: 5,
-    question: "Există o taxă de înscriere?",
-    answer: "Nu, participarea la CAD&CRAFT este complet gratuită. Tot ce trebuie să investești este timp și pasiune."
+    question: "Participarea costă? Și... primim de mâncare?",
+    answer: "Participarea este 100% gratuită! Mai mult, pe parcursul celor 24 de ore asigurăm catering (pizza, snacks), cafea și energizante ca să rămâneți în forță până la final."
   }
 ];
 

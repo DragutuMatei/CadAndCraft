@@ -69,8 +69,8 @@ const Countdown = () => {
           {/* ZONA SUS (VERDE ÎN SVG) */}
           <div className="top-section">
               <div className="text-wrapper">
-                  <h2 className="subtitle">ÎNSCRIERILE SUNT</h2>
-                  <h1 className="title">DESCHISE!</h1>
+                  <h2 className="subtitle">ÎNSCRIERILE SE</h2>
+                  <h1 className="title">DESCHID ÎN:</h1>
               </div>
           </div>
 

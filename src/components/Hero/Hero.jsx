@@ -30,7 +30,7 @@ const Hero = () => {
             >
               <g transform="scale(0.95) translate(0.026, 0.026)">
                 <path
-                  fill="#ffffff"
+                  fill="#E8EFF7"
                   fillRule="evenodd"
                   d="
                     M-8,-5 H16 V10 H-8 Z
@@ -65,9 +65,10 @@ const Hero = () => {
             </h1>
             
             <p className="hero__description">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum viverra dignissim
-              mauris ac tristique. Nulla hendrerit nec erat bibendum lacinia. Aenean cursus nibh
-              eget odio bibendum aliquet.
+              CAD&CRAFT revine și anul acesta să îți provoace imaginația! 
+              Ne întoarcem în forță cu un univers dedicat soluțiilor smart și designului de top. ⚙️🔥
+              Încarcă-ți bateriile, adună-ți echipa și fii gata să ducem competiția la nivelul următor. 🚀🔧
+
             </p>
 
             <div className="hero__actions">

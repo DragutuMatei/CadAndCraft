@@ -1,8 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { BsArrowRight, BsArrowLeft } from 'react-icons/bs';
+import { BsArrowRight } from 'react-icons/bs';
 import { FaQuoteLeft } from 'react-icons/fa';
 import './Showcase.scss';
 
+// Asigură-te că aceste importuri sunt corecte în proiectul tău
 import teamImg from '../../assets/images/team1.jpg'; 
 import bigShowcaseImage from '../../assets/images/showcase.webp'; 
 
@@ -24,17 +25,31 @@ const Showcase = () => {
   const sectionRef = useRef(null);
 
   const [currentIndex, setCurrentIndex] = useState(0);
+  
+  // Configurare Slider Desktop
   const visibleCards = 3; 
-  const maxIndex = teamMembers.length - visibleCards;
+  const totalSlides = teamMembers.length;
+  // Indexul maxim până la care putem merge fără să rămână spațiu alb
+  const maxIndex = totalSlides - visibleCards; 
 
-  const nextSlide = () => {
-    if (currentIndex < maxIndex) setCurrentIndex(curr => curr + 1);
-  };
+  // === LOGICA AUTO-SCROLL ===
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentIndex((prevIndex) => {
+        // Dacă am ajuns la final, resetăm la 0 (început)
+        if (prevIndex >= maxIndex) {
+          return 0;
+        }
+        // Altfel, mergem la următorul
+        return prevIndex + 1;
+      });
+    }, 3000); // 3000ms = 3 secunde (modifică aici viteza)
 
-  const prevSlide = () => {
-    if (currentIndex > 0) setCurrentIndex(curr => curr - 1);
-  };
+    // Curățăm intervalul când componenta se închide
+    return () => clearInterval(interval);
+  }, [maxIndex]);
 
+  // Observer pentru animația de apariție a secțiunii
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -55,7 +70,7 @@ const Showcase = () => {
         
         {/* --- STÂNGA: Text --- */}
         <div className="text-column">
-          <div className="text-sticky-wrapper">
+          <div className="text-sticky-wrapper"> {/* Dacă ai nevoie de sticky, altfel e doar div */}
             <h1 className="title-large">
               CAD<span className="stroke">&</span>CRAFT<br />
               EDITIA I
@@ -64,15 +79,12 @@ const Showcase = () => {
             <div className="quote-block">
               <FaQuoteLeft className="quote-icon" />
               <p>
-                Matei te pup dulce la corason ❤️❤️, consectetur . 
-                Vestibulum viverra dignissim mauris ac tristique. Nulla 
-                hendrerit nec erat bibendum lacinia. Mama este mare.
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-                Vestibulum viverra dignissim mauris ac tristique. Nulla 
-                hendrerit nec erat bibendum lacinia. Mama este mare.
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-                Vestibulum viverra dignissim mauris ac tristique. Nulla 
-                hendrerit nec erat bibendum lacinia. Mama este mare.
+                Așa a arătat succesul la prima ediție CAD&CRAFT! 🏆 <br></br> <br></br>
+
+                Aruncăm o privire înapoi la campionii de anul trecut care au demonstrat că precizia și creativitatea fac echipa perfectă. 📐✨  <br></br><br></br>
+
+                Te simți inspirat? Anul acesta, locul lor pe podium poate fi al tău!🥇
+
               </p>
             </div>
           </div>
@@ -83,7 +95,7 @@ const Showcase = () => {
           
           <div className="visual-anchor">
             
-            {/* 1. Imaginea Mascată (SVG) - SE VEDE DOAR PE DESKTOP */}
+            {/* 1. Imaginea Mascată (SVG) - Desktop */}
             <div className="masked-image-layer">
               <svg viewBox="0 0 750 746" className="mask-svg" preserveAspectRatio="none">
                 <defs>
@@ -98,23 +110,21 @@ const Showcase = () => {
               </svg>
             </div>
 
-            {/* 2. Imaginea Normală - SE VEDE DOAR PE MOBIL */}
+            {/* 2. Imaginea Statică - Mobil */}
             <img src={bigShowcaseImage} alt="Showcase Main" className="mobile-static-image" />
 
             {/* 3. Butonul Verde */}
-            <a
-                href="/about"
-                className="btn-absolute"
-              >
+            <a href="/about" className="btn-absolute">
                 VEZI MAI MULTE <span className="icon-circle"><BsArrowRight /></span>
-              </a>
+            </a>
 
-            {/* 4. Slider Carduri */}
+            {/* 4. Slider Carduri (Auto-play) */}
             <div className="slider-container-absolute">
                 <div className="slider-viewport">
                     <div 
                         className="slider-track"
-                        style={{ transform: `translateX(-${currentIndex * (100 / visibleCards)}%)` }}
+                        // 33.333% deoarece vrem 3 carduri pe ecran (100 / 3)
+                        style={{ transform: `translateX(-${currentIndex * 33.333}%)` }}
                     >
                         {teamMembers.map(member => (
                             <div key={member.id} className="slide-item">
@@ -126,15 +136,8 @@ const Showcase = () => {
                         ))}
                     </div>
                 </div>
-
-                <div className="slider-nav">
-                    <button onClick={prevSlide} disabled={currentIndex === 0}>
-                        <BsArrowLeft />
-                    </button>
-                    <button onClick={nextSlide} disabled={currentIndex === maxIndex}>
-                        <BsArrowRight />
-                    </button>
-                </div>
+                
+                {/* Navigația a fost ascunsă din CSS și scoasă din HTML */}
             </div>
 
           </div>
