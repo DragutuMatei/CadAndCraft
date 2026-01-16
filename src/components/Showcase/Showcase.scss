@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
 @import '../../styles/variables';
 
-$bg-color: #EBF2FA;
+$bg-color: #E8EFF7;
 $text-dark: #111111;
 $green-brand: #208A39;
 $yellow-brand: #FFC300;
@@ -183,7 +183,7 @@ $white: #ffffff;
   // 4. Slider Container (Desktop - Default)
   .slider-container-absolute {
     position: absolute;
-    bottom: 11%;
+    bottom: 15%;
     left: -37%;
     width: 65%; 
     z-index: 10;

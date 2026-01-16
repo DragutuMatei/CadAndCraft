@@ -5,7 +5,7 @@
 // Variabile de culoare
 $green-brand: #1e8538; 
 $yellow-brand: #FFC300;
-$white: #ffffff;
+$white: #E8EFF7;
 $dark: #111111;
 
 /* --- ANIMAȚIE --- */
@@ -21,7 +21,7 @@ $dark: #111111;
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #ffffff;
+  background-color: $white;
   padding: 60px 20px; 
   box-sizing: border-box;
 }

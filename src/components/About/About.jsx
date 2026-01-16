@@ -28,16 +28,15 @@ const About = () => {
               
               <div className="body-text">
                 <p>
-                  Fusce in ante in erat feugiat rutrum. Sed placerat odio ex, vel consectetur dolor 
-                  blandit sit amet. Maecenas a massa id massa pharetra ultrices sed sit amet metus.
-                  Fusce in ante in erat feugiat rutrum. Sed placerat odio ex, vel consectetur dolor 
-                  blandit sit amet. Maecenas a massa id massa pharetra ultrices sed sit amet metus.
-                  Fusce in ante in erat feugiat rutrum. Sed placerat odio ex, vel consectetur dolor 
-                  blandit sit amet. Maecenas a massa id massa pharetra ultrices sed sit amet metus.
-                </p>
-                <p>
-                  Integer laoreet faucibus dolor vitae feugiat. Mauris nec nibh vitae sem mattis 
-                  tincidunt eget sit amet ex. Ut felis ante, malesuada sed arcu sed.
+                  CAD&CRAFT – De la idee la realitate în 24 de ore ⚙️🚀
+
+Ești gata pentru provocarea supremă? Pe 21-22 Martie, OSFIIR transformă Facultatea de Inginerie într-o arenă a inovației. Competiția te provoacă în două etape esențiale:
+
+CAD: Proiectare 3D avansată și soluții smart pe o temă surpriză.
+
+CRAFT: Asamblarea fizică și testarea prototipului tău.
+
+Nu ești singur în fața monitorului! Îți asigurăm „combustibilul” necesar (mâncare, cafea, energizante), zonă de relaxare și premii pe măsură. Demonstrează că ai precizia unui inginer și viziunea unui creator. Adună-ți echipa și înscrie-te acum în maratonul care îți definește viitorul! 🏆📐
                 </p>
               </div>
 
@@ -64,24 +63,24 @@ const About = () => {
               {/* Coloana 1 */}
               <div className="grid-col col-1">
                  <div className="stat-box">
-                   <h3>30+</h3>
-                   <p>Clienți</p>
+                   <h3>20</h3>
+                   <p>ECHIPE</p>
                  </div>
                  <div className="stat-box">
-                   <h3>120%</h3>
-                   <p>Engagement</p>
+                   <h3>24</h3>
+                   <p>ORE DE FOC</p>
                  </div>
               </div>
 
               {/* Coloana 2 */}
               <div className="grid-col col-2">
                  <div className="stat-box">
-                   <h3>3K+</h3>
-                   <p>Postări</p>
+                   <h3>10+</h3>
+                   <p>PARTENERI</p>
                  </div>
                  <div className="stat-box">
-                   <h3>50+</h3>
-                   <p>Proiecte<br/>Realizate</p>
+                   <h3>3000€</h3>
+                   <p>VALOARE MINIMA PREMII</p>
                  </div>
               </div>
 
