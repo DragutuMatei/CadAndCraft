@@ -70,6 +70,7 @@ const Showcase = () => {
   const startScrollPos = useRef(0);
   const dragDistance = useRef(0); // Măsurăm cât a tras ca să știm dacă e click sau drag
 
+  // Observer pentru animația de apariție a secțiunii
   useEffect(() => {
     const currentSection = sectionRef.current;
     const observer = new IntersectionObserver(
