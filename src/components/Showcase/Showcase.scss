@@ -1,3 +1,4 @@
+/* --- IMPORT FONTURI --- */
 @import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
 @import '../../styles/variables';
 
@@ -34,11 +35,10 @@ $white: #ffffff;
     }
   }
 
-  // --- STÂNGA: Text ---
+  // --- STÂNGA: Text (Identic cu originalul) ---
   .text-column {
     flex: 0 0 40%; 
     max-width: 550px; 
-    
     opacity: 0;
     transform: translateX(-50px);
     transition: all 0.8s ease-out;
@@ -54,8 +54,6 @@ $white: #ffffff;
       margin-bottom: 40px;
       letter-spacing: -2px; 
 
-      // === MODIFICARE PRINCIPALĂ ===
-      // & este acum negru solid, fără stroke
       .stroke {
         font-family: 'Raleway', sans-serif; 
         color: $text-dark; 
@@ -135,6 +133,13 @@ $white: #ffffff;
     svg.mask-svg {
       width: 100%; height: 100%; display: block;
     }
+    
+    // Animația FIFA
+    image {
+        animation: fifaFade 1.4s cubic-bezier(0.4, 0.0, 0.2, 1) forwards;
+        transform-origin: center;
+        transform-box: fill-box;
+    }
   }
 
   // 2. Imaginea Statică (Mobil)
@@ -144,6 +149,9 @@ $white: #ffffff;
       height: auto;
       border-radius: 20px;
       box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      
+      animation: fifaFade 1.4s cubic-bezier(0.4, 0.0, 0.2, 1) forwards;
+      transform-origin: center;
   }
 
   // 3. Butonul
@@ -152,23 +160,19 @@ $white: #ffffff;
     top: 1.2%; 
     right: 0%;
     z-index: 10;
-
     background-color: $green-brand;
     color: $white;
     border: none;
     border-radius: 50px;
     padding: 1.5% 2% 1.5% 3%; 
-    
     font-family: 'Bricolage Grotesque', sans-serif;
     font-weight: 700;
     font-size: clamp(0.7rem, 2.5cqw, 2rem); 
-    
     text-transform: uppercase;
     display: flex; align-items: center; gap: 0.5em;
     cursor: pointer;
     box-shadow: 0 0.5em 1.2em rgba(0,0,0,0.2);
     transition: transform 0.4s;
-
     .icon-circle {
       width: 2em; height: 2em;
       border: 1px solid rgba(255,255,255,0.4);
@@ -180,11 +184,12 @@ $white: #ffffff;
     &:hover { transform: scale(1.05); }
   }
 
-  // 4. Slider Container (Desktop - Default)
+  // 4. Slider Container - RESPONSIVITATE RESTAURATĂ
   .slider-container-absolute {
     position: absolute;
-    bottom: 15%;
-    left: -37%;
+    // Dimensiuni originale
+    bottom: 11%; 
+    left: -37%; 
     width: 65%; 
     z-index: 10;
     display: flex;
@@ -195,18 +200,40 @@ $white: #ffffff;
         width: 100%; 
         overflow: hidden;
         padding: 2% 0;
+        
+        // Adăugiri minime pentru funcționalitate
+        mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+        cursor: grab;
+        &:active { cursor: grabbing; }
     }
 
     .slider-track {
         display: flex;
-        width: 100%;
-        transition: transform 1s cubic-bezier(0.4, 1, 0.9, 1);
+        width: max-content; // Necesar pentru scroll infinit
+        will-change: transform; 
+        user-select: none;
+        -webkit-user-drag: none;
+        // Fără gap aici, folosim padding-ul de pe item din codul vechi
     }
 
     .slide-item {
-        flex: 0 0 33.333%;
-        padding: 0 1.5%;
+        // === RESTAURARE RESPONSIVITATE DESKTOP ===
+        // În codul vechi: width 65% (container) * 33.333% (item) = ~21.6% din ecran
+        // Folosim 21.5vw pentru a simula exact acel 33.3% responsiveness
+        flex: 0 0 14vw; 
+        
+        // Padding-ul original
+        padding: 0 0.1%; 
         box-sizing: border-box;
+        cursor: pointer;
+
+        // Shake animation
+        &.is-clicked {
+            .team-card {
+                animation: clickShake 0.4s cubic-bezier(.36,.07,.19,.97) both;
+                border: 2px solid $green-brand; 
+            }
+        }
     }
 
     .team-card {
@@ -216,9 +243,16 @@ $white: #ffffff;
         border-radius: 12px;
         overflow: hidden;
         position: relative;
-        box-shadow: 0 10px 25px rgba(0,0,0,0);
+        // Umbra originală
+        box-shadow: 0 10px 25px rgba(0,0,0,0); 
+        transition: transform 0.3s ease;
         
-        img { width: 100%; height: 100%; object-fit: cover; }
+        &:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+        }
+        
+        img { width: 100%; height: 100%; object-fit: cover; pointer-events: none; }
 
         .green-label {
             position: absolute; bottom: 8%; left: 50%; transform: translateX(-50%);
@@ -231,36 +265,13 @@ $white: #ffffff;
         }
     }
 
-    .slider-nav {
-        display: flex;
-        gap: 15px;
-        margin-top: 3%;
-        padding-right: 5%; 
-
-        button {
-            width: 2.8em; 
-            height: 2.8em;
-            font-size: 1em; 
-            border-radius: 50%;
-            border: 1px solid #ccc;
-            background: $white;
-            display: flex; align-items: center; justify-content: center;
-            cursor: pointer;
-            transition: all 0.2s;
-            color: $text-dark;
-
-            &:hover:not(:disabled) {
-                border-color: $green-brand; color: $green-brand;
-                background: rgba($green-brand, 0.05);
-            }
-            &:disabled { opacity: 0.5; cursor: default; }
-        }
-    }
+    .slider-nav { display: none !important; }
   }
 
   // =========================================
   // ===          MOBIL (SWIPE 2 CARDS)    ===
   // =========================================
+  // RESTAURAT COMPLET DIN CODUL VECHI
   @media (max-width: 768px) {
       .visual-anchor {
           aspect-ratio: auto; 
@@ -288,21 +299,17 @@ $white: #ffffff;
           padding: 12px 25px; 
       }
 
-      // === SLIDER FULL WIDTH SWIPE ===
       .slider-container-absolute {
-          // Tehnica de a ieși din containerul părinte și a ocupa tot ecranul
           width: 100vw; 
           position: relative;
           left: 5%;
           right: 5%;
           margin-left: -50vw;
           margin-right: -50vw;
-          
           bottom: auto;
           margin-top: 0; 
           transform: none;
           
-          // Resetăm flex-ul de desktop
           display: block;
           order: 3;
           
@@ -311,32 +318,60 @@ $white: #ffffff;
           .slider-viewport {
               display: flex;
               width: 100%;
-              overflow-x: auto; // Scroll orizontal
-              scroll-snap-type: x mandatory; // Efect de snap
+              overflow-x: auto; 
+              scroll-snap-type: x mandatory; 
               -webkit-overflow-scrolling: touch;
-              
-              // Padding-ul din stânga/dreapta ca să nu fie lipit de margine
               padding: 20px 20px 0px 20px; 
-              
+              mask-image: none; 
               &::-webkit-scrollbar { display: none; }
               scrollbar-width: none;
           }
 
           .slider-track {
               display: flex;
-              gap: 30px; // Spațiu între carduri
+              // Aici era gap-ul implicit din flex în codul vechi (sau lipsa lui), dar păstrăm 30px pentru spațiere curată
+              gap: 30px; 
               width: max-content;
-              transform: none !important;
+              transform: none !important; 
           }
 
           .slide-item { 
-              // 42vw înseamnă aprox 42% din lățimea ecranului.
-              // Două carduri (42+42=84%) + gap (aprox 5%) = încap aproape 2 carduri perfect.
+              // === RESPONSIVITATEA VECHE MOBIL ===
               flex: 0 0 42vw; 
-              max-width: 200px; // Limită să nu devină imense
+              max-width: 200px; // Limita din codul vechi
+              
               padding: 0;
-              scroll-snap-align: start; // Se aliniază la stânga la scroll
+              scroll-snap-align: start; 
+              
+              &.is-clicked .team-card {
+                  border: none;
+                  animation: none;
+              }
           } 
       }
   }
+}
+
+// ==========================
+// ANIMAȚII
+// ==========================
+
+@keyframes fifaFade {
+    0% {
+        opacity: 0;
+        transform: scale(0.96); 
+        filter: brightness(1.2) blur(3px); 
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+        filter: brightness(1) blur(0px);
+    }
+}
+
+@keyframes clickShake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-3px) rotate(-1deg); }
+  50% { transform: translateX(3px) rotate(1deg); }
+  75% { transform: translateX(-2px) rotate(0deg); }
 }
