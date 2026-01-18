@@ -29,7 +29,7 @@ const About = () => {
 
               <div className="body-text">
                 <p>
-                  CAD&CRAFT – De la idee la realitate în 24 de ore ⚙️🚀
+                  CAD&CRAFT – De la idee la realitate în 24 de ore
 
                   Ești gata pentru provocarea supremă? Pe 21-22 Martie, OSFIIR transformă Facultatea de Inginerie într-o arenă a inovației. Competiția te provoacă în două etape esențiale:
 
@@ -37,7 +37,7 @@ const About = () => {
 
                   CRAFT: Asamblarea fizică și testarea prototipului tău.
 
-                  Nu ești singur în fața monitorului! Îți asigurăm „combustibilul” necesar (mâncare, cafea, energizante), zonă de relaxare și premii pe măsură. Demonstrează că ai precizia unui inginer și viziunea unui creator. Adună-ți echipa și înscrie-te acum în maratonul care îți definește viitorul! 🏆📐
+                  Nu ești singur în fața monitorului! Îți asigurăm „combustibilul” necesar (mâncare, cafea, energizante), zonă de relaxare și premii pe măsură. Demonstrează că ai precizia unui inginer și viziunea unui creator. Adună-ți echipa și înscrie-te acum în maratonul care îți definește viitorul!
                 </p>
               </div>
 

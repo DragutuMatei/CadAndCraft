@@ -376,7 +376,7 @@ const Footer = () => {
                             <a href="https://www.facebook.com/OSFIIR" target="_blank" rel="noopener noreferrer"><FaFacebookF /></a>
                             <a href="https://www.instagram.com/osfiir" target="_blank" rel="noopener noreferrer"><FaInstagram /></a>
                             <a href="https://www.tiktok.com/@o.s.f.i.i.r" target="_blank" rel="noopener noreferrer"><FaTiktok /></a>
-                            <a href="#"><FaLinkedinIn /></a>
+                            <a href="https://www.linkedin.com/company/osfiir/" target="_blank" rel="noopener noreferrer"><FaLinkedinIn /></a>
                         </div>
                     </div>
 

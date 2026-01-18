@@ -9,7 +9,7 @@ const Countdown = () => {
     const now = new Date();
     const currentYear = now.getFullYear();
     // Data țintă: 20 Februarie
-    let target = new Date(currentYear, 1, 20);
+    let target = new Date(currentYear, 1, 2);
     if (now > target) target.setFullYear(currentYear + 1);
     return target;
   });

@@ -202,12 +202,12 @@ const Showcase = () => {
             </h1>
             <div className="quote-block">
               <FaQuoteLeft className="quote-icon" />
-              <p>Aici a început totul! ⚡<br></br>
+              <p>Aici a început totul!<br></br>
                 Ediția I a fost scânteia care a aprins pasiunea pentru inovație în OSFIIR.
                 Ce a părut o provocare imposibilă – 24 de ore de design și execuție –
-                s-a transformat într-un spectacol de inginerie pură. 🛠️ Cu multă cafea și
+                s-a transformat într-un spectacol de inginerie pură. Cu multă cafea și
                 idei revoluționare, am demonstrat că viitorul se construiește în echipă.
-                A fost doar începutul unei tradiții! 🚀🏆</p>
+                A fost doar începutul unei tradiții!</p>
             </div>
           </div>
         </div>

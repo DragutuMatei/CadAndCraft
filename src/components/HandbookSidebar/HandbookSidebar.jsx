@@ -7,7 +7,16 @@ import { HiMenu, HiX } from 'react-icons/hi';
 import './HandbookSidebar.scss';
 
 const HandbookSidebar = ({ language, setLanguage }) => {
+    // isOpen controls the expansion on mobile/tablet
     const [isOpen, setIsOpen] = useState(false);
+
+    // On desktop, we don't use toggle, it's always fully visible.
+    // On mobile/tablet, it starts "small" (icons only) and toggles to "big" (full).
+    // The CSS @media (max-width: 1024px) handles the "small" state by default when not .open
+
+    const toggleSidebar = () => {
+        setIsOpen(!isOpen);
+    };
 
     const sections = [
         { label: language === 'RO' ? <>Despre CAD<span className="brand-ampersand">&</span>Craft</> : <>About CAD<span className="brand-ampersand">&</span>Craft</>, icon: <FaInfoCircle />, link: '/handbook/about' },
@@ -27,7 +36,7 @@ const HandbookSidebar = ({ language, setLanguage }) => {
             />
 
             <aside className={`handbook-sidebar ${isOpen ? 'open' : ''}`}>
-                <div className="handbook-sidebar__toggle" onClick={() => setIsOpen(!isOpen)}>
+                <div className="handbook-sidebar__toggle" onClick={toggleSidebar}>
                     {isOpen ? <HiX /> : <HiMenu />}
                 </div>
 
