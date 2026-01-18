@@ -19,7 +19,7 @@
     pointer-events: all;
   }
 
-  @media (max-width: 900px) {
+  @media (max-width: 1024px) {
     display: block;
   }
 }
@@ -40,11 +40,23 @@
   // overflow-y: auto; // Remove scrolling
 
   &__toggle {
-    display: none;
+    display: none; // Hidden on desktop
+    align-items: center;
+    justify-content: flex-start;
     font-size: 1.5rem;
     color: $theme-heading;
     cursor: pointer;
     margin-bottom: 1rem;
+    width: fit-content;
+
+    // Hover effect
+    padding: 8px;
+    border-radius: 8px;
+    transition: background 0.2s;
+
+    &:hover {
+      background: rgba($theme-heading, 0.05);
+    }
   }
 
   &__title {
@@ -135,6 +147,9 @@
   }
 
   &__download-btn {
+    white-space: nowrap; // Prevent text wrapping
+    overflow: hidden;
+
     &:hover {
       background: darken($theme-primary, 5%) !important;
       transform: translateY(-2px);
@@ -142,12 +157,65 @@
     }
   }
 
+  // === DESKTOP COLLAPSED STATE ===
+  &.collapsed {
+    width: 80px; // Collapsed width
+
+    .handbook-sidebar__content {
+      align-items: center;
+    }
+
+    .handbook-sidebar__toggle {
+      justify-content: center;
+      width: 100%;
+    }
+
+    .handbook-sidebar__lang-switch {
+      display: none; // Hide language switch in collapsed mode
+    }
+
+    .handbook-sidebar__link {
+      justify-content: center;
+      padding: 12px;
+
+      .text {
+        display: none;
+        opacity: 0;
+      }
+
+      .icon {
+        font-size: 1.2rem;
+        margin: 0;
+      }
+    }
+
+    .handbook-sidebar__download-btn {
+      width: 44px; // Square button
+      padding: 12px;
+      justify-content: center;
+
+      span,
+      svg+text {
+        // Assuming "Download PDF" is text node
+        display: none;
+      }
+
+      // If the text is directly inside via FA icon + text
+      font-size: 0; // Hide text fallback
+
+      svg {
+        font-size: 1.2rem; // Show icon
+        margin: 0;
+      }
+    }
+  }
+
   /* Responsive Mobile / Tablet (< 1024px) */
   @media (max-width: 1024px) {
     position: fixed;
-    top: 0;
+    top: 80px;
     left: 0;
-    height: 100vh;
+    height: calc(100vh - 80px);
     width: 60px; // Standardizing to 60px for touch targets
     // max-width ignored, forcing width via specific rule if needed
     min-width: 60px;
@@ -166,7 +234,7 @@
       align-items: center;
       width: 60px; // Match parent
       min-width: 60px;
-      padding-top: 10px;
+      padding-top: 50px;
       transition: width 0.3s;
     }
 
@@ -209,8 +277,13 @@
       }
 
       .text {
-        display: none;
+        // display: none; 
+        position: absolute; // Take out of flow to keep icon centered
         opacity: 0;
+        visibility: hidden;
+        transform: translateX(-10px);
+        transition: all 0.2s;
+        pointer-events: none;
       }
 
       &.active,
@@ -224,11 +297,17 @@
       }
     }
 
-    // Hide others
+    // Hide others initially (using opacity for transition)
     &__title,
     &__lang-switch,
     &__footer {
-      display: none;
+      // display: none; // REMOVED for transition
+      opacity: 0;
+      visibility: hidden;
+      height: 0; // Collapsing height to avoid spacing
+      margin: 0;
+      overflow: hidden;
+      transition: opacity 0.2s, height 0.2s, margin 0.2s;
     }
 
     // Mobile Phone specific (< 600px)
@@ -268,14 +347,11 @@
       }
 
       .handbook-sidebar__toggle {
-        position: static; // No stickyness needed in open drawer usually, or keep it?
-        // Let's keep it static flow for cleaner layout
-        width: auto;
-        height: auto;
-        margin: 0 0 20px 0;
-        justify-content: flex-end;
-        border-bottom: none;
-        background: transparent;
+        // Keep button locked to the left side (rail width)
+        width: 60px;
+        justify-content: center;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        background: $theme-white;
       }
 
       .handbook-sidebar__link {
@@ -288,31 +364,34 @@
         .icon {
           font-size: 1.1rem;
           margin-right: 12px;
+          min-width: 20px; // Prevent icon shrink
         }
 
         .text {
-          display: inline-block;
+          display: block; // Keep it block interactions
+          position: static; // Reset position
           opacity: 1;
+          visibility: visible;
+          transform: translateX(0);
           white-space: nowrap;
+          transition: opacity 0.3s ease 0.1s, transform 0.3s ease 0.1s; // Delay text slightly
         }
       }
 
-      // Show elements
+      // Show elements with animation
       .handbook-sidebar__title,
       .handbook-sidebar__lang-switch,
       .handbook-sidebar__footer {
         display: flex;
+        opacity: 1;
+        visibility: visible;
+        height: auto; // Reset height
+        margin-bottom: 1rem; // Reset margin (adjust as needed)
+        transition: opacity 0.3s ease 0.1s;
       }
 
       .handbook-sidebar__title {
         display: block;
-      }
-
-      .text,
-      .handbook-sidebar__title,
-      .handbook-sidebar__lang-switch,
-      .handbook-sidebar__footer {
-        animation: fadeIn 0.3s ease-forward;
       }
     }
   }

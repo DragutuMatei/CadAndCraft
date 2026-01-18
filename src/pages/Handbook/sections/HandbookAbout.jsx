@@ -8,7 +8,7 @@ const HandbookAbout = () => {
 
     return (
         <div className="handbook-section">
-            <SectionHeading level={1} id="about">{language === 'RO' ? <><span className="num-font">1</span>. About CAD<span className="brand-ampersand">&</span>Craft</> : <><span className="num-font">1</span>. About CAD<span className="brand-ampersand">&</span>Craft</>}</SectionHeading>
+            <SectionHeading level={1} id="about">{language === 'RO' ? <><span className="num-font">1</span>. Despre CAD<span className="brand-ampersand">&</span>Craft</> : <><span className="num-font">1</span>. About CAD<span className="brand-ampersand">&</span>Craft</>}</SectionHeading>
 
             {language === 'RO' ? (
                 <>
