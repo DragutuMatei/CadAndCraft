@@ -1,0 +1,171 @@
+@import '../../styles/variables';
+
+.team-page {
+    padding-top: 140px;
+    padding-bottom: 100px;
+    min-height: 100vh;
+    background-color: #f7f9fc; // Ultra clean light bg
+    background-image: url('../../assets/images/echipa/bg.svg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+
+    .team-container {
+        max-width: 1600px; // Wider for editorial feel
+        margin: 0 auto;
+        padding: 0 40px;
+
+        h1 {
+            font-family: $font-heading;
+            font-size: 5rem; // Massage header size
+            text-align: center;
+            margin-bottom: 80px;
+            color: $color-white-off;
+            text-transform: uppercase;
+            font-weight: 800;
+            letter-spacing: -2px;
+
+            .text-highlight {
+                font-family: $font-body;
+                color: $color-white-off;
+                font-weight: 700;
+                margin: 0 5px; // Add slight spacing around &
+            }
+
+            @media (max-width: 768px) {
+                font-size: 3rem;
+                margin-bottom: 50px;
+            }
+        }
+    }
+
+    .team-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+        gap: 20px; // Tight grid like a magazine
+
+        @media (max-width: 768px) {
+            gap: 15px;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        }
+    }
+
+    .team-card {
+        position: relative;
+        height: 500px; // Fixed tall height for editorial look
+        border-radius: 20px; // Sharp, modern corners (or slightly rounded)
+        overflow: hidden;
+        cursor: pointer;
+        background: #1d1d1d; // Default black bg for loading/contrast
+        animation: fadeInUp 0.8s cubic-bezier(0.2, 1, 0.3, 1) backwards;
+
+        // Hover Effect
+        &:hover {
+            .team-image img {
+                transform: scale(1.05);
+                filter: grayscale(0%); // Color reveals on hover? Or start colored.
+                // Let's keep it colored but maybe slightly brighter or just zoom
+            }
+
+            .team-info {
+                transform: translateY(0);
+                background: linear-gradient(to top, rgba(0, 0, 0, 0.95), rgba(0, 0, 0, 0.6) 70%, transparent);
+
+                .role {
+                    color: $theme-accent; // Highlight role on hover
+                }
+
+                .email-link {
+                    opacity: 1;
+                    transform: translateY(0);
+                    transition-delay: 0.1s;
+                }
+            }
+        }
+
+        .team-image {
+            width: 100%;
+            height: 100%;
+
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                object-position: top center;
+                transition: transform 0.8s cubic-bezier(0.2, 1, 0.3, 1), filter 0.5s ease;
+                filter: grayscale(20%); // Slight mute initially
+            }
+        }
+
+        .team-info {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 40px 30px;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0));
+            color: #fff;
+            transform: translateY(30px); // Partially hide content initially
+            transition: all 0.5s cubic-bezier(0.2, 1, 0.3, 1);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            align-items: flex-start;
+
+            h3 {
+                font-family: $font-heading;
+                font-size: 2.2rem;
+                font-weight: 700;
+                color: #fff;
+                margin: 0;
+                line-height: 1;
+                transform-origin: left;
+            }
+
+            .role {
+                font-family: $font-body;
+                font-size: 0.9rem;
+                text-transform: uppercase;
+                letter-spacing: 2px;
+                color: rgba(255, 255, 255, 0.8);
+                margin-top: 10px;
+                font-weight: 600;
+                transition: color 0.3s ease;
+            }
+
+            .email-link {
+                margin-top: 20px;
+                font-family: $font-body;
+                font-size: 0.85rem;
+                color: #fff;
+                text-decoration: none;
+                border: 1px solid rgba(255, 255, 255, 0.3);
+                padding: 10px 20px;
+                border-radius: 30px;
+                opacity: 0; // Hidden initially
+                transform: translateY(20px);
+                transition: all 0.4s ease;
+                background: rgba(255, 255, 255, 0.05);
+                backdrop-filter: blur(5px);
+
+                &:hover {
+                    background: $theme-primary;
+                    border-color: $theme-primary;
+                    color: white;
+                }
+            }
+        }
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

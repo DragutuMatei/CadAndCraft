@@ -1,0 +1,90 @@
+@import '../../styles/variables';
+
+h1.section-heading,
+h2.section-heading,
+h3.section-heading,
+h4.section-heading,
+h5.section-heading,
+h6.section-heading,
+.section-heading {
+    position: relative;
+    display: flex; // Full row trigger
+    width: 100%;
+    align-items: center;
+    flex-wrap: wrap; // Allow wrap on mobile
+
+
+    &:hover .heading-anchor {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+    .heading-anchor {
+        color: $theme-primary;
+        font-size: 0.7em; // Smaller than heading
+        margin-left: 12px;
+        opacity: 0; // Hidden by default
+        transform: translateX(-10px);
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        cursor: pointer;
+
+        // Mobile: always visible implies easier usage? 
+        // Or keep hidden to avoid clutter. 
+        // User requested: "want to add immediately after text"
+        // Let's keep it visible on touch devices or just allow opacity generic hover.
+        @media (max-width: 768px) {
+            opacity: 1; // Always visible on mobile
+            transform: translateX(0);
+        }
+
+        &:hover {
+            color: $theme-accent;
+        }
+
+        .copied-tooltip {
+            position: absolute;
+            top: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #1d1d1d;
+            color: $color-white-off;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-family: sans-serif;
+            white-space: nowrap;
+            pointer-events: none;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            font-weight: 500;
+            opacity: 1;
+            animation: fadeInOut 0.3s ease;
+
+            &::after {
+                content: '';
+                position: absolute;
+                bottom: -4px;
+                left: 50%;
+                transform: translateX(-50%);
+                border-left: 4px solid transparent;
+                border-right: 4px solid transparent;
+                border-top: 4px solid #1d1d1d;
+            }
+        }
+    }
+}
+
+@keyframes fadeInOut {
+    from {
+        opacity: 0;
+        transform: translate(-50%, 5px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translate(-50%, 0);
+    }
+}

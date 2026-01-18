@@ -1,18 +1,25 @@
-import React from 'react';
-import Navbar from '../../components/Navbar/Navbar';
-import Sidebar from '../../components/Sidebar/Sidebar';
-import HandbookHero from '../../components/HandbookHero/HandbookHero';
+import React, { useEffect } from 'react';
+import { Outlet, useLocation } from 'react-router-dom';
+import HandbookSidebar from '../../components/HandbookSidebar/HandbookSidebar';
 import './Handbook.scss';
+import LogoSVG from '../../assets/icons/logo.svg';
 
 const Handbook = () => {
+  const { pathname } = useLocation();
+  const [language, setLanguage] = React.useState('RO'); // 'RO' or 'EN'
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
   return (
     <div className="handbook-page">
-      <Sidebar />
-      
-      {/* Aici vine designul cu verde și galben */}
-      <HandbookHero />
-      
-      {/* Aici poți adăuga restul conținutului din Handbook (PDF viewer, text, etc.) */}
+      <div className="handbook-container">
+        <HandbookSidebar language={language} setLanguage={setLanguage} />
+        <main className="handbook-content">
+          <Outlet context={{ language }} />
+        </main>
+      </div>
     </div>
   );
 };

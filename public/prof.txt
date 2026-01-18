@@ -1,0 +1,63 @@
+
+
+
+
+
+Profilul Candidatului CAD&CRAFT
+
+
+
+-OSFIIR-
+
+
+
+
+
+
+*-abilități, aspecte sau lucruri utile de avut dar nu obligatorii pentru o performanță satisfăcătoare la CAD&CRAFT.
+1. Hard Skills (Abilități Tehnice)
+Candidatul ideal posedă competențe solide în domenii tehnice esențiale pentru tema evenimentului, care implică proiectarea și implementarea unui sistem mecanic inovator. Aceste abilități asigură capacitatea de a transforma idei abstracte în modele funcționale, respectând constrângerile temei.
+Expertiză în CAD: Cunoștințe în software de proiectare 3D. Abilitatea de a crea modele precise, cu simulări de mișcare și analize structurale, adaptate la soluții creative precum mecanisme bazate pe gravitație, fricțiune sau propulsie pasivă.
+Imprimare 3D și Prototipare: Cunoștințe de bază în pregătirea fișierelor pentru imprimare 3D (de exemplu, formatul STL și slicing cu software precum Cura sau PrusaSlicer), familiarizare cu materialele comune (cum ar fi PLA și ABS) și noțiuni despre optimizarea designului pentru rezistență și greutate redusă, utile pentru testarea funcțională a robotului.
+Robotică și Mecanică: Cunoștințe în principii de mecanică (fricțiune, echilibru, forțe), electronică de bază. Abilitatea de a aborda tema în moduri variate.
+Simulare și electronică: Competențe în simulări rapide, cunoștințe în electronică de bază, asigurând eficiența în cele 24 de ore.
+Alte Aspecte Tehnice: Cunoștință teoretică moderată în ceea ce privește un ciclul complet de producție (de la concept la testare), pentru a fii capabil de depanare și optimizare.
+2. Soft Skills (Abilități Interpersonale)
+Evenimentul fiind bazat pe echipe și colaborare, candidatul ideal excelează în interacțiuni care facilitează munca în echipă sub presiune, stimulând creativitatea colectivă.
+Lucru în Echipă și Colaborare: Capacitatea de a contribui constructiv în echipe mixte, împărțind sarcini eficient (ex. unul pe CAD, altul pe asamblare) și rezolvând conflicte rapid, esențial pentru un maraton de 24 de ore.
+Comunicare Eficientă: Abilitatea de a explica idei tehnice clar, fie verbal, fie prin documentație, facilitând feedback-ul rapid.
+Managementul Timpului și Adaptabilitate: Competențe în prioritizarea sarcinilor sub constrângeri de timp, adaptându-se la tema surpriză și ajustând soluții pe parcurs (ex. pivotare de la o idee inițială la alta dacă testele eșuează).
+Rezolvarea Problemelor: Gândire critică pentru a depăși obstacole neașteptate, cum ar fi limitări materiale sau erori de proiectare, promovând soluții inovatoare.
+Creativitate și Inovație: Abilitatea de a gândi "out-of-the-box", explorând multiple abordări la temă (ex. bio-inspirație sau mecanisme hibride), fără a se limita la soluții convenționale.
+3. Experiență Relevantă
+Candidatul ideal are un background practic care demonstrează aplicarea abilităților în contexte similare, crescând șansele de succes în competiție.
+*Participare anterioară CADathon-uri (maratoane robotice) sau concursuri de robotică, unde au dezvoltat prototipuri sub presiune de timp.
+Proiecte personale sau academice, precum construirea de roboți simpli, modele 3D imprimate sau experimente.
+*Experiență în proiectare, la cluburi de inginerie sau robotică, stagii în companii de tehnologie sau voluntariat în proiecte open-source legate de CAD și imprimare 3D.
+Portofoliu demonstrabil: orice proiect legat de robotica/inginerie/programare  inclusiv modele CAD partajate pe platforme ca Thingiverse, GitHub sau GrabCAD, care arată cunoștințe în domeniu și dedicare.
+4. Nivel de Educație și Calificări
+Evenimentul țintește studenți și elevi, deci profilul se concentrează pe nivele accesibile, dar cu potențial ridicat.
+*Studenți din domeniile mecanică, mecatronică și robotică, inginerie industrială, precum și orice alte specializări derivate din acestea, cum ar fi inginerie autovehicule rutiere, inginerie aerospațială etc., sau elevi de liceu cu specializare tehnică (ex. profile de matematică-informatică sau tehnic).
+*Certificări relevante, cum ar fi cele de la Autodesk (Certified User in Inventor) sau Onshape (Associate Certification), care demonstrează competențe CAD.
+*Cursuri online completate (ex. pe Coursera sau edX) în robotică, imprimare 3D sau inginerie, oferind o bază teoretică solidă.
+5. Trăsături de Personalitate și Stil de Lucru
+Personalitatea candidatului se aliniază cu dinamismul evenimentului, promovând reziliență și entuziasm prin:
+Inovator și Curios: O minte deschisă, mereu în căutare de soluții noi, entuziasmat de tema surpriză și de potențialul ei real.
+Gestionare bună a Stresului: Capacitatea de a menține focusul în cele 24 de ore, cu un stil de lucru intens, dar sustenabil, evitând burnout-ul prin pauze strategice.
+Colaborativ și Empatic: Un stil de lucru inclusivist, care valorizează contribuțiile tuturor membrilor echipei, promovând diversitatea ideilor.
+Meticulos și Orientat spre Detalii: Atenție la precizie în proiectare, esențială pentru modele funcționale, dar echilibrat cu flexibilitate pentru ajustări rapide.
+Pasionat și Motivat Intrinsec: O pastiune clară pentru inginerie și proiectare, văzând evenimentul ca o oportunitate de creștere, nu doar competiție.
+6. Obiective și Motivații
+Candidatul ideal este motivat de obiective aliniate cu spiritul CAD&CRAFT, transformând participarea într-o experiență transformatoare.
+Să dezvolte abilități practice și să testeze idei inovatoare în context real, vizând soluții cu impact (ex. roboți eficienți energetic pentru medii restrictive).
+Să construiască rețele profesionale, colaborând cu alți pasionați și potențiali angajatori din inginerie.
+Să câștige premii, dar prioritar să învețe din eșecuri și succese, țintind cariere în robotică, design sau startup-uri tech.
+Obiective pe termen lung: Contribuție la inovații sustenabile, inspirate de tema evenimentului.
+
+7. Alte Aspecte Relevante pentru un Profil Complet
+Etica și Responsabilitate: Conștientizare a aspectelor etice în inginerie (ex. siguranță în designul final al robotului), și angajament față de sustenabilitate (nu sa caute doar o soluție a temei, ci sa înțeleagă într-un mod mai profund și complet tema evenimentului).
+Disponibilitate și Logistica: Posesia unui laptop sau calculator care să poată rula un program CAD.*Imprimantă 3D și filament de calitate și performanță considerată de către candidat.
+8. Aspecte de luat în considerare
+Potențial de Creștere: Chiar dacă nu are experiență vastă, candidatul arată un potențial ridicat prin entuziasm și învățare rapidă, făcând evenimentul accesibil pentru începători motivați.
+Feedback și Îmbunătățire: Dorința de a primi și oferi feedback post-eveniment, pentru a rafina abilitățile și a participa la edițiile viitoare.
+

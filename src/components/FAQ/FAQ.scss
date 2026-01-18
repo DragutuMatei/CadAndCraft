@@ -1,5 +1,4 @@
-/* Importăm fonturile Montserrat și Open Sans */
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Open+Sans:wght@400;600&display=swap');
+/* Importăm fonturile - Eliminat și înlocuit cu variabile globale */
 
 @import '../../styles/variables';
 
@@ -14,7 +13,7 @@ $border-color: #e5e7eb;
     width: 100%;
     padding: 100px 20px;
     background-color: #E8EFF7;
-    
+
     // Animația titlului (Container)
     opacity: 0;
     transform: translateY(40px);
@@ -37,8 +36,8 @@ $border-color: #e5e7eb;
     }
 
     .faq-title {
-        /* SCHIMBAT: Font Montserrat */
-        font-family: 'Montserrat', sans-serif;
+        /* SCHIMBAT: Font Heading */
+        font-family: $font-heading;
         font-size: 3.5rem;
         text-align: center;
         color: $dark-text;
@@ -49,7 +48,7 @@ $border-color: #e5e7eb;
         .highlight {
             color: $green-brand;
             position: relative;
-            
+
             &::after {
                 content: '';
                 position: absolute;
@@ -81,27 +80,30 @@ $border-color: #e5e7eb;
         border-radius: 12px;
         overflow: hidden;
         cursor: pointer;
-        
+
         // Stare Inițială (Invizibil și mai jos)
         opacity: 0;
         transform: translateY(30px);
-        
+
         // Tranziție pentru apariție (delay-ul vine din JSX)
-        transition: 
-            opacity 0.6s ease-out, 
+        transition:
+            opacity 0.6s ease-out,
             transform 0.6s ease-out,
-            border-color 0.3s ease, 
-            box-shadow 0.3s ease, 
+            border-color 0.3s ease,
+            box-shadow 0.3s ease,
             background-color 0.3s ease;
 
         &.active {
             border-color: $green-brand;
-            background-color: #ffffff;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            background-color: $color-white-off;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
 
             .faq-header {
-                h3 { color: $green-brand; }
-                .icon { 
+                h3 {
+                    color: $green-brand;
+                }
+
+                .icon {
                     transform: rotate(180deg);
                     color: $green-brand;
                 }
@@ -125,8 +127,8 @@ $border-color: #e5e7eb;
             align-items: center;
 
             h3 {
-                /* SCHIMBAT: Font Montserrat */
-                font-family: 'Montserrat', sans-serif;
+                /* SCHIMBAT: Font Heading */
+                font-family: $font-heading;
                 font-size: 1.3rem;
                 font-weight: 700;
                 color: $dark-text;
@@ -149,21 +151,27 @@ $border-color: #e5e7eb;
             opacity: 0;
             overflow: hidden;
             transition: max-height 0.6s cubic-bezier(0.6, 0, 0.4, 1), opacity 0.6s ease;
-            
+
             .faq-content {
                 padding: 0 30px 30px 30px;
-                /* SCHIMBAT: Font Open Sans */
-                font-family: 'Open Sans', sans-serif;
+                /* SCHIMBAT: Font Body */
+                font-family: $font-body;
                 font-size: 1rem;
                 color: lighten($dark-text, 20%);
                 line-height: 1.6;
-                font-weight: 400; /* Open Sans Regular e mai ușor de citit la text lung */
+                font-weight: 400;
+                /* Open Sans Regular e mai ușor de citit la text lung */
             }
         }
-        
+
         @media (max-width: 768px) {
-            .faq-header { padding: 20px; }
-            .faq-body .faq-content { padding: 0 20px 20px 20px; }
+            .faq-header {
+                padding: 20px;
+            }
+
+            .faq-body .faq-content {
+                padding: 0 20px 20px 20px;
+            }
         }
     }
 }

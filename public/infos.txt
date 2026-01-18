@@ -1,0 +1,361 @@
+1.About CAD&Craft
+
+1.1 Ce este CAD&Craft?
+
+CAD&Craft este un eveniment de tip CADATHON, inspirat de formatul Hackathon-urilor, care se concentrează pe aplicarea cunoștințelor de proiectare pentru a rezolva o temă prestabilită. Participanții sunt provocați să își folosească creativitatea în proiectare asistată pe calculator pentru a dezvolta soluții inovative și eficiente, într-un cadru colaborativ și competitiv.
+Evenimentul, ce implică o competiție intensă, invită studenții pasionați de inginerie și proiectare asistată de calculator să colaboreze și să își dezvolte abilitățile practice în modelarea 3D a unei piese folosind platforma Onshape sau alt software CAD.
+Participanții își pot pune la încercare cunoștințele tehnice în cadrul unei provocări captivante ce presupune transformarea ideilor în realitate. Concurenții vor fi împărțiți în echipe, în cadrul unui maraton de 24 de ore.
+Tema proiectului va fi dezvăluită la începutul evenimentului, asigurând astfel o provocare echitabilă pentru toți participanții și stimulându-le capacitatea de adaptare și găsirea unor soluții îndrăznețe .
+
+1.2 OBIECTIVE:
+Rezultatul final să fie un produs finit și funcțional;
+Îmbunătățirea modului de colaborare între membrii echipei, pentru finalizarea temei propuse;
+
+Oportunitatea de a cunoaște alți profesioniști din industrie;
+Găsirea unor soluții inovative pentru a dezvolta un prototip funcțional;
+Dezvoltarea abilităților de proiectare asistată pe calculator cu ajutorul platformei Onshape și nu numai.
+
+CAD&Craft a pornit de la ideea de a lansa o provocare către studenții și elevii ce dispun de cunoștințe  în concepte de CAD, CAE, CAM. Acest eveniment reprezintă oportunitatea de a aplica aceste cunoștințe practic pentru a crea un produs funcțional.
+ 	Prima ediție CAD&Craft va fi punctul de start al unei tradiții ce va inspira generații de studenți și elevi să accepte provocări neașteptate și să găsească soluții neconvenționale.
+
+1.1 What is CAD&Craft?
+CAD&Craft is a CADATHON event, inspired by the Hackathon format, focusing on applying design knowledge to solve a predefined challenge. Participants are encouraged to use their creativity in computer-aided design (CAD) to develop innovative and efficient solutions in a collaborative and competitive environment.
+This high-intensity competition invites students passionate about engineering and CAD to collaborate and enhance their practical skills in 3D modeling using Onshape or other CAD software.
+Participants will test their technical knowledge in an exciting challenge that involves turning ideas into reality. Competitors will be divided into teams for a 24-hour marathon.
+The project theme will be revealed at the start of the event, ensuring a fair challenge for all participants while stimulating their adaptability and bold problem-solving skills.
+
+1.2 OBJECTIVES:
+The final result should be a finished and functional product;
+Improve collaboration among team members to complete the given challenge;
+Provide an opportunity to meet other industry professionals;
+Find innovative solutions to develop a functional prototype;
+Develop CAD design skills using Onshape and other software.
+CAD&Craft was born from the idea of challenging students with knowledge in CAD, CAE, and CAM concepts. This event offers an opportunity to apply this knowledge practically to create a functional product.
+The first edition of CAD&Craft will mark the beginning of a tradition that will inspire generations of students to embrace unexpected challenges and find unconventional solutions.
+
+2. Event Timeline 
+
+2 FEBRUARIE
+START ÎNSCRIERI
+7 MARTIE
+STOP ÎNSCRIERI
+ÎNCEPEREA PROCESULUI DE SELECȚIE A ECHIPELOR
+To Be Announced
+CAZARE INTRE ORELE
+To Be Announced
+COMPETITION START
+To Be Announced
+Challenge End
+To Be Announced
+Participant Check-out
+
+
+
+
+
+
+
+
+February 2
+REGISTRATIONS OPEN
+March 7
+REGISTRATIONS CLOSE
+TEAM SELECTION PROCESS BEGINS
+To Be Announced
+ACCOMMODATION 
+To Be Announced
+COMPETITION START
+To Be Announced
+Challenge End
+To Be Announced
+Participant Check-out
+
+
+3. Formatul Evenimentului CAD&Craft
+
+
+Check-in-ul echipelor:
+	Fiecare echipă trebuie să efectueze check-in-ul la sosire.
+
+Conferința de deschidere:
+	După check-in, participanții vor lua parte la conferința de deschidere, unde va fi prezentat evenimentul. În cadrul acesteia, partenerii invitați vor dezvălui provocarea competiției.
+
+Atribuirea punctelor de lucru:
+	Fiecărei echipe i se va aloca un punct de lucru, unde va primi kit-ul standard necesar pentru desfășurarea competiției.
+
+Începerea activității:
+	Echipele vor începe efectiv lucrul la proiectele lor.
+
+Flexibilitate în gestionarea pauzelor:
+	Pe parcursul competiției, echipele vor putea lua pauze oricând consideră necesar.
+
+
+Pregătirea discursului final:
+	După încheierea timpului alocat construcției și testării, fiecare echipă este încurajată să își pregătească un discurs de prezentare pentru juriu.
+
+Jurizarea proiectelor:
+	Echipele își vor susține prezentările în fața juriului. După ce toate proiectele au fost prezentate, comisia de jurizare le va evalua.
+
+Festivitatea de premiere
+	La finalul competiției, toate echipele, împreună cu invitații și membrii juriului, vor lua parte la festivitatea de premiere. În cadrul acesteia, vor fi anunțați câștigătorii și premiate cele mai bune proiecte, marcând încheierea oficială a evenimentului.
+
+
+3.Event Flow & Guidelines
+Team Check-in:
+Each team must complete check-in upon arrival.
+Opening Conference:
+After check-in, participants will attend the opening conference, where the event details will be presented. Invited partners will also reveal the competition challenge.
+
+Workstation Allocation:
+Each team will be assigned a workstation and provided with a standard kit necessary for the competition.
+
+Start of Activities:
+Teams will officially begin working on their projects.
+
+Flexible Break Management:
+Teams can take breaks at their discretion throughout the competition.
+
+Final Presentation Preparation:
+After the construction and testing phase ends, teams are encouraged to prepare a presentation speech for the jury.
+
+Project Evaluation:
+Teams will present their projects before the jury. Once all presentations are complete, the jury panel will evaluate them.
+
+
+Awards Ceremony:
+At the end of the competition, all teams, along with guests and jury members, will attend the awards ceremony. The winners will be announced, and the best projects will be recognized, marking the official conclusion of the event.
+
+4. Rules CAD&Craft
+
+4.1. Reguli Generale
+Fiecare echipă trebuie să proiecteze și să construiască un produs funcțional conform temei anunțate la începutul competiției.
+Sunt permise orice platforme de proiectare CAD, inclusiv Onshape, Fusion 360, SolidWorks, dar este încurajată folosirea platformei Onshape..
+Participanții trebuie să respecte regulile de fair-play și să colaboreze în mod etic.
+Organizatorii vor oferi suport logistic, dar nu vor interveni în procesul de proiectare sau construcție.
+Este interzisă utilizarea altor componente electrice ce nu se află în kitul de participare.
+Echipele trebuie să finalizeze proiectele în intervalul de timp stabilit.
+Orice formă de sabotaj asupra echipelor concurente sau a echipamentelor este strict interzisă.
+Fiecare echipă este responsabilă de siguranța și buna funcționare a propriului echipament.
+Comunicarea și colaborarea între echipe sunt permise, dar fiecare echipă trebuie să realizeze un proiect propriu.
+
+4.1.1.Înscrieri individuale și completarea echipelor:
+Deși echipele sunt formate ideal din 3 participanți, se acceptă și înscrieri individuale sau cu un număr mai mic de membri.
+Participanții înscriși în echipe ”incomplete” vor fi alocați altor echipe pentru a asigura completarea acestora și pentru a maximiza numărul de echipe participante.
+4.2. Etică și Respect în Competiție
+În cadrul evenimentului, participanții sunt încurajați să adopte un comportament care promovează respectul reciproc:
+Echipele sunt încurajate să își demonstreze abilitățile într-un mod etic, respectând regulile competiției și deciziile juriului.
+Competiția trebuie să se desfășoare într-un cadru fair-play, fără practici incorecte, sau lipsă de respect față de ceilalți participanți.
+Fiecare membru al echipei are responsabilitatea de a contribui activ la efortul colectiv al echipei sale.
+Excluderea sau marginalizarea unui participant pe orice criteriu este strict descurajată.
+Respectarea deciziilor juriului este obligatorie și face parte din spiritul competiției.
+Orice conflict trebuie gestionat în mod civilizat, iar în caz de necesitate, organizatorii vor interveni pentru a asigura o soluționare adecvată.
+
+4.3. Regulile din timpul competiției 
+Proba de Maraton
+Proba de Maraton constă într-o confruntare directă între două sau mai multe echipe, în care proiectele realizate sunt testate în condiții identice.
+
+
+❗ Este interzisă utilizarea altor componente în afara celor oferite de către organizatori!
+
+4.1. General Rules
+Each team must design and build a functional product according to the theme announced at the beginning of the competition.
+Any CAD design platform is allowed, including Onshape, Fusion 360, and SolidWorks, but the use of Onshape is encouraged.
+Participants must adhere to fair-play rules and collaborate ethically.
+Organizers will provide logistical support but will not intervene in the design or construction process.
+The use of electrical components not included in the participation kit is strictly prohibited.
+Teams must complete their projects within the allotted time frame.
+Any form of sabotage against competing teams or equipment is strictly forbidden.
+Each team is responsible for the safety and proper functioning of its own equipment.
+Communication and collaboration between teams are allowed, but each team must develop its own project.
+
+4.1.1. Individual Registrations and Team Completion
+Although teams are ideally composed of three participants, individual or smaller-team registrations are accepted.
+Participants in “incomplete” teams will be allocated to other teams to ensure full participation and maximize the number of competing teams.
+4.2. Ethics and Respect in Competition
+During the event, participants are encouraged to uphold a respectful and fair competition environment:
+Teams should demonstrate their skills ethically, respecting the competition rules and jury decisions.
+The competition must be conducted fairly, without unfair practices or disrespect toward other participants.
+Each team member has a responsibility to actively contribute to their team's collective effort.
+Exclusion or marginalization of any participant based on any criteria is strictly discouraged.
+Respecting the jury's decisions is mandatory and part of the competition spirit.
+Any conflicts must be handled civilly; if necessary, organizers will intervene to ensure a proper resolution.
+4.3. Competition Rules
+Marathon Challenge
+The Marathon Challenge is a direct showdown between two or more teams, where their completed projects are tested under identical conditions.
+
+
+
+5. Awards
+DE DICUTAT!
+
+5.1 Pentru echipele din cadrul universitar:
+Premiile CAD&CRAFT sunt destinate să recunoască și să răsplătească excelența în domeniul designului, al impactului și al promovării în cadrul comunității STEAM. În cadrul concursului, vor fi acordate distincții pentru următoarele categorii:
+Premiul pentru Design, Powered by PTC - unde se va ține cont de:
+Eficiență: Premiul va fi acordat echipei care demonstrează un design funcțional;
+Originalitate și inovație: Se apreciază ideile creative și sustenabile;
+Aspect: Se apreciază estetica vizuală, coerența designului și utilizarea inteligentă a resurselor disponibile;
+Proiectului trebuie realizat folosind Onshape.
+
+Design
+
+
+Puncte acordate
+Obligatoriu
+Onshape
+Ai incercat
+Prezentarea proiectului
+Ai incercat
+Recomandat
+Functionalitate
+Ai incercat
+Estetica
+Ai incercat
+Utilizarea resurselor
+Ai incercat
+Simulare
+Ai incercat
+Bonus
+Maraton
+Ai incercat
+Creativitate
+Ai incercat
+
+
+Premiul pentru Impact - unde se va ține cont de:
+Prezentare: Se urmărește o prezentare care sa evidentieze implicarea întregii echipe în procesul de dezvoltare a proiectului
+Pașii de dezvoltare: Este apreciată descrierea pașilor de dezvoltare și lucru utilizați în dezvoltare.
+Atractivitate: Utilizarea elementelor atractive de prezentare, precum un video sau alte materiale media reprezinta un bonus
+
+Impact
+
+
+Puncte acordate
+Obligatoriu
+Prezentarea proiectului 
+Ai incercat
+Recomandat
+Contributia 
+Ai incercat
+Pasii de gandire
+Ai incercat
+Pașii de lucru 
+Ai incercat
+Bonus
+Video prezentare
+Ai incercat
+Maraton
+Ai incercat
+
+
+
+5.2 Pentru echipele din cadrul Preuniversitar: 
+
+Premiul I, Premiul II și Premiul III vor fi atribuite în funcție de o serie de criterii specifice, care vor fi prezentate în continuare:
+Design: Unde se încurajează un echilibru între funcționalitate, estetică și eficiență. Un design simplu și bine gândit aduce un avantaj.
+Inovație: Se punctează mecanismele originale și soluțiile creative care îmbunătățesc performanța robotului.
+Prezentarea: Se apreciază explicațiile clare despre procesul de dezvoltare, provocările întâmpinate și soluțiile implementate.
+
+
+5.1 For University Teams:
+The CAD&CRAFT awards are designed to recognize and reward excellence in design, impact, and community engagement within the STEAM field. The competition will grant distinctions in the following categories:
+
+Design Award, Powered by PTC – Criteria:
+Efficiency: Awarded to the team that demonstrates a functional design.
+Originality and Innovation: Creative and sustainable ideas will be valued.
+Aesthetics: The visual appeal, design coherence, and intelligent use of available resources will be assessed.
+Requirement: The project must be created using Onshape.
+
+5.2 For High School Teams: TBA
+Awards for high school teams will be announced in a later version of this document, depending on the competition's progress and details. Stay tuned for official announcements regarding evaluation criteria and specific awards for this category.
+
+6. Profilul candidatului
+
+AICI SE VA PUNE CE A FACUT BOGDAN!
+
+7. Contact
+Dacă ai întrebări sau ai nevoie de ajutor pe durata evenimentului, nu ezita să ne contactezi. 
+Contacte principale:
+
+📧 Email: office@osfiir.ro
+📧 Email: cadathon2026@osfiir.ro    
+
+
+
+
+Echipa de organizare:
+ Responsabil de eveniment
+Gava Cosmin
+cosmin.gava@osfiir.ro
+Tehnic
+Negrilă Gabriel
+gabriel.negrila@osfiir.ro
+ Social Media & PR
+Draguțu Matei
+matei.dragutu@osfiir.ro
+ Logistica
+Grigore Alecsandru
+alecsandru.grigore@osfiir.ro
+ Human resources:
+Nedelcu Alexandru-Andrei
+alexandru.nedelcu@osfiir.ro
+Fundraising
+Ionița Maria
+maria.ionita@osfiir.ro
+Academic
+Șchiopu Bogdan
+bogdan.schiopu@osfiir.ro
+ Vocațional
+Ușurelu Andrei
+andrei.usurelu@osfiir.ro
+
+
+ Urmărește-ne pentru actualizări pe:
+
+ Instagram: https://www.instagram.com/osfiir/ sau click aici
+
+ Facebook: https://www.facebook.com/OSFIIR/ sau click aici
+
+
+Need Help? Contact Us!
+If you have any questions or need assistance during the event, don't hesitate to reach out.
+Main Contacts:
+📧 Email:  office@osfiir.ro
+📧 Email:  cadathon2026@osfiir.ro
+
+
+
+
+
+
+Organizing Team:
+Event Coordinator
+Gava Cosmin
+cosmin.gava@osfiir.ro
+Technical Support:
+Negrilă Gabriel
+gabriel.negrila@osfiir.ro
+ Social Media & PR
+Draguțu Matei
+matei.dragutu@osfiir.ro
+Logistics
+Grigore Alecsandru
+alecsandru.grigore@osfiir.ro
+ Human resources
+Nedelcu Alexandru-Andrei
+alexandru.nedelcu@osfiir.ro
+Fundraising
+Ionița Maria
+maria.ionita@osfiir.ro
+Academic
+Șchiopu Bogdan
+bogdan.schiopu@osfiir.ro
+ Vocational
+Ușurelu Andrei
+andrei.usurelu@osfiir.ro
+
+
+Follow Us for Updates:
+ Instagram: https://www.instagram.com/osfiir/ or click here
+
+ Facebook: https://www.facebook.com/OSFIIR/ or click here
+
