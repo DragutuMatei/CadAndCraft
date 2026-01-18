@@ -67,7 +67,7 @@ const HandbookSidebar = ({ language, setLanguage }) => {
                         ))}
                     </nav>
 
-                    <div className="handbook-sidebar__footer" style={{ marginTop: 'auto', paddingTop: '20px' }}>
+                    {/* <div className="handbook-sidebar__footer" style={{ marginTop: 'auto', paddingTop: '20px' }}>
                         <a
                             href="/Handbook 2026 (PENTRU INSCRIERI)_organized.pdf"
                             download
@@ -81,7 +81,7 @@ const HandbookSidebar = ({ language, setLanguage }) => {
                         >
                             <FaBook /> Download PDF
                         </a>
-                    </div>
+                    </div> */}
                 </div>
             </aside>
         </>
