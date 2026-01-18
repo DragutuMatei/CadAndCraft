@@ -4,13 +4,13 @@
 @import '../../styles/variables';
 
 // CALEA CĂTRE BACKGROUND-UL HANDBOOK
-$bg-image: '../../assets/icons/handbook.svg'; 
+$bg-image: '../../assets/icons/handbook.svg';
 
 // CULORI
 $color-green: #208A39;
 $color-yellow: #FFC300;
 $color-blue: #003566;
-$color-white: #ffffff;
+$color-white: $color-white-off;
 
 // --- AM SCHIMBAT NUMELE CLASEI PRINCIPALE ---
 .handbook-hero {
@@ -29,56 +29,69 @@ $color-white: #ffffff;
     z-index: 5;
     width: 100vw;
     height: 100vh;
-    background-color: #E8EFF7; 
+    background-color: #E8EFF7;
     overflow: hidden;
-    
-    animation: impactShake 0.5s cubic-bezier(.36,.07,.19,.97) 2.5s forwards;
+
+    animation: impactShake 0.5s cubic-bezier(.36, .07, .19, .97) 2.5s forwards;
   }
 
   // --- 2. LAYER BACKGROUND ---
   &__full-image-layer {
-      position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-      z-index: 1; 
-      
-      .bg-image {
-          width: 100%; height: 100%;
-          background-image: url($bg-image); 
-          background-size: cover; 
-          background-position: center;
-          background-repeat: no-repeat;
-          transform: scale(1.1);
-          animation: gentleZoom 10s ease-out 4s forwards;
-      }
-      
-      .overlay {
-          position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-          // Am întunecat puțin overlay-ul global pentru contrast mai bun
-          background: rgba(0,0,0,0); 
-      }
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
 
-      opacity: 0;
-      animation: fadeInImage 1s ease-out 3.5s forwards; 
+    .bg-image {
+      width: 100%;
+      height: 100%;
+      background-image: url($bg-image);
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      transform: scale(1.1);
+      animation: gentleZoom 10s ease-out 4s forwards;
+    }
+
+    .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      // Am întunecat puțin overlay-ul global pentru contrast mai bun
+      background: rgba(0, 0, 0, 0);
+    }
+
+    opacity: 0;
+    animation: fadeInImage 1s ease-out 3.5s forwards;
   }
 
   // --- 3. LOGO INTRO ---
   &__intro-logo {
     position: absolute;
-    top: -60%; left: 50%;
+    top: -60%;
+    left: 50%;
     transform: translate(-50%, -50%) scale(0.3) rotate(0deg);
     transform-origin: center center;
-    z-index: 50; 
-    pointer-events: none; 
+    z-index: 50;
+    pointer-events: none;
 
-    img { 
-        width: 300px; height: auto; 
-        display: block;
-        @media (max-width: 1024px) { width: 220px; }
+    img {
+      width: 300px;
+      height: auto;
+      display: block;
+
+      @media (max-width: 1024px) {
+        width: 220px;
+      }
     }
-    
-    animation:
-      dropLogo 2.5s cubic-bezier(0.3, 0, 0.2, 1) forwards,        
-      expandLogo 1.5s cubic-bezier(0.65, 0, 0.35, 1) 3.0s forwards, 
-      fadeOutLogo 0.5s ease-out 4.5s forwards;                     
+
+    animation: dropLogo 2.5s cubic-bezier(0.3, 0, 0.2, 1) forwards,
+    expandLogo 1.5s cubic-bezier(0.65, 0, 0.35, 1) 3.0s forwards,
+    fadeOutLogo 0.5s ease-out 4.5s forwards;
   }
 
   // --- 4. CONȚINUTUL ---
@@ -86,22 +99,26 @@ $color-white: #ffffff;
     position: relative;
     z-index: 60;
     height: 100%;
-    display: flex; flex-direction: column; justify-content: center;
-    
-    padding-left: 300px; 
-    max-width: 1000px;
-    
-    opacity: 0; 
-    transform: translateY(40px);
-    
-    animation: fadeInUp 2s ease-out 4.5s forwards; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 
-    @media (max-width: 1366px) { padding-left: 150px; }
-    
+    padding-left: 300px;
+    max-width: 1000px;
+
+    opacity: 0;
+    transform: translateY(40px);
+
+    animation: fadeInUp 2s ease-out 4.5s forwards;
+
+    @media (max-width: 1366px) {
+      padding-left: 150px;
+    }
+
     @media (max-width: 1024px) {
       padding: 0 30px;
       max-width: 100%;
-      align-items: center; 
+      align-items: center;
       text-align: center;
       justify-content: center;
       padding-bottom: 120px;
@@ -111,38 +128,44 @@ $color-white: #ffffff;
   // --- TITLU (REDENUMIT ȘI CU SHADOW) ---
   &__hb-title {
     font-family: 'Bricolage Grotesque', sans-serif;
-    font-size: 7rem; 
-    font-weight: 1000; 
-    color: #000000; 
-    line-height: 0.95; 
-    margin-bottom: 30px; 
+    font-size: 7rem;
+    font-weight: 1000;
+    color: #000000;
+    line-height: 0.95;
+    margin-bottom: 30px;
     text-transform: uppercase;
     letter-spacing: -1px;
-    
+
     // === CONTRAST ADĂUGAT (Shadow Puternic) ===
-    text-shadow: 0 4px 30px rgba(0, 0, 0, 0.5); 
+    text-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
     // Alternativ, dacă vrei stroke (contur), decomentează linia de mai jos:
     // -webkit-text-stroke: 2px black;
 
-    .text-highlight { 
-        font-family: 'Raleway', sans-serif;
-        color: #000000; 
-        font-weight: 700; 
-        // Și highlight-ul primește shadow
-        text-shadow: 0 4px 30px rgba(0, 0, 0, 0.6);
+    .text-highlight {
+      font-family: 'Raleway', sans-serif;
+      color: #000000;
+      font-weight: 700;
+      // Și highlight-ul primește shadow
+      text-shadow: 0 4px 30px rgba(0, 0, 0, 0.6);
     }
 
-    @media (max-width: 1200px) { font-size: 5rem; }
-    @media (max-width: 1024px) { font-size: 3.5rem; margin-bottom: 1rem; }
+    @media (max-width: 1200px) {
+      font-size: 5rem;
+    }
+
+    @media (max-width: 1024px) {
+      font-size: 3.5rem;
+      margin-bottom: 1rem;
+    }
   }
 
   // --- SUBTITLU (REDENUMIT ȘI CU SHADOW) ---
   &__hb-description {
     font-family: 'Raleway', sans-serif;
-    font-size: 1.4rem; 
+    font-size: 1.4rem;
     font-weight: 700; // Am făcut fontul puțin mai bold
-    color: #000000; 
-    margin-bottom: 50px; 
+    color: #000000;
+    margin-bottom: 50px;
     max-width: 600px;
     line-height: 1.5;
 
@@ -150,55 +173,68 @@ $color-white: #ffffff;
     text-shadow: 0 2px 15px rgba(0, 0, 0, 0.7);
 
     @media (max-width: 1024px) {
-        font-size: 1.1rem;
-        max-width: 80%;
+      font-size: 1.1rem;
+      max-width: 80%;
     }
   }
 
   // --- BUTOANE ---
   &__actions {
-    display: flex; gap: 20px; align-items: center;
-    
+    display: flex;
+    gap: 20px;
+    align-items: center;
+
     animation: containerFloat 5s ease-in-out infinite alternate;
 
-    @media (max-width: 1024px) { 
-        flex-direction: column; width: 100%; align-items: center; gap: 15px;
-        animation: none; 
+    @media (max-width: 1024px) {
+      flex-direction: column;
+      width: 100%;
+      align-items: center;
+      gap: 15px;
+      animation: none;
     }
-    
+
     .btn--download {
-        background-color: $color-blue;
-        color: $color-white;
-        border: none;
-        padding: 10px 10px 10px 30px;
-        border-radius: 50px;
-        cursor: pointer;
-        
-        font-family: 'Bricolage Grotesque', sans-serif;
-        font-weight: 700;
-        font-size: 1.1rem;
-        
-        display: flex; align-items: center;
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-        
-        // Umbră la buton pentru a se distinge de fundal
-        box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+      background-color: $color-blue;
+      color: $color-white;
+      border: none;
+      padding: 10px 10px 10px 30px;
+      border-radius: 50px;
+      cursor: pointer;
 
-        &:hover { 
-            transform: translateY(-4px); 
-            box-shadow: 0 15px 40px rgba(0,0,0,0.4);
-        }
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-weight: 700;
+      font-size: 1.1rem;
 
-        .icon-circle {
-            width: 35px; height: 35px;
-            border: 2px solid $color-yellow;
-            border-radius: 50%;
-            margin-left: 15px;
-            display: flex; align-items: center; justify-content: center;
-            color: $color-yellow; font-size: 1.2rem;
-        }
-        
-        @media (max-width: 1024px) { width: 80%; justify-content: center; }
+      display: flex;
+      align-items: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+      // Umbră la buton pentru a se distinge de fundal
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+
+      &:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+      }
+
+      .icon-circle {
+        width: 35px;
+        height: 35px;
+        border: 2px solid $color-yellow;
+        border-radius: 50%;
+        margin-left: 15px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: $color-yellow;
+        font-size: 1.2rem;
+      }
+
+      @media (max-width: 1024px) {
+        width: 80%;
+        justify-content: center;
+      }
     }
 
     .btn--signup {
@@ -208,21 +244,25 @@ $color-white: #ffffff;
       padding: 16px 45px;
       border-radius: 50px;
       cursor: pointer;
-      
+
       font-family: 'Bricolage Grotesque', sans-serif;
       font-weight: 800;
       font-size: 1.1rem;
-      
+
       // Umbră la buton
-      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
 
       transition: transform 0.3s ease, box-shadow 0.3s ease;
-      &:hover { 
-          transform: translateY(-4px);
-          box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+
+      &:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
       }
-      
-      @media (max-width: 1024px) { width: 80%; justify-content: center; }
+
+      @media (max-width: 1024px) {
+        width: 80%;
+        justify-content: center;
+      }
     }
   }
 }
@@ -232,28 +272,89 @@ $color-white: #ffffff;
 // =========================================
 
 @keyframes impactShake {
-  0%, 100% { transform: translateX(0); }
-  10%, 30%, 50%, 70%, 90% { transform: translateX(-8px); }
-  20%, 40%, 60%, 80% { transform: translateX(8px); }
+
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+
+  10%,
+  30%,
+  50%,
+  70%,
+  90% {
+    transform: translateX(-8px);
+  }
+
+  20%,
+  40%,
+  60%,
+  80% {
+    transform: translateX(8px);
+  }
 }
 
 @keyframes dropLogo {
-  0% { top: -60%; transform: translate(-50%, -50%) scale(0.3) rotate(0deg); }
-  100% { top: 50%; transform: translate(-50%, -50%) scale(1) rotate(360deg); }
+  0% {
+    top: -60%;
+    transform: translate(-50%, -50%) scale(0.3) rotate(0deg);
+  }
+
+  100% {
+    top: 50%;
+    transform: translate(-50%, -50%) scale(1) rotate(360deg);
+  }
 }
 
 @keyframes expandLogo {
-  0% { transform: translate(-50%, -50%) scale(1); }
-  100% { transform: translate(-50%, -50%) scale(300); }
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  100% {
+    transform: translate(-50%, -50%) scale(300);
+  }
 }
 
-@keyframes fadeOutLogo { to { opacity: 0; } }
-@keyframes fadeInImage { to { opacity: 1; } }
-@keyframes gentleZoom { from { transform: scale(1.1); } to { transform: scale(1); } }
-@keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
+@keyframes fadeOutLogo {
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes fadeInImage {
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes gentleZoom {
+  from {
+    transform: scale(1.1);
+  }
+
+  to {
+    transform: scale(1);
+  }
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 
 @keyframes containerFloat {
-    0% { transform: translateY(0); }
-    50% { transform: translateY(-8px); }
-    100% { transform: translateY(0); }
+  0% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-8px);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
 }

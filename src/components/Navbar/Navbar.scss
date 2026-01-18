@@ -1,5 +1,5 @@
 // 1. IMPORTUL FONTULUI
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Open+Sans:wght@400;600&display=swap');
+// 1. IMPORTUL FONTULUI - Eliminat pentru consistență globală (Bricolage & Raleway)
 @import '../../styles/variables';
 
 $yellow-border: #FFC300;
@@ -7,26 +7,26 @@ $bg-pill: rgba(0, 0, 0, 0.4);
 
 .navbar {
   position: fixed;
-  top: 20px; 
+  // top: 20px;
   left: 0;
   width: 100%;
-  
+
   // Înălțime Desktop Standard
-  height: 140px; 
-  
+  height: 140px;
+
   // === MODIFICARE PENTRU MOBIL/TABLETĂ ===
   // Pe ecrane mici, o facem mai compactă din start (ca la scroll)
   @media (max-width: 1024px) {
-      height: 90px; 
-      top: 0; // O lipim de sus pe mobil pentru a câștiga spațiu
+    height: 90px;
+    top: 0; // O lipim de sus pe mobil pentru a câștiga spațiu
   }
-  
-  z-index: 100;
+
+  z-index: 60;
   background-color: transparent;
   transition: all 0.4s ease;
 
-  transform: translateY(-100%);
-  animation: slideDown 0.8s ease-out 5s forwards;
+  // transform: translateY(-100%);
+  // animation: slideDown 0.8s ease-out 5s forwards;
 
   &__container {
     max-width: 1600px;
@@ -38,27 +38,28 @@ $bg-pill: rgba(0, 0, 0, 0.4);
     padding: 0 50px;
 
     @media (max-width: 1024px) {
-        padding: 0 20px; // Padding mai mic pe lateral
+      padding: 0 20px; // Padding mai mic pe lateral
     }
   }
 
   // --- LOGO ---
   &__logo {
-    width: 220px; 
+    width: 220px;
     display: flex;
     align-items: center;
 
     svg {
       width: 100%;
       height: auto;
+
       path {
-        fill: #fff;
+        fill: $color-white-off;
         transition: fill 0.3s;
       }
     }
 
     @media (max-width: 768px) {
-        width: 140px; // Logo un pic mai mic pe telefon
+      width: 140px; // Logo un pic mai mic pe telefon
     }
   }
 
@@ -76,13 +77,13 @@ $bg-pill: rgba(0, 0, 0, 0.4);
   // --- BUTOANE PASTILĂ (Desktop) ---
   .nav-pill {
     text-decoration: none;
-    color: #fff;
-    
-    font-family: 'Montserrat', sans-serif; 
+    color: $color-white-off;
+
+    font-family: $font-heading;
     font-size: 1.15rem;
-    font-weight: 700; 
+    font-weight: 700;
     letter-spacing: 1px;
-    text-transform: uppercase; 
+    text-transform: uppercase;
 
     padding: 12px 35px;
     border: 2px solid $yellow-border;
@@ -95,17 +96,16 @@ $bg-pill: rgba(0, 0, 0, 0.4);
       background-color: $yellow-border;
       color: #000;
       transform: translateY(-3px);
-      box-shadow: 0 5px 15px rgba(255, 195, 0, 0.4);
     }
   }
 
   // --- HAMBURGER ---
   &__hamburger {
-    color: #fff;
+    color: $color-white-off;
     font-size: 2.5rem;
     cursor: pointer;
     display: none;
-    z-index: 101; 
+    z-index: 101;
 
     @media (max-width: 1024px) {
       display: block;
@@ -119,19 +119,19 @@ $bg-pill: rgba(0, 0, 0, 0.4);
     left: 0;
     width: 100%;
     height: 100vh; // Înălțime completă
-    
-    background-color: rgba(0, 0, 0, 0.98); 
+
+    background-color: rgba(0, 0, 0, 0.98);
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     gap: 40px;
-    
+
     transform: translateY(-100%);
     opacity: 0;
     transition: all 0.5s ease-in-out;
     pointer-events: none;
-    z-index: 99; 
+    z-index: 99;
 
     &.open {
       transform: translateY(0);
@@ -141,13 +141,13 @@ $bg-pill: rgba(0, 0, 0, 0.4);
 
     a {
       text-decoration: none;
-      color: #fff;
+      color: $color-white-off;
       font-size: 2rem;
-      
-      font-family: 'Montserrat', sans-serif;
-      font-weight: 800; 
+
+      font-family: $font-heading;
+      font-weight: 800;
       text-transform: uppercase;
-      
+
       transition: color 0.3s;
 
       &:hover {
@@ -158,33 +158,42 @@ $bg-pill: rgba(0, 0, 0, 0.4);
 
   // --- STARE SCROLLED ---
   &--scrolled {
-    background-color: rgba(255, 255, 255, 0.95);
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    padding: 15px 0;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
     height: 90px; // Înălțimea la scroll (pe desktop)
-    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-    top: 0; 
+    top: 0;
 
     // Pe mobil rămâne la fel de compactă (90px) și albă
     @media (max-width: 1024px) {
-        height: 80px; // Poate chiar un pic mai compactă pe scroll
+      height: 80px; // Poate chiar un pic mai compactă pe scroll
     }
 
-    .navbar__logo svg path { fill: #003566; }
-    
+    .navbar__logo svg path {
+      fill: #003566;
+    }
+
     .nav-pill {
       border-color: #003566;
       color: #003566;
       background-color: transparent;
 
       &:hover {
-        background-color: #003566;
-        color: #fff;
+        background-color: $color-green;
+        color: $color-white-off;
+        border-color: $color-green;
       }
     }
-    
-    .navbar__hamburger { color: #003566; }
+
+    .navbar__hamburger {
+      color: #003566;
+    }
   }
 }
 
 @keyframes slideDown {
-  to { transform: translateY(0); }
+  to {
+    transform: translateY(0);
+  }
 }

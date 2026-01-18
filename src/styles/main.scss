@@ -2,24 +2,34 @@
 @import 'mixins';
 
 * {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-padding-top: 100px;
+    scroll-behavior: smooth;
 }
 
 body {
-  font-family: $font-body; // Raleway pentru tot textul de bază
-  color: $theme-text-dark;
-  background-color: $theme-white;
-  line-height: 1.6;
-  overflow-x: hidden;
+    font-family: $font-body; // Raleway pentru tot textul de bază
+    color: $theme-text-dark;
+    background-color: $theme-white;
+    line-height: 1.6;
+    overflow-x: hidden;
 }
 
-h1, h2, h3, h4, h5, h6 {
-  font-family: $font-heading; // Bricolage Grotesque pentru titluri
-  color: $theme-heading; // Albastrul închis sau Verde, în funcție de context
-  font-weight: 700;
-  line-height: 1.2;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: $font-heading; // Bricolage Grotesque pentru titluri
+    color: $theme-heading; // Albastrul închis sau Verde, în funcție de context
+    font-weight: 700;
+    line-height: 1.2;
 }
 
 // Clase utilitare pentru text (bazat pe cerințele tale)
@@ -28,11 +38,21 @@ h1, h2, h3, h4, h5, h6 {
     color: $theme-accent; // Galben
 }
 
+.brand-ampersand {
+    font-family: 'Raleway', sans-serif;
+    font-weight: 700;
+}
+
+// Utilitar pentru cifre cu Bricolage
+.num-font {
+    font-family: 'Bricolage Grotesque', sans-serif;
+}
+
 .section-title {
     font-size: 3rem;
     text-transform: uppercase;
     margin-bottom: 2rem;
-    
+
     @include mobile {
         font-size: 2rem;
     }
@@ -62,6 +82,6 @@ h1, h2, h3, h4, h5, h6 {
 
     &:hover {
         transform: translateY(-3px);
-        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
     }
 }

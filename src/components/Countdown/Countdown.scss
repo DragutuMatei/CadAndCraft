@@ -1,51 +1,53 @@
 /* --- IMPORT FONTURI --- */
 @import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+@import '../../styles/variables';
 
 // --- VARIABILE ---
 $green-brand: #208A39;
 $yellow-brand: #FFC300;
 $dark-blue: #003566;
-$white: #ffffff;
-$black-mobile: #1a1a1a; 
+$white: #EBF2FA;
+$black-mobile: #1a1a1a;
 
 .countdown-section {
   width: 100%;
   display: flex;
   justify-content: center;
-  padding: 40px 20px; 
-  background-color: transparent; 
-  font-family: 'Raleway', sans-serif;
+  padding: 40px 20px;
+  background-color: transparent;
+  font-family: $font-body;
 
   /* === CARDUL (CONTAINER PRINCIPAL) === */
   .countdown-card {
     position: relative;
     width: 100%;
-    min-height: 529px; 
+    min-height: 529px;
     border-radius: 30px;
-    overflow: hidden; 
-    box-shadow: 0 25px 60px rgba(0,0,0,0);
-    background-color: transparent; 
+    overflow: hidden;
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0);
+    background-color: transparent;
 
     /* 1. LAYER FUNDAL SVG (DOAR DESKTOP) */
     .bg-layer {
       height: auto;
       position: absolute;
-      top: 0; left: 0;
+      top: 0;
+      left: 0;
       width: 100%;
-      z-index: 0; 
-      
+      z-index: 0;
+
       img {
         width: 100%;
         display: block;
-        object-fit: fill; 
+        object-fit: fill;
       }
     }
 
     /* 2. LAYER CONȚINUT */
     .content-layer {
       position: relative;
-      z-index: 1; 
-      width: 100%; 
+      z-index: 1;
+      width: 100%;
       height: 100%;
       min-height: auto;
       display: flex;
@@ -55,17 +57,17 @@ $black-mobile: #1a1a1a;
 
   /* --- ZONA SUS (TEXTE) --- */
   .top-section {
-    flex: 0.8; 
+    flex: 0.8;
     display: flex;
     align-items: center;
     padding: 10px 6%;
     background-color: transparent;
-    
+
     .text-wrapper {
       text-align: left;
-      
+
       .subtitle {
-        font-family: 'Bricolage Grotesque', sans-serif;
+        font-family: $font-heading;
         color: $white;
         font-weight: 700;
         text-transform: uppercase;
@@ -73,9 +75,9 @@ $black-mobile: #1a1a1a;
         font-size: clamp(1.8rem, 3.5vw, 3.5rem);
         line-height: 1.2;
       }
-      
+
       .title {
-        font-family: 'Bricolage Grotesque', sans-serif;
+        font-family: $font-heading;
         color: $white;
         font-weight: 900;
         text-transform: uppercase;
@@ -88,7 +90,7 @@ $black-mobile: #1a1a1a;
 
   /* --- ZONA JOS (TIMER) --- */
   .bottom-section {
-    flex: 1; 
+    flex: 1;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -101,18 +103,18 @@ $black-mobile: #1a1a1a;
   /* TIMER (Desktop Style - Flex Row) */
   .timer-container {
     display: flex;
-    gap: clamp(20px, 4vw, 60px); 
+    gap: clamp(20px, 4vw, 60px);
     align-items: baseline;
     flex-wrap: wrap;
     justify-content: center;
 
     .timer-item {
       display: flex;
-      align-items: baseline; 
+      align-items: baseline;
       gap: 10px;
 
       .number {
-        font-family: 'Bricolage Grotesque', sans-serif;
+        font-family: $font-heading;
         font-weight: 800;
         color: $dark-blue;
         line-height: 1;
@@ -120,7 +122,7 @@ $black-mobile: #1a1a1a;
       }
 
       .label {
-        font-family: 'Bricolage Grotesque', sans-serif;
+        font-family: $font-heading;
         font-weight: 600;
         color: $black-mobile;
         font-size: clamp(1rem, 1.5vw, 1.8rem);
@@ -130,7 +132,7 @@ $black-mobile: #1a1a1a;
 
   /* BUTON */
   .btn-register {
-    background-color: $green-brand; 
+    background-color: $green-brand;
     color: $white;
     font-family: 'Bricolage Grotesque', sans-serif;
     font-weight: 700;
@@ -140,11 +142,15 @@ $black-mobile: #1a1a1a;
     border-radius: 50px;
     border: none;
     cursor: pointer;
-    display: flex; align-items: center; gap: 12px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
     transition: transform 0.2s;
 
-    &:hover { transform: translateY(-5px); }
+    &:hover {
+      transform: translateY(-5px);
+    }
   }
 }
 
@@ -154,30 +160,41 @@ $black-mobile: #1a1a1a;
 
 /* --- TABLETĂ & MOBIL (Sub 1100px) --- */
 @media (max-width: 1100px) {
-  .countdown-section { padding: 20px; }
+  .countdown-section {
+    padding: 20px;
+  }
 
   .countdown-card {
-    min-height: auto !important; 
+    min-height: auto !important;
     height: auto !important;
     background-color: transparent !important;
   }
-  
+
   .content-layer {
     min-height: auto !important;
     height: auto !important;
   }
 
-  .bg-layer { display: none !important; }
+  .bg-layer {
+    display: none !important;
+  }
 
   .top-section {
     background-color: $green-brand !important;
     flex: none;
     width: 100%;
-    padding: 50px 20px; 
+    padding: 50px 20px;
     justify-content: center;
     text-align: center;
-    .text-wrapper { text-align: center; }
-    .subtitle, .title { color: $white !important; }
+
+    .text-wrapper {
+      text-align: center;
+    }
+
+    .subtitle,
+    .title {
+      color: $white !important;
+    }
   }
 
   .bottom-section {
@@ -192,53 +209,55 @@ $black-mobile: #1a1a1a;
 /* --- TELEFON (Sub 768px) - TIMER PE COLOANĂ --- */
 /* --- TELEFON (Sub 768px) - MODIFICAT PENTRU LINIE --- */
 @media (max-width: 768px) {
-  .countdown-section { padding: 10px; }
-  
+  .countdown-section {
+    padding: 10px;
+  }
+
   .timer-container {
     // 1. AICI ESTE SCHIMBAREA PRINCIPALĂ:
     // Le punem în linie (row), nu una sub alta
-    display: flex !important; 
-    flex-direction: row !important; 
-    
+    display: flex !important;
+    flex-direction: row !important;
+
     // Le centrăm și permitem să nu iasă din ecran
     justify-content: center !important;
     align-items: center !important;
     flex-wrap: nowrap !important; // Forțăm să stea pe un rând
-    
+
     // Reducem spațiul dintre elemente ca să încapă
-    gap: 15px; 
+    gap: 15px;
     width: 100%;
 
     .timer-item {
       // 2. MODIFICARE SECUNDARĂ:
       // Punem eticheta SUB număr (Zile sub 30) ca să economisim lățime
       display: flex;
-      flex-direction: column !important; 
-      align-items: center !important; 
+      flex-direction: column !important;
+      align-items: center !important;
       gap: 0px; // Spațiu mic între număr și text
-      
-      .number { 
-          // 3. MICȘORARE FONT:
-          // Era 4rem, îl facem mai mic pentru a încăpea 4 numere în linie
-          font-size: 2.2rem; 
-          line-height: 1;
-          margin: 0;
-      } 
-      
-      .label { 
-          // Textul (Zile/Ore) mai mic
-          font-size: 0.8rem; 
-          margin: 0;
-          text-transform: uppercase;
-          opacity: 0.8;
+
+      .number {
+        // 3. MICȘORARE FONT:
+        // Era 4rem, îl facem mai mic pentru a încăpea 4 numere în linie
+        font-size: 2.2rem;
+        line-height: 1;
+        margin: 0;
+      }
+
+      .label {
+        // Textul (Zile/Ore) mai mic
+        font-size: 0.8rem;
+        margin: 0;
+        text-transform: uppercase;
+        opacity: 0.8;
       }
     }
   }
 
-  .btn-register { 
-      width: 100%; 
-      justify-content: center; 
-      margin-top: 25px;
-      font-size: 1rem; // Puțin mai mic și butonul
+  .btn-register {
+    width: 100%;
+    justify-content: center;
+    margin-top: 25px;
+    font-size: 1rem; // Puțin mai mic și butonul
   }
 }

@@ -6,7 +6,7 @@ $bg-color: #E8EFF7;
 $text-dark: #111111;
 $green-brand: #208A39;
 $yellow-brand: #FFC300;
-$white: #ffffff;
+$white: $color-white-off;
 
 .showcase-section {
   width: 100%;
@@ -15,8 +15,15 @@ $white: #ffffff;
   overflow: hidden;
 
   &.is-visible {
-    .text-column { opacity: 1; transform: translateX(0); }
-    .visual-column { opacity: 1; transform: translateX(0); }
+    .text-column {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .visual-column {
+      opacity: 1;
+      transform: translateX(0);
+    }
   }
 
   .showcase-content-wrapper {
@@ -24,8 +31,8 @@ $white: #ffffff;
     margin: 0 auto;
     padding: 0 40px;
     display: flex;
-    align-items: flex-start; 
-    gap: 8vw; 
+    align-items: flex-start;
+    gap: 8vw;
 
     @media (max-width: 1100px) {
       flex-direction: column;
@@ -37,76 +44,82 @@ $white: #ffffff;
 
   // --- STÂNGA: Text (Identic cu originalul) ---
   .text-column {
-    flex: 0 0 40%; 
-    max-width: 550px; 
+    flex: 0 0 40%;
+    max-width: 550px;
     opacity: 0;
     transform: translateX(-50px);
     transition: all 0.8s ease-out;
     padding-top: 5%;
 
     .title-large {
-      font-family: 'Bricolage Grotesque', sans-serif;
-      font-size: clamp(3.5rem, 5.5vw, 6.5rem); 
-      font-weight: 800; 
+      font-family: $font-heading;
+      font-size: clamp(3.5rem, 5.5vw, 6.5rem);
+      font-weight: 800;
       line-height: 0.9;
       color: $text-dark;
       text-transform: uppercase;
       margin-bottom: 40px;
-      letter-spacing: -2px; 
+      letter-spacing: -2px;
 
       // === MODIFICARE PRINCIPALĂ ===
       // & este acum negru solid, fără stroke
       .stroke {
-        font-family: 'Raleway', sans-serif; 
-        color: $text-dark; 
-        -webkit-text-stroke: 0; 
+        font-family: $font-body;
+        color: $text-dark;
+        -webkit-text-stroke: 0;
       }
     }
 
     .quote-block {
       position: relative;
       margin: 100px 0 0 10px;
-      max-width: 320px; 
+      max-width: 320px;
 
       .quote-icon {
         color: $yellow-brand;
         font-size: 3.5rem;
         position: absolute;
-        top: -40px; left: -10px;
+        top: -40px;
+        left: -10px;
       }
 
       p {
-        font-family: 'Raleway', sans-serif;
-        font-size: 1.05rem; 
-        line-height: 1.7; 
+        font-family: $font-body;
+        font-size: 1.05rem;
+        line-height: 1.7;
         color: #333;
-        font-weight: 700; 
+        font-weight: 700;
         position: relative;
       }
     }
 
     @media (max-width: 1100px) {
-        flex: auto; 
-        max-width: 800px;
-        padding-top: 0;
-        .quote-block { 
-            margin: 50px auto 0; 
-            max-width: 600px; 
-            .quote-icon { left: 50%; transform: translateX(-50%); } 
+      flex: auto;
+      max-width: 800px;
+      padding-top: 0;
+
+      .quote-block {
+        margin: 50px auto 0;
+        max-width: 600px;
+
+        .quote-icon {
+          left: 50%;
+          transform: translateX(-50%);
         }
+      }
     }
 
     @media (max-width: 768px) {
-        .quote-block p {
-            font-size: 0.9rem; 
-            line-height: 1.5;
-        }
+      .quote-block p {
+        font-size: 0.9rem;
+        line-height: 1.5;
+      }
     }
   }
 
   // --- DREAPTA: VIZUAL ---
   .visual-column {
-    flex: 1; 
+    flex: 1;
     width: 100%;
     display: flex;
     justify-content: flex-end;
@@ -118,8 +131,8 @@ $white: #ffffff;
   .visual-anchor {
     position: relative;
     width: 100%;
-    max-width: 850px; 
-    aspect-ratio: 750 / 746; 
+    max-width: 850px;
+    aspect-ratio: 750 / 746;
     container-type: inline-size;
     font-size: clamp(10px, 1.5vw, 16px);
   }
@@ -127,147 +140,177 @@ $white: #ffffff;
   // 1. Imaginea Mascată (Desktop)
   .masked-image-layer {
     position: absolute;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     z-index: 1;
-    filter: drop-shadow(0 20px 40px rgba(0,0,0,0.15));
+    filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.15));
 
     svg.mask-svg {
-      width: 100%; height: 100%; display: block;
+      width: 100%;
+      height: 100%;
+      display: block;
     }
-    
+
     // Animația FIFA
     image {
-        animation: fifaFade 1.4s cubic-bezier(0.4, 0.0, 0.2, 1) forwards;
-        transform-origin: center;
-        transform-box: fill-box;
+      animation: fifaFade 1.4s cubic-bezier(0.4, 0.0, 0.2, 1) forwards;
+      transform-origin: center;
+      transform-box: fill-box;
     }
   }
 
   // 2. Imaginea Statică (Mobil)
   .mobile-static-image {
-      display: none; 
-      width: 100%;
-      height: auto;
-      border-radius: 20px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-      
-      animation: fifaFade 1.4s cubic-bezier(0.4, 0.0, 0.2, 1) forwards;
-      transform-origin: center;
+    display: none;
+    width: 100%;
+    height: auto;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+
+    animation: fifaFade 1.4s cubic-bezier(0.4, 0.0, 0.2, 1) forwards;
+    transform-origin: center;
   }
 
   // 3. Butonul
   .btn-absolute {
     position: absolute;
-    top: 1.2%; 
+    top: 1.2%;
     right: 0%;
     z-index: 10;
     background-color: $green-brand;
     color: $white;
     border: none;
     border-radius: 50px;
-    padding: 1.5% 2% 1.5% 3%; 
+    padding: 1.5% 2% 1.5% 3%;
     font-family: 'Bricolage Grotesque', sans-serif;
     font-weight: 700;
-    font-size: clamp(0.7rem, 2.5cqw, 2rem); 
+    font-size: clamp(0.7rem, 2.5cqw, 2rem);
     text-transform: uppercase;
-    display: flex; align-items: center; gap: 0.5em;
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
     cursor: pointer;
-    box-shadow: 0 0.5em 1.2em rgba(0,0,0,0.2);
+    box-shadow: 0 0.5em 1.2em rgba(0, 0, 0, 0.2);
     transition: transform 0.4s;
+
     .icon-circle {
-      width: 2em; height: 2em;
-      border: 1px solid rgba(255,255,255,0.4);
+      width: 2em;
+      height: 2em;
+      border: 1px solid rgba(255, 255, 255, 0.4);
       border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1em; 
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1em;
       transform: rotate(-45deg);
     }
-    &:hover { transform: scale(1.05); }
+
+    &:hover {
+      transform: scale(1.05);
+    }
   }
 
   // 4. Slider Container - RESPONSIVITATE RESTAURATĂ
   .slider-container-absolute {
     position: absolute;
     // Dimensiuni originale
-    bottom: 11%; 
-    left: -37%; 
-    width: 65%; 
+    bottom: 11%;
+    left: -37%;
+    width: 65%;
     z-index: 10;
     display: flex;
     flex-direction: column;
-    align-items: flex-end; 
+    align-items: flex-end;
 
     .slider-viewport {
-        width: 100%; 
-        overflow: hidden;
-        padding: 2% 0;
-        
-        // Adăugiri minime pentru funcționalitate
-        mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
-        cursor: grab;
-        &:active { cursor: grabbing; }
+      width: 100%;
+      overflow: hidden;
+      padding: 2% 0;
+
+      // Adăugiri minime pentru funcționalitate
+      mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+      cursor: grab;
+
+      &:active {
+        cursor: grabbing;
+      }
     }
 
     .slider-track {
-        display: flex;
-        width: max-content; // Necesar pentru scroll infinit
-        will-change: transform; 
-        user-select: none;
-        -webkit-user-drag: none;
-        // Fără gap aici, folosim padding-ul de pe item din codul vechi
+      display: flex;
+      width: max-content; // Necesar pentru scroll infinit
+      will-change: transform;
+      user-select: none;
+      -webkit-user-drag: none;
+      // Fără gap aici, folosim padding-ul de pe item din codul vechi
     }
 
     .slide-item {
-        // === RESTAURARE RESPONSIVITATE DESKTOP ===
-        // În codul vechi: width 65% (container) * 33.333% (item) = ~21.6% din ecran
-        // Folosim 21.5vw pentru a simula exact acel 33.3% responsiveness
-        flex: 0 0 14vw; 
-        
-        // Padding-ul original
-        padding: 0 0.1%; 
-        box-sizing: border-box;
-        cursor: pointer;
+      // === RESTAURARE RESPONSIVITATE DESKTOP ===
+      // În codul vechi: width 65% (container) * 33.333% (item) = ~21.6% din ecran
+      // Folosim 21.5vw pentru a simula exact acel 33.3% responsiveness
+      flex: 0 0 14vw;
 
-        // Shake animation
-        &.is-clicked {
-            .team-card {
-                animation: clickShake 0.4s cubic-bezier(.36,.07,.19,.97) both;
-                border: 2px solid $green-brand; 
-            }
+      // Padding-ul original
+      padding: 0 0.1%;
+      box-sizing: border-box;
+      cursor: pointer;
+
+      // Shake animation
+      &.is-clicked {
+        .team-card {
+          animation: clickShake 0.4s cubic-bezier(.36, .07, .19, .97) both;
+          border: 2px solid $green-brand;
         }
+      }
     }
 
     .team-card {
-        width: 100%;
-        aspect-ratio: 2 / 3; 
-        background: $white;
-        border-radius: 12px;
-        overflow: hidden;
-        position: relative;
-        // Umbra originală
-        box-shadow: 0 10px 25px rgba(0,0,0,0); 
-        transition: transform 0.3s ease;
-        
-        &:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
-        }
-        
-        img { width: 100%; height: 100%; object-fit: cover; pointer-events: none; }
+      width: 100%;
+      aspect-ratio: 2 / 3;
+      background: $white;
+      border-radius: 12px;
+      overflow: hidden;
+      position: relative;
+      // Umbra originală
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0);
+      transition: transform 0.3s ease;
 
-        .green-label {
-            position: absolute; bottom: 8%; left: 50%; transform: translateX(-50%);
-            background-color: $green-brand; color: $white;
-            font-family: 'Bricolage Grotesque', sans-serif;
-            font-size: clamp(0.5rem, 1.2vw, 0.8rem);
-            font-weight: 700;
-            text-transform: uppercase; padding: 4% 0; width: 85%; text-align: center;
-            border-radius: 20px;
-        }
+      &:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+      }
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        pointer-events: none;
+      }
+
+      .green-label {
+        position: absolute;
+        bottom: 8%;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: $green-brand;
+        color: $white;
+        font-family: $font-heading;
+        font-size: clamp(0.5rem, 1.2vw, 0.8rem);
+        font-weight: 700;
+        text-transform: uppercase;
+        padding: 4% 0;
+        width: 85%;
+        text-align: center;
+        border-radius: 20px;
+      }
     }
 
-    .slider-nav { display: none !important; }
+    .slider-nav {
+      display: none !important;
+    }
   }
 
   // =========================================
@@ -275,82 +318,90 @@ $white: #ffffff;
   // =========================================
   // RESTAURAT COMPLET DIN CODUL VECHI
   @media (max-width: 768px) {
-      .visual-anchor {
-          aspect-ratio: auto; 
-          display: flex; 
-          flex-direction: column; 
-          align-items: center;
-          font-size: 14px; 
+    .visual-anchor {
+      aspect-ratio: auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      font-size: 14px;
+    }
+
+    .masked-image-layer {
+      display: none;
+    }
+
+    .mobile-static-image {
+      display: block;
+      order: 2;
+      margin-bottom: 20px;
+    }
+
+    .btn-absolute {
+      position: relative;
+      top: auto;
+      right: auto;
+      order: 1;
+      margin-bottom: 30px;
+      font-size: 0.85rem;
+      padding: 12px 25px;
+    }
+
+    .slider-container-absolute {
+      width: 100vw;
+      position: relative;
+      left: 5%;
+      right: 5%;
+      margin-left: -50vw;
+      margin-right: -50vw;
+      bottom: auto;
+      margin-top: 0;
+      transform: none;
+
+      display: block;
+      order: 3;
+
+      .slider-nav {
+        display: none !important;
       }
 
-      .masked-image-layer { display: none; }
+      .slider-viewport {
+        display: flex;
+        width: 100%;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        padding: 20px 20px 0px 20px;
+        mask-image: none;
 
-      .mobile-static-image {
-          display: block; 
-          order: 2; 
-          margin-bottom: 20px;
+        &::-webkit-scrollbar {
+          display: none;
+        }
+
+        scrollbar-width: none;
       }
 
-      .btn-absolute { 
-          position: relative; 
-          top: auto; 
-          right: auto; 
-          order: 1; 
-          margin-bottom: 30px; 
-          font-size: 0.85rem;
-          padding: 12px 25px; 
+      .slider-track {
+        display: flex;
+        // Aici era gap-ul implicit din flex în codul vechi (sau lipsa lui), dar păstrăm 30px pentru spațiere curată
+        gap: 30px;
+        width: max-content;
+        transform: none !important;
       }
 
-      .slider-container-absolute {
-          width: 100vw; 
-          position: relative;
-          left: 5%;
-          right: 5%;
-          margin-left: -50vw;
-          margin-right: -50vw;
-          bottom: auto;
-          margin-top: 0; 
-          transform: none;
-          
-          display: block;
-          order: 3;
-          
-          .slider-nav { display: none !important; }
+      .slide-item {
+        // === RESPONSIVITATEA VECHE MOBIL ===
+        flex: 0 0 42vw;
+        max-width: 200px; // Limita din codul vechi
 
-          .slider-viewport {
-              display: flex;
-              width: 100%;
-              overflow-x: auto; 
-              scroll-snap-type: x mandatory; 
-              -webkit-overflow-scrolling: touch;
-              padding: 20px 20px 0px 20px; 
-              mask-image: none; 
-              &::-webkit-scrollbar { display: none; }
-              scrollbar-width: none;
-          }
+        padding: 0;
+        scroll-snap-align: start;
 
-          .slider-track {
-              display: flex;
-              // Aici era gap-ul implicit din flex în codul vechi (sau lipsa lui), dar păstrăm 30px pentru spațiere curată
-              gap: 30px; 
-              width: max-content;
-              transform: none !important; 
-          }
-
-          .slide-item { 
-              // === RESPONSIVITATEA VECHE MOBIL ===
-              flex: 0 0 42vw; 
-              max-width: 200px; // Limita din codul vechi
-              
-              padding: 0;
-              scroll-snap-align: start; 
-              
-              &.is-clicked .team-card {
-                  border: none;
-                  animation: none;
-              }
-          } 
+        &.is-clicked .team-card {
+          border: none;
+          animation: none;
+        }
       }
+    }
   }
 }
 
@@ -359,21 +410,35 @@ $white: #ffffff;
 // ==========================
 
 @keyframes fifaFade {
-    0% {
-        opacity: 0;
-        transform: scale(0.96); 
-        filter: brightness(1.2) blur(3px); 
-    }
-    100% {
-        opacity: 1;
-        transform: scale(1);
-        filter: brightness(1) blur(0px);
-    }
+  0% {
+    opacity: 0;
+    transform: scale(0.96);
+    filter: brightness(1.2) blur(3px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1);
+    filter: brightness(1) blur(0px);
+  }
 }
 
 @keyframes clickShake {
-  0%, 100% { transform: translateX(0); }
-  25% { transform: translateX(-3px) rotate(-1deg); }
-  50% { transform: translateX(3px) rotate(1deg); }
-  75% { transform: translateX(-2px) rotate(0deg); }
+
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+
+  25% {
+    transform: translateX(-3px) rotate(-1deg);
+  }
+
+  50% {
+    transform: translateX(3px) rotate(1deg);
+  }
+
+  75% {
+    transform: translateX(-2px) rotate(0deg);
+  }
 }

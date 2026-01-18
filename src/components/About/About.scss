@@ -1,17 +1,25 @@
 /* --- About.scss --- */
 
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Open+Sans:wght@400;600&display=swap');
+// @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Open+Sans:wght@400;600&display=swap');
+@import '../../styles/variables';
 
 // Variabile de culoare
-$green-brand: #1e8538; 
+$green-brand: #1e8538;
 $yellow-brand: #FFC300;
 $white: #E8EFF7;
 $dark: #111111;
 
 /* --- ANIMAȚIE --- */
 @keyframes fadeSlideUp {
-  0% { opacity: 0; transform: translateY(40px) scale(0.98); }
-  100% { opacity: 1; transform: translateY(0) scale(1); }
+  0% {
+    opacity: 0;
+    transform: translateY(40px) scale(0.98);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }
 
 /* Container Exterior */
@@ -22,35 +30,38 @@ $dark: #111111;
   align-items: center;
   justify-content: center;
   background-color: $white;
-  padding: 60px 20px; 
+  padding: 60px 20px;
   box-sizing: border-box;
 }
 
 /* Card Principal (Desktop) */
 .main-card {
   position: relative;
-  width: 100%; 
-  max-width: 100%; 
-  height: 800px; 
+  width: 100%;
+  max-width: 100%;
+  height: 800px;
   border-radius: 30px;
   overflow: hidden;
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-  background-color: $green-brand; 
+  background-color: $green-brand;
 
   animation: fadeSlideUp 1s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
 
   /* === LAYER 1: SVG BACKGROUND === */
   .bg-layer {
     position: absolute;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     z-index: 1;
 
     img {
-      width: 100%; height: 100%;
+      width: 100%;
+      height: 100%;
       display: block;
-      object-fit: cover; 
-      object-position: center; 
+      object-fit: cover;
+      object-position: center;
     }
   }
 
@@ -59,9 +70,10 @@ $dark: #111111;
     position: relative;
     z-index: 2;
     display: flex;
-    width: 100%; height: 100%;
-    max-width: 1700px; 
-    margin: 0 auto; 
+    width: 100%;
+    height: 100%;
+    max-width: 1700px;
+    margin: 0 auto;
   }
 }
 
@@ -69,15 +81,15 @@ $dark: #111111;
 .content-left {
   flex: 1;
   display: flex;
-  align-items: flex-start; 
-  padding: 100px 40px 0 80px; 
+  align-items: flex-start;
+  padding: 100px 40px 0 80px;
 
   .text-wrapper {
-    max-width: 650px; 
+    max-width: 650px;
   }
 
   .brand-title {
-    font-family: 'Montserrat', sans-serif;
+    font-family: $font-heading;
     font-size: 3.8rem;
     font-weight: 800;
     color: $white;
@@ -87,42 +99,52 @@ $dark: #111111;
   }
 
   .body-text {
-    font-family: 'Open Sans', sans-serif;
+    font-family: $font-body;
     color: rgba(255, 255, 255, 0.95);
-    font-size: 1.15rem; 
+    font-size: 1.15rem;
     line-height: 1.7;
     margin-bottom: 40px;
-    p { margin-bottom: 20px; }
+
+    p {
+      margin-bottom: 20px;
+    }
   }
 
   .action-buttons {
-    display: flex; gap: 25px; flex-wrap: wrap;
+    display: flex;
+    gap: 25px;
+    flex-wrap: wrap;
 
     .btn-primary {
       background-color: $yellow-brand;
       color: $dark;
-      font-family: 'Montserrat', sans-serif;
+      font-family: $font-heading;
       font-weight: 700;
       font-size: 1rem;
       padding: 14px 35px;
       border: none;
       border-radius: 50px;
       cursor: pointer;
-      display: flex; align-items: center; gap: 12px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
       transition: transform 0.2s, box-shadow 0.2s;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 
       .icon-wrap {
-        width: 28px; height: 28px;
+        width: 28px;
+        height: 28px;
         border: 2px solid $dark;
         border-radius: 50%;
-        display: flex; align-items: center; justify-content: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         font-size: 0.9rem;
       }
 
       &:hover {
         transform: translateY(-3px);
-        box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
       }
     }
   }
@@ -133,35 +155,40 @@ $dark: #111111;
   flex: 1;
   display: flex;
   justify-content: center;
-  align-items: flex-start; 
-  padding: 160px 40px 0 60px; 
+  align-items: flex-start;
+  padding: 160px 40px 0 60px;
 
   .stats-grid {
     display: flex;
-    gap: 60px; 
+    gap: 60px;
   }
 
   .grid-col {
     display: flex;
     flex-direction: column;
-    gap: 50px; 
-    width: 210px; 
+    gap: 50px;
+    width: 210px;
 
-    &.col-1 { margin-top: 100px; }
-    &.col-2 { margin-top: 0; }
+    &.col-1 {
+      margin-top: 100px;
+    }
+
+    &.col-2 {
+      margin-top: 0;
+    }
   }
 
   /* Stilul Cardului Individual */
   .stat-box {
     background: $white;
     border-radius: 30px;
-    padding: 35px 25px; 
+    padding: 35px 25px;
     text-align: center;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
     transition: transform 0.3s ease;
 
     h3 {
-      font-family: 'Montserrat', sans-serif;
+      font-family: $font-heading;
       font-size: 3rem;
       font-weight: 800;
       color: $green-brand;
@@ -169,17 +196,19 @@ $dark: #111111;
     }
 
     p {
-      font-family: 'Open Sans', sans-serif;
+      font-family: $font-body;
       font-weight: 700;
       color: #222;
       margin: 0;
       font-size: 1rem;
       line-height: 1.3;
-      text-transform: uppercase; 
+      text-transform: uppercase;
       letter-spacing: 0.5px;
     }
 
-    &:hover { transform: scale(1.03); }
+    &:hover {
+      transform: scale(1.03);
+    }
   }
 }
 
@@ -188,16 +217,16 @@ $dark: #111111;
 /* ========================================= */
 
 @media (max-width: 992px) {
-  
+
   // 1. Ascundem SVG-ul pe mobil pentru a folosi culori solide
   .bg-layer {
     display: none !important;
   }
 
   .main-card {
-    height: auto; 
-    padding-bottom: 0; 
-    background-color: transparent; 
+    height: auto;
+    padding-bottom: 0;
+    background-color: transparent;
   }
 
   .content-layer {
@@ -210,30 +239,34 @@ $dark: #111111;
     // Fundal VERDE
     background-color: $green-brand;
     width: 100%;
-    padding: 60px 25px 50px 25px; 
-    align-items: center; 
+    padding: 60px 25px 50px 25px;
+    align-items: center;
     text-align: center;
-    
+
     // Titlu ALB
     .brand-title {
-        font-size: 2.5rem;
-        color: $white !important; 
-    }
-    
-    // Text ALB - MICȘORAT PENTRU MOBIL
-    .body-text {
-        color: rgba(255, 255, 255, 0.95) !important;
-        
-        // --- MODIFICARE AICI ---
-        font-size: 0.9rem; // Redus de la 1.15rem
-        line-height: 1.5; 
-        text-align: justify;
-        // -----------------------
-        
-        p { opacity: 1; }
+      font-size: 2.5rem;
+      color: $white !important;
     }
 
-    .action-buttons { justify-content: center; }
+    // Text ALB - MICȘORAT PENTRU MOBIL
+    .body-text {
+      color: rgba(255, 255, 255, 0.95) !important;
+
+      // --- MODIFICARE AICI ---
+      font-size: 0.9rem; // Redus de la 1.15rem
+      line-height: 1.5;
+      text-align: justify;
+      // -----------------------
+
+      p {
+        opacity: 1;
+      }
+    }
+
+    .action-buttons {
+      justify-content: center;
+    }
   }
 
   /* === PARTEA DE JOS (GALBEN + CARDURI) === */
@@ -242,32 +275,42 @@ $dark: #111111;
     background-color: $yellow-brand;
     width: 100%;
     padding: 0px 20px 60px 20px;
-    align-items: center; 
+    align-items: center;
   }
 
   .stats-grid {
-      flex-direction: column;
-      gap: 20px;
-      width: 100%;
-      align-items: center;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+    align-items: center;
   }
 
   .grid-col {
-    width: 100%; 
-    max-width: 280px; 
+    width: 100%;
+    max-width: 280px;
     gap: 30px;
-    
+
     // Fără zig-zag
-    &.col-1 { margin-top: 0; }
-    &.col-2 { margin-top: 0; }
+    &.col-1 {
+      margin-top: 0;
+    }
+
+    &.col-2 {
+      margin-top: 0;
+    }
   }
-  
+
   .stat-box {
-      width: 100%;
-      // Păstrăm cardurile albe pentru contrast pe galben
-      background-color: $white;
-      
-      h3 { font-size: 2.5rem; }
-      p { font-size: 1rem; }
+    width: 100%;
+    // Păstrăm cardurile albe pentru contrast pe galben
+    background-color: $white;
+
+    h3 {
+      font-size: 2.5rem;
+    }
+
+    p {
+      font-size: 1rem;
+    }
   }
 }

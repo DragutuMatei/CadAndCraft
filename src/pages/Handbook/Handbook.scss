@@ -1,6 +1,62 @@
+@import '../../styles/variables';
+
 .handbook-page {
-  width: 100%;
+  background-color: $theme-accent; // Fallback yellow
+  background-image: url('../../assets/images/fundal_handbook.svg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed; // Keep pattern fixed while scrolling
   min-height: 100vh;
-  background-color: #E8EFF7; // Sau culoarea de fundal dorită
-  overflow-x: hidden;
+  padding-top: 100px;
+  padding-bottom: 60px;
+  position: relative; // Pt logo absolut
+  // overflow: hidden; // Să nu iasă logo-ul cât se scalează -> Removed to allow sticky sidebar
+}
+
+// --- LOGO ANIMATION SECTION REMOVED ---
+
+.handbook-container {
+  width: 95%; // Full width as requested ("pe tot ecranul")
+  max-width: 1600px; // Reasonable cap for huge screens
+  margin: 0 auto;
+  display: flex;
+  gap: 60px; // Larger gap since we have space
+  padding: 0 20px;
+  position: relative;
+  z-index: 10; // Sub logo, dar peste background
+
+  .handbook-content {
+    flex: 1;
+    min-width: 0;
+    // No white background ("nu vreau fundal alb")
+    background: transparent;
+    border-radius: 0;
+    padding: 0;
+    box-shadow: none;
+    animation: fadeInContent 0.5s ease-out; // Simplificat, fără delay
+  }
+}
+
+@keyframes fadeInContent {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 1024px) {
+  .handbook-container {
+    flex-direction: column;
+    padding: 0 15px;
+
+    .handbook-content {
+      width: 100%;
+      padding: 15px;
+    }
+  }
 }

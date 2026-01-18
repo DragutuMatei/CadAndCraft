@@ -1,37 +1,44 @@
-/* --- IMPORT FONTURI --- */
-@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+/* --- IMPORT FONTURI - Eliminat pentru consistență --- */
+// @import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
 
-// --- VARIABILE ---
-$green-brand: #208A39;
-$yellow-brand: #FFC300;
-$dark-blue: #003566;
-$white: #ffffff;
-$black-mobile: #1a1a1a; 
+@import '../../styles/variables';
+
+// --- VARIABILE - Le folosim pe cele din _variables.scss unde e posibil
+$green-brand: $theme-primary;
+$yellow-brand: $theme-accent;
+$dark-blue: $theme-heading;
+$white: $theme-white; // EBF2FA in variables e bg-light, dar aici e numit White
+$black-mobile: $theme-text-dark;
 
 .footer-section {
   position: relative;
   width: 100%;
   display: flex;
   justify-content: center;
-  padding: 40px 20px; 
-  background-color: #E8EFF7; 
-  
-  font-family: 'Raleway', sans-serif;
+  padding: 40px 20px;
+  background-color: #E8EFF7;
 
-  h1, h2, h3, h4, h5, h6 {
-    font-family: 'Bricolage Grotesque', sans-serif !important;
+  font-family: $font-body;
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: $font-heading !important;
   }
 
   /* === CARDUL PRINCIPAL === */
   .footer-card {
     position: relative;
     width: 100%;
-    max-width: 1600px;
-    height: 650px; 
-    border-radius: 50px; 
-    overflow: hidden;    
-    box-shadow: 0 30px 60px rgba(0, 0, 0, 0); 
-    background-color: transparent; 
+    // max-width: 1600px;
+    height: 650px;
+    border-radius: 50px;
+    overflow: hidden;
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0);
+    background-color: transparent;
 
     /* 1. FUNDALUL SVG */
     .footer-bg {
@@ -40,22 +47,21 @@ $black-mobile: #1a1a1a;
       left: 0;
       width: 100%;
       height: 100%;
-      z-index: 0; 
+      z-index: 0;
 
       svg {
         width: 100%;
         height: 100%;
         display: block;
-        preserveAspectRatio: none; 
       }
     }
 
     /* 2. CONȚINUTUL */
     .footer-content {
       position: relative;
-      z-index: 1; 
+      z-index: 1;
       display: grid;
-      grid-template-columns: 0.35fr 0.65fr; 
+      grid-template-columns: 0.35fr 0.65fr;
       height: 100%;
       width: 100%;
     }
@@ -64,10 +70,10 @@ $black-mobile: #1a1a1a;
 
 /* === ZONA STÂNGA (GALBEN) === */
 .col-left {
-  padding: 60px 0 60px 60px; 
+  padding: 60px 0 60px 60px;
   display: flex;
   flex-direction: column;
-  justify-content: center; 
+  justify-content: center;
   height: 100%;
 
   .brand-wrapper {
@@ -75,30 +81,30 @@ $black-mobile: #1a1a1a;
     flex-direction: column;
     justify-content: space-between;
     height: 100%;
-    max-width: 450px; 
+    max-width: 450px;
   }
 
   .logo-svg svg {
-      width: 250px;
-      height: auto;
-      display: block;
-      margin-bottom: 30px;
-      margin-top: -50px;
+    width: 250px;
+    height: auto;
+    display: block;
+    margin-bottom: 30px;
+    margin-top: -50px;
   }
 
   .text-body {
     color: $dark-blue;
-    margin-top: auto; 
-    
+    margin-top: auto;
+
     .description {
       font-size: 1.1rem;
       line-height: 1.6;
       font-weight: 600;
       margin-bottom: 30px;
     }
-    
+
     .copyright {
-      font-family: 'Raleway', sans-serif;
+      font-family: $font-body;
       font-weight: 700;
       font-size: 0.9rem;
     }
@@ -107,38 +113,47 @@ $black-mobile: #1a1a1a;
 
 /* === ZONA DREAPTA (VERDE) === */
 .col-right {
-  padding: 60px 60px 40px 0; 
+  padding: 60px 60px 40px 0;
   display: flex;
   flex-direction: column;
-  align-items: flex-end; 
-  justify-content: space-between; 
+  align-items: flex-end;
+  justify-content: space-between;
   text-align: right;
   height: 100%;
 
   .slogan-wrapper {
     margin-top: 20px;
+
     h2 {
-      font-family: 'Bricolage Grotesque', sans-serif;
+      font-family: $font-heading;
       font-size: 4rem;
       font-weight: 800;
       line-height: 1;
       margin: 0;
-      white-space: nowrap; 
-      
-      .text-dark { color: $dark-blue; }
-      .text-yellow { color: $yellow-brand; }
-      .text-white { color: $white; }
+      white-space: nowrap;
+
+      .text-dark {
+        color: $dark-blue;
+      }
+
+      .text-yellow {
+        color: $yellow-brand;
+      }
+
+      .text-white {
+        color: $white;
+      }
     }
   }
 
   .links-wrapper {
     display: flex;
     gap: 80px;
-    margin-right: 80px; 
+    margin-right: 80px;
     text-align: left;
-    
+
     h4 {
-      font-family: 'Bricolage Grotesque', sans-serif;
+      font-family: $font-heading;
       font-size: 1.3rem;
       color: $white;
       margin-bottom: 20px;
@@ -148,15 +163,20 @@ $black-mobile: #1a1a1a;
     ul {
       list-style: none;
       padding: 0;
+
       li {
         margin-bottom: 10px;
+
         a {
-          font-family: 'Raleway', sans-serif;
+          font-family: $font-body;
           text-decoration: none;
-          color: rgba(255,255,255, 0.85);
+          color: rgba(255, 255, 255, 0.85);
           font-weight: 600;
           transition: 0.2s;
-          &:hover { color: $white; }
+
+          &:hover {
+            color: $white;
+          }
         }
       }
     }
@@ -165,13 +185,14 @@ $black-mobile: #1a1a1a;
   .social-icons {
     display: flex;
     gap: 80px;
-    margin-right: 0; 
+    margin-right: 0;
     margin-bottom: -25px;
-    
+
     a {
       color: $dark-blue;
       font-size: 2rem;
       transition: transform 0.2s;
+
       &:hover {
         color: $yellow-brand;
         transform: translateY(-5px);
@@ -185,19 +206,25 @@ $black-mobile: #1a1a1a;
 /* ========================================= */
 
 @media (max-width: 1300px) {
-    .col-right .slogan-wrapper h2 { font-size: 3rem; }
+  .col-right .slogan-wrapper h2 {
+    font-size: 3rem;
+  }
 }
 
 @media (max-width: 992px) {
-  .footer-section { padding: 20px; }
+  .footer-section {
+    padding: 20px;
+  }
 
   .footer-card {
     border-radius: 30px !important;
-    height: auto !important; 
+    height: auto !important;
     min-height: auto !important;
-    background-color: $black-mobile !important; 
-    
-    .footer-bg { display: none; } 
+    background-color: $black-mobile !important;
+
+    .footer-bg {
+      display: none;
+    }
 
     .footer-content {
       display: flex;
@@ -211,37 +238,51 @@ $black-mobile: #1a1a1a;
     padding: 0 0 40px 0;
     justify-content: center;
     text-align: center;
-    
+
     .brand-wrapper {
-        align-items: center;
-        max-width: 100%;
-        justify-content: flex-start;
-        gap: 30px;
+      align-items: center;
+      max-width: 100%;
+      justify-content: flex-start;
+      gap: 30px;
     }
 
-    .logo-svg svg path { fill: $white; } 
-    
-    .text-body { 
-        color: rgba(255,255,255, 0.8); 
-        margin-top: 0;
-        .copyright { display: none; } 
+    .logo-svg svg path {
+      fill: $white;
+    }
+
+    .text-body {
+      color: rgba(255, 255, 255, 0.8);
+      margin-top: 0;
+
+      .copyright {
+        display: none;
+      }
     }
   }
 
   .col-right {
     padding: 0;
-    align-items: center; 
+    align-items: center;
     text-align: center;
     gap: 50px;
     justify-content: flex-start;
 
     .slogan-wrapper h2 {
       font-size: 1.8rem;
-      white-space: normal; 
+      white-space: normal;
       line-height: 1.2;
-      .text-dark { color: $white; }
-      .text-yellow { color: $yellow-brand; }
-      .text-white { color: $green-brand; }
+
+      .text-dark {
+        color: $white;
+      }
+
+      .text-yellow {
+        color: $yellow-brand;
+      }
+
+      .text-white {
+        color: $green-brand;
+      }
     }
 
     .links-wrapper {
@@ -249,7 +290,14 @@ $black-mobile: #1a1a1a;
       justify-content: center;
       gap: 40px;
       text-align: center;
-      .link-group { text-align: center; h4 { color: $yellow-brand; } }
+
+      .link-group {
+        text-align: center;
+
+        h4 {
+          color: $yellow-brand;
+        }
+      }
     }
 
     .social-icons {
@@ -264,7 +312,7 @@ $black-mobile: #1a1a1a;
 /* ===     TELEFON SPECIFIC (Max 576px)  === */
 /* ========================================= */
 @media (max-width: 576px) {
-  
+
   // === 1. FUNDAL VERDE ===
   .footer-card {
     background-color: $green-brand !important; // Cerința: Footer verde
@@ -274,9 +322,11 @@ $black-mobile: #1a1a1a;
     display: flex !important;
     flex-direction: column !important;
     align-items: center !important;
-    
-    .col-left, .col-right, .brand-wrapper {
-      display: contents !important; 
+
+    .col-left,
+    .col-right,
+    .brand-wrapper {
+      display: contents !important;
     }
   }
 
@@ -287,11 +337,16 @@ $black-mobile: #1a1a1a;
     display: flex;
     justify-content: center;
     margin: 0 0 30px 0;
-    
+
     svg {
-       margin: 0;
-       width: 200px;
-       path { fill: $white !important; } // Logo Alb (să se potrivească cu butoanele)
+      margin: 0;
+      width: 200px;
+
+      path {
+        fill: $white !important;
+      }
+
+      // Logo Alb (să se potrivească cu butoanele)
     }
   }
 
@@ -301,12 +356,16 @@ $black-mobile: #1a1a1a;
     margin: 0 0 40px 0;
     width: 100%;
     text-align: center;
-    h2 { 
-        font-size: 1.6rem; 
-        // Cerința: Toate textele negre
-        .text-dark, .text-yellow, .text-white {
-            color: #000000 !important; 
-        }
+
+    h2 {
+      font-size: 1.6rem;
+
+      // Cerința: Toate textele negre
+      .text-dark,
+      .text-yellow,
+      .text-white {
+        color: #000000 !important;
+      }
     }
   }
 
@@ -319,21 +378,22 @@ $black-mobile: #1a1a1a;
     width: 100%;
     align-items: center;
     text-align: center;
-    
+
     .link-group {
-        // Titlurile (Utile, Eveniment) Negre
-        h4 { 
-            font-size: 1.5rem; 
-            color: #000000 !important; 
-        }
-        
-        ul li a {
-            // Cerința: Butoanele (link-urile) Albe
-            color: $white !important;
-            font-weight: 700;
-            font-size: 1.1rem;
-            opacity: 1;
-        }
+
+      // Titlurile (Utile, Eveniment) Negre
+      h4 {
+        font-size: 1.5rem;
+        color: #000000 !important;
+      }
+
+      ul li a {
+        // Cerința: Butoanele (link-urile) Albe
+        color: $white !important;
+        font-weight: 700;
+        font-size: 1.1rem;
+        opacity: 1;
+      }
     }
   }
 
@@ -343,7 +403,7 @@ $black-mobile: #1a1a1a;
     width: 100%;
     text-align: center;
     margin: 0 0 40px 0;
-    
+
     // Cerința: Toate textele negre
     .description {
       font-size: 0.9rem;
@@ -352,10 +412,11 @@ $black-mobile: #1a1a1a;
       color: #000000 !important;
       opacity: 1;
     }
+
     .copyright {
-       display: block !important;
-       color: rgba(0, 0, 0, 0.6) !important;
-       font-size: 0.8rem;
+      display: block !important;
+      color: rgba(0, 0, 0, 0.6) !important;
+      font-size: 0.8rem;
     }
   }
 
@@ -366,11 +427,11 @@ $black-mobile: #1a1a1a;
     width: 100%;
     justify-content: center;
     gap: 30px;
-    
-    a { 
+
+    a {
       font-size: 1.8rem;
       // Cerința: Iconițele albe
-      color: $white !important; 
+      color: $white !important;
     }
   }
 }

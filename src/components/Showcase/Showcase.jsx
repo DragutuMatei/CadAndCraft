@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { BsArrowRight } from 'react-icons/bs'; 
+import { BsArrowRight } from 'react-icons/bs';
 import { FaQuoteLeft } from 'react-icons/fa';
 import './Showcase.scss';
 
@@ -55,13 +55,13 @@ const infiniteMembers = [...teamMembers, ...teamMembers, ...teamMembers];
 const Showcase = () => {
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef(null);
-  
-  const [activeImage, setActiveImage] = useState(CYCLONE); 
-  const trackRef = useRef(null); 
-  const [isPaused, setIsPaused] = useState(false); 
-  const pauseTimeout = useRef(null); 
-  const scrollPos = useRef(0); 
-  const animationRef = useRef(null); 
+
+  const [activeImage, setActiveImage] = useState(CYCLONE);
+  const trackRef = useRef(null);
+  const [isPaused, setIsPaused] = useState(false);
+  const pauseTimeout = useRef(null);
+  const scrollPos = useRef(0);
+  const animationRef = useRef(null);
   const [clickedCardIndex, setClickedCardIndex] = useState(null);
 
   // --- VARIABILE NOI PENTRU DRAG ---
@@ -94,35 +94,35 @@ const Showcase = () => {
     const animate = () => {
       // Rulează animația doar dacă NU e pauză și NU tragem cu mouse-ul în momentul ăsta
       if (!isPaused && !isDragging.current) {
-        scrollPos.current += 0.5; 
-        
+        scrollPos.current += 0.5;
+
         // Logica de infinit (resetare poziție)
         const firstCard = track.children[0];
         if (firstCard) {
-            const cardWidth = firstCard.offsetWidth; 
-            const totalWidth = cardWidth * teamMembers.length;
-            
-            // Resetare silențioasă la 0
-            if (scrollPos.current >= totalWidth) {
-                scrollPos.current = 0;
-            } else if (scrollPos.current < 0) {
-               // Caz nou: dacă tragi spre dreapta prea mult, te duce la final (efect infinit invers)
-               scrollPos.current = totalWidth - 1;
-            }
+          const cardWidth = firstCard.offsetWidth;
+          const totalWidth = cardWidth * teamMembers.length;
 
-            // Aplicăm transformarea
-            track.style.transform = `translateX(-${scrollPos.current}px)`;
+          // Resetare silențioasă la 0
+          if (scrollPos.current >= totalWidth) {
+            scrollPos.current = 0;
+          } else if (scrollPos.current < 0) {
+            // Caz nou: dacă tragi spre dreapta prea mult, te duce la final (efect infinit invers)
+            scrollPos.current = totalWidth - 1;
+          }
 
-            // Schimbare automată poză
-            const indexExited = Math.floor(scrollPos.current / cardWidth);
-            const memberIndex = indexExited % teamMembers.length;
-            if (infiniteMembers[memberIndex] && !isDragging.current) {
-                 setActiveImage(teamMembers[memberIndex].img);
-            }
+          // Aplicăm transformarea
+          track.style.transform = `translateX(-${scrollPos.current}px)`;
+
+          // Schimbare automată poză
+          const indexExited = Math.floor(scrollPos.current / cardWidth);
+          const memberIndex = indexExited % teamMembers.length;
+          if (infiniteMembers[memberIndex] && !isDragging.current) {
+            setActiveImage(teamMembers[memberIndex].img);
+          }
         }
       } else if (isDragging.current) {
-         // Dacă tragem, doar aplicăm transformarea calculată în onMouseMove, fără logică automată
-         track.style.transform = `translateX(-${scrollPos.current}px)`;
+        // Dacă tragem, doar aplicăm transformarea calculată în onMouseMove, fără logică automată
+        track.style.transform = `translateX(-${scrollPos.current}px)`;
       }
 
       animationRef.current = requestAnimationFrame(animate);
@@ -134,39 +134,39 @@ const Showcase = () => {
 
   // --- HANDLERS PENTRU MOUSE DRAG ---
   const handleMouseDown = (e) => {
-      isDragging.current = true;
-      startX.current = e.pageX;
-      startScrollPos.current = scrollPos.current;
-      dragDistance.current = 0;
-      
-      // Oprim temporar animația automată ca să nu se bată cap în cap
-      setIsPaused(true); 
+    isDragging.current = true;
+    startX.current = e.pageX;
+    startScrollPos.current = scrollPos.current;
+    dragDistance.current = 0;
+
+    // Oprim temporar animația automată ca să nu se bată cap în cap
+    setIsPaused(true);
   };
 
   const handleMouseMove = (e) => {
-      if (!isDragging.current) return;
-      e.preventDefault();
-      
-      const x = e.pageX;
-      const walk = (x - startX.current) * 1.5; // Viteza de tragere (1.5x)
-      scrollPos.current = startScrollPos.current - walk;
-      
-      // Calculăm distanța totală trasă (absolută)
-      dragDistance.current += Math.abs(x - startX.current);
+    if (!isDragging.current) return;
+    e.preventDefault();
+
+    const x = e.pageX;
+    const walk = (x - startX.current) * 1.5; // Viteza de tragere (1.5x)
+    scrollPos.current = startScrollPos.current - walk;
+
+    // Calculăm distanța totală trasă (absolută)
+    dragDistance.current += Math.abs(x - startX.current);
   };
 
   const handleMouseUp = () => {
-      isDragging.current = false;
-      
-      // Repornim animația automată după scurt timp
-      if (pauseTimeout.current) clearTimeout(pauseTimeout.current);
-      pauseTimeout.current = setTimeout(() => {
-          setIsPaused(false);
-      }, 2000); // Repornește după 2 secunde de la drag
+    isDragging.current = false;
+
+    // Repornim animația automată după scurt timp
+    if (pauseTimeout.current) clearTimeout(pauseTimeout.current);
+    pauseTimeout.current = setTimeout(() => {
+      setIsPaused(false);
+    }, 2000); // Repornește după 2 secunde de la drag
   };
 
   const handleMouseLeave = () => {
-      if (isDragging.current) handleMouseUp();
+    if (isDragging.current) handleMouseUp();
   };
 
   // --- HANDLER CLICK CARD ---
@@ -181,49 +181,49 @@ const Showcase = () => {
     setIsPaused(true);
     if (pauseTimeout.current) clearTimeout(pauseTimeout.current);
     pauseTimeout.current = setTimeout(() => {
-        setIsPaused(false);
+      setIsPaused(false);
     }, 5000);
 
     setTimeout(() => {
-        setClickedCardIndex(null);
+      setClickedCardIndex(null);
     }, 500);
   };
 
   return (
     <section ref={sectionRef} className={`showcase-section ${isVisible ? 'is-visible' : ''}`}>
       <div className="showcase-content-wrapper">
-        
+
         <div className="text-column">
-            {/* ... cod text neschimbat ... */}
-            <div className="text-sticky-wrapper">
-                <h1 className="title-large">
-                CAD<span className="stroke">&</span>CRAFT<br />
-                EDITIA I
-                </h1>
-                <div className="quote-block">
-                <FaQuoteLeft className="quote-icon" />
-                <p>Aici a început totul! ⚡<br></br>
-                  Ediția I a fost scânteia care a aprins pasiunea pentru inovație în OSFIIR. 
-                 Ce a părut o provocare imposibilă – 24 de ore de design și execuție – 
-                 s-a transformat într-un spectacol de inginerie pură. 🛠️ Cu multă cafea și 
-                 idei revoluționare, am demonstrat că viitorul se construiește în echipă. 
-                 A fost doar începutul unei tradiții! 🚀🏆</p>
-                </div>
+          {/* ... cod text neschimbat ... */}
+          <div className="text-sticky-wrapper">
+            <h1 className="title-large">
+              CAD<span className="stroke">&</span>CRAFT<br />
+              EDITIA I
+            </h1>
+            <div className="quote-block">
+              <FaQuoteLeft className="quote-icon" />
+              <p>Aici a început totul! ⚡<br></br>
+                Ediția I a fost scânteia care a aprins pasiunea pentru inovație în OSFIIR.
+                Ce a părut o provocare imposibilă – 24 de ore de design și execuție –
+                s-a transformat într-un spectacol de inginerie pură. 🛠️ Cu multă cafea și
+                idei revoluționare, am demonstrat că viitorul se construiește în echipă.
+                A fost doar începutul unei tradiții! 🚀🏆</p>
             </div>
+          </div>
         </div>
 
         <div className="visual-column">
           <div className="visual-anchor">
-            
+
             <div className="masked-image-layer">
               <svg viewBox="0 0 750 746" className="mask-svg" preserveAspectRatio="none">
                 <defs>
                   <pattern id="pattern-img" patternContentUnits="objectBoundingBox" width="1" height="1">
-                    <image 
-                        key={activeImage} 
-                        href={activeImage} 
-                        x="0" y="0" width="1" height="1" 
-                        preserveAspectRatio="xMidYMid slice" 
+                    <image
+                      key={activeImage}
+                      href={activeImage}
+                      x="0" y="0" width="1" height="1"
+                      preserveAspectRatio="xMidYMid slice"
                     />
                   </pattern>
                 </defs>
@@ -231,45 +231,45 @@ const Showcase = () => {
               </svg>
             </div>
 
-            <img 
-                key={activeImage}
-                src={activeImage} 
-                alt="Showcase Main" 
-                className="mobile-static-image" 
+            <img
+              key={activeImage}
+              src={activeImage}
+              alt="Showcase Main"
+              className="mobile-static-image"
             />
 
-            <a href="/about" className="btn-absolute">
-                VEZI MAI MULTE <span className="icon-circle"><BsArrowRight /></span>
+            <a href="https://cadathon2025.osfiir.ro/" target="_blank" className="btn-absolute">
+              VEZI MAI MULTE <span className="icon-circle"><BsArrowRight /></span>
             </a>
 
             <div className="slider-container-absolute">
-                {/* AICI ADĂUGĂM EVENIMENTELE DE MOUSE PE CONTAINERUL PĂRINTE 
+              {/* AICI ADĂUGĂM EVENIMENTELE DE MOUSE PE CONTAINERUL PĂRINTE 
                    PENTRU A PUTEA TRAGE DE ORIUNDE DIN SLIDER 
                 */}
-                <div 
-                    className="slider-viewport"
-                    onMouseDown={handleMouseDown}
-                    onMouseMove={handleMouseMove}
-                    onMouseUp={handleMouseUp}
-                    onMouseLeave={handleMouseLeave}
-                >
-                    <div className="slider-track" ref={trackRef}>
-                        {infiniteMembers.map((member, index) => (
-                            <div 
-                                key={`${member.id}-${index}`} 
-                                className={`slide-item ${clickedCardIndex === index ? 'is-clicked' : ''}`}
-                                // onClick este protejat acum de logica dragDistance
-                                onClick={() => handleCardClick(member.img, index)}
-                            >
-                                <div className="team-card">
-                                    {/* pointer-events-none pe img asigură că drag-ul merge bine și nu încearcă să tragă poza în sine */}
-                                    <img src={member.img} alt={member.name} style={{ pointerEvents: 'none' }} />
-                                    <div className="green-label">{member.name}</div>
-                                </div>
-                            </div>
-                        ))}
+              <div
+                className="slider-viewport"
+                onMouseDown={handleMouseDown}
+                onMouseMove={handleMouseMove}
+                onMouseUp={handleMouseUp}
+                onMouseLeave={handleMouseLeave}
+              >
+                <div className="slider-track" ref={trackRef}>
+                  {infiniteMembers.map((member, index) => (
+                    <div
+                      key={`${member.id}-${index}`}
+                      className={`slide-item ${clickedCardIndex === index ? 'is-clicked' : ''}`}
+                      // onClick este protejat acum de logica dragDistance
+                      onClick={() => handleCardClick(member.img, index)}
+                    >
+                      <div className="team-card">
+                        {/* pointer-events-none pe img asigură că drag-ul merge bine și nu încearcă să tragă poza în sine */}
+                        <img src={member.img} alt={member.name} style={{ pointerEvents: 'none' }} />
+                        <div className="green-label">{member.name}</div>
+                      </div>
                     </div>
+                  ))}
                 </div>
+              </div>
             </div>
 
           </div>

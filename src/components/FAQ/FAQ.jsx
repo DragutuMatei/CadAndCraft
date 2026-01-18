@@ -27,6 +27,36 @@ const faqData = [
     id: 5,
     question: "Participarea costă? Și... primim de mâncare?",
     answer: "Participarea este 100% gratuită! Mai mult, pe parcursul celor 24 de ore asigurăm catering (pizza, snacks), cafea și energizante ca să rămâneți în forță până la final."
+  },
+  {
+    id: 6,
+    question: "Ce premii putem câștiga?",
+    answer: "Premiile sunt împărțite pe categorii: Design (Eficiență, Originalitate, Aspect) și Impact (Prezentare, Pași de dezvoltare). Există distincții atât pentru echipele universitare, cât și pentru cele de liceu!"
+  },
+  {
+    id: 7,
+    question: "Cum se jurizează proiectele?",
+    answer: "După cele 24 de ore, fiecare echipă va susține o prezentare în fața juriului. Se punctează funcționalitatea prototipului, inovația soluției, estetica designului și calitatea prezentării."
+  },
+  {
+    id: 8,
+    question: "Care este programul evenimentului?",
+    answer: "Începem cu Check-in-ul și Conferința de deschidere, unde aflați tema. Urmează startul competiției de 24h (cu pauze gestionate de voi), iar la final au loc jurizarea și festivitatea de premiere."
+  },
+  {
+    id: 9,
+    question: "Există o limită de vârstă sau cerințe de eligibilitate?",
+    answer: "Competiția se adresează studenților (licență/master) din domenii tehnice (mecanică, robotică etc.) și elevilor de liceu cu profil tehnic. Căutăm tineri inovatori, nu neapărat experți!"
+  },
+  {
+    id: 10,
+    question: "Pot folosi componente electronice proprii?",
+    answer: "Nu. Este strict interzisă utilizarea altor componente electrice în afara celor oferite în kitul de participare. Puteți aduce însă propriile scule de mână, laptopuri și periferice."
+  },
+  {
+    id: 11,
+    question: "Este încurajat un anumit software CAD?",
+    answer: "Deși puteți folosi orice soft (SolidWorks, Fusion 360 etc.), încurajăm utilizarea Onshape. Pentru anumite premii de Design, utilizarea Onshape poate fi un criteriu specific."
   }
 ];
 
@@ -56,15 +86,15 @@ const FAQ = () => {
   return (
     <section ref={sectionRef} className={`faq-section ${isVisible ? 'visible' : ''}`}>
       <div className="faq-container">
-        
+
         <h2 className="faq-title">
           Frequently Asked <span className="highlight">Questions</span>
         </h2>
 
         <div className="faq-list">
           {faqData.map((item, index) => (
-            <div 
-              key={item.id} 
+            <div
+              key={item.id}
               className={`faq-item ${activeIndex === index ? 'active' : ''}`}
               onClick={() => toggleFAQ(index)}
               // AICI ESTE MAGIA: Delay calculat pe baza indexului (0s, 0.1s, 0.2s...)
@@ -74,7 +104,7 @@ const FAQ = () => {
                 <h3>{item.question}</h3>
                 <IoIosArrowDown className="icon" />
               </div>
-              
+
               <div className="faq-body">
                 <div className="faq-content">
                   {item.answer}

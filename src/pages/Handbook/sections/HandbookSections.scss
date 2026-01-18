@@ -1,0 +1,219 @@
+@import '../../../styles/variables';
+
+.handbook-section {
+    padding: 40px;
+    max-width: 900px;
+    margin: 0 auto;
+    color: $theme-text-dark;
+    font-family: $font-body;
+
+    /* Typography Improvements */
+    h1 {
+        font-family: $font-heading;
+        font-size: 3rem;
+        color: #1d1d1d;
+        margin-bottom: 40px;
+        border-bottom: none;
+        text-transform: uppercase;
+        font-weight: 900;
+        position: relative;
+        padding-left: 20px;
+
+        // The "Marker" Effect
+        &::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 5px;
+            bottom: 5px;
+            width: 8px;
+            background-color: #007bff; // Standard Blue Marker from reference, or use $theme-primary? 
+            // User requested green highlight generally but image had blue marker. 
+            // Let's use a nice Azure Blue (#007bff) often seen in these designs, or the theme blue ($color-blue-dark).
+            // Let's go with the Theme Green to stay strict unless "Blue" was specific.
+            // Actually, user said "nu imi place... simple". Let's try the Theme Green for consistency.
+            background-color: $theme-primary;
+            border-radius: 4px;
+        }
+    }
+
+    h2 {
+        font-family: $font-heading;
+        font-size: 1.8rem;
+        color: #1d1d1d;
+        margin-top: 50px;
+        margin-bottom: 25px;
+        font-weight: 800;
+        display: flex;
+        align-items: center;
+
+        // Bullet/Marker for H2
+        &::before {
+            content: '●'; // Dot style or line?
+            color: $theme-primary;
+            font-size: 1.2rem;
+            margin-right: 12px;
+            transform: translateY(-2px);
+        }
+    }
+
+    h3 {
+        font-family: $font-heading;
+        font-size: 1.4rem;
+        color: $theme-primary;
+        margin-top: 25px;
+        margin-bottom: 15px;
+        font-weight: 700;
+    }
+
+    p {
+        font-size: 1.1rem;
+        line-height: 1.7;
+        margin-bottom: 20px;
+        color: #1d1d1d;
+        font-weight: 600; // Stronger weight for readability on pattern
+    }
+
+    ul {
+        padding-left: 20px;
+        margin-bottom: 25px;
+
+        li {
+            margin-bottom: 12px;
+            line-height: 1.6;
+            color: #1d1d1d;
+            font-weight: 600;
+        }
+    }
+
+    // Requested Highlight Style
+    .keyword-highlight {
+        background-color: #208A39; // Fundal #208A39
+        color: #E8EFF7; // Text #E8EFF7
+        padding: 2px 6px;
+        border-radius: 4px;
+        font-weight: 700;
+        display: inline-block; // Avoid line-height clipping
+    }
+
+    /* PREMIUM TABLE DESIGN */
+    .handbook-table-container {
+        width: 100%;
+        overflow-x: auto; // Handle mobile responsively
+        margin-top: 35px;
+        margin-bottom: 25px;
+        border-radius: 12px;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08); // Floating shadow
+    }
+
+    .handbook-table {
+        width: 100%;
+        border-collapse: separate;
+        border-spacing: 0;
+        min-width: 650px; // Ensure it doesn't squish on mobile
+        font-family: $font-heading; // Use the heading font for character
+        background: rgba(255, 255, 255, 0.85); // High legibility background
+        backdrop-filter: blur(12px); // Glass effect behind
+        border-radius: 12px;
+        overflow: hidden; // Crop corners
+
+        thead {
+            tr {
+                background: linear-gradient(90deg, #1d1d1d 0%, #2a2a2a 100%); // Premium dark header
+            }
+
+            th {
+                color: $color-white-off;
+                text-transform: uppercase;
+                font-size: 1rem;
+                letter-spacing: 1px;
+                padding: 18px 25px;
+                text-align: left;
+                font-weight: 800;
+
+                &:first-child {
+                    border-top-left-radius: 12px;
+                }
+
+                &:last-child {
+                    border-top-right-radius: 12px;
+                }
+            }
+        }
+
+        tbody {
+            tr {
+                transition: all 0.2s ease;
+
+                &:nth-child(even) {
+                    background-color: rgba(0, 0, 0, 0.02); // Subtle zebra striping
+                }
+
+                &:hover {
+                    background-color: rgba(32, 138, 57, 0.08); // Light green highlight on hover
+                    transform: scale(1.002); // Micro-interaction
+                }
+            }
+
+            td {
+                color: #1d1d1d;
+                padding: 16px 25px;
+                vertical-align: middle;
+                border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+                font-weight: 500;
+                font-size: 1rem;
+                line-height: 1.5;
+
+                &.date {
+                    color: $theme-primary; // Green date
+                    font-weight: 800;
+                    width: 25%;
+                    font-size: 1.1rem;
+                }
+
+                &.event {
+                    font-weight: 700;
+                    font-size: 1.05rem;
+                }
+
+                a {
+                    // Specific link style inside tables
+                    color: #1d1d1d;
+                    text-decoration: none;
+                    font-weight: 700;
+                    border-bottom: 2px solid $theme-accent; // Yellow underline
+                    transition: all 0.2s;
+
+                    &:hover {
+                        background-color: $theme-accent;
+                        color: #000;
+                    }
+                }
+            }
+
+            // Remove border from last row to keep rounded corners clean
+            tr:last-child td {
+                border-bottom: none;
+            }
+        }
+    }
+
+    // Links general style - High Visibility
+    a {
+        color: $theme-primary; // Green by default to stand out
+        text-decoration: none; // No default underline
+        font-weight: 800; // Extra bold
+        border-bottom: 2px solid $theme-primary; // Custom thicker underline
+        transition: all 0.2s ease;
+        padding-bottom: 1px;
+
+        &:hover {
+            color: $theme-text-dark;
+            border-bottom-color: $theme-text-dark;
+            background-color: rgba(32, 138, 57, 0.1); // Highlight on hover
+            border-radius: 4px;
+            padding: 2px 4px;
+            margin: -2px -4px; // Compensate for padding to not shift layout
+        }
+    }
+}
