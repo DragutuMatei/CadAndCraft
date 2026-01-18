@@ -16,6 +16,7 @@ import HandbookProfile from './pages/Handbook/sections/HandbookProfile';
 import HandbookContact from './pages/Handbook/sections/HandbookContact';
 
 import Team from './pages/Team/Team';
+import Register from './pages/Register/Register';
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
 
         <Route path="/about" element={<About />} />
         <Route path="/team" element={<Team />} />
+        <Route path="/inscriere" element={<Register />} />
 
         <Route path="/handbook" element={<Handbook />}>
           <Route index element={<Navigate to="about" replace />} />
