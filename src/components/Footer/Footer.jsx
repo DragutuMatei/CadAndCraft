@@ -332,11 +332,10 @@ const Footer = () => {
 
                             <div className="text-body">
                                 <p className="description">
-                                    Microsoft is a software corporation that develops, manufactures,
-                                    licenses, supports, and sells a range of software products and services.
+                                    De la idee la realitate în 24 de ore.
                                 </p>
                                 <p className="copyright">
-                                    <span className="num-font">2025</span>. All rights reserved
+                                    <span className="num-font">2026</span>. All rights reserved
                                 </p>
                             </div>
                         </div>
