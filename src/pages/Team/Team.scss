@@ -11,13 +11,17 @@
     background-attachment: fixed;
 
     .team-container {
-        max-width: 1600px; // Wider for editorial feel
+        max-width: 1600px;
         margin: 0 auto;
         padding: 0 40px;
 
+        @media (max-width: 768px) {
+            padding: 0 20px; // Reduce padding on mobile
+        }
+
         h1 {
             font-family: $font-heading;
-            font-size: 5rem; // Massage header size
+            font-size: 5rem;
             text-align: center;
             margin-bottom: 80px;
             color: $color-white-off;
@@ -29,12 +33,13 @@
                 font-family: $font-body;
                 color: $color-white-off;
                 font-weight: 700;
-                margin: 0 5px; // Add slight spacing around &
+                margin: 0 5px;
             }
 
             @media (max-width: 768px) {
-                font-size: 3rem;
-                margin-bottom: 50px;
+                font-size: 2.5rem; // Determine smaller font size
+                margin-bottom: 40px;
+                line-height: 1.1; // Better line height for wrapping
             }
         }
     }
@@ -42,11 +47,16 @@
     .team-grid {
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-        gap: 20px; // Tight grid like a magazine
+        gap: 20px;
 
         @media (max-width: 768px) {
             gap: 15px;
+            // On very small screens, allow smaller cards or single column
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        }
+
+        @media (max-width: 375px) {
+            grid-template-columns: 1fr; // Single column on tiny phones
         }
     }
 
@@ -58,6 +68,10 @@
         cursor: pointer;
         background: #1d1d1d; // Default black bg for loading/contrast
         animation: fadeInUp 0.8s cubic-bezier(0.2, 1, 0.3, 1) backwards;
+
+        @media (max-width: 768px) {
+            height: 400px;
+        }
 
         // Hover Effect
         &:hover {

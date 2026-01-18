@@ -3,14 +3,14 @@ import './Team.scss';
 
 // Importing images dynamically would be cleaner but direct imports ensure specific order matching the list
 // Assuming the user wants them in the order of the file list vs the name list
-import img1 from '../../assets/images/echipa/DSC02243 1.png';
-import img2 from '../../assets/images/echipa/DSC02251 1.png';
-import img3 from '../../assets/images/echipa/DSC02277 1.png';
-import img4 from '../../assets/images/echipa/DSC02291 1.png';
-import img5 from '../../assets/images/echipa/DSC02311 1.png';
-import img6 from '../../assets/images/echipa/DSC02325 1.png';
-import img7 from '../../assets/images/echipa/DSC02356 1.png';
-import img8 from '../../assets/images/echipa/DSC02417 1.png';
+import img1 from '../../assets/images/echipa/DSC02243 1.webp';
+import img2 from '../../assets/images/echipa/DSC02251 1.webp';
+import img3 from '../../assets/images/echipa/DSC02277 1.webp';
+import img4 from '../../assets/images/echipa/DSC02291 1.webp';
+import img5 from '../../assets/images/echipa/DSC02311 1.webp';
+import img6 from '../../assets/images/echipa/DSC02325 1.webp';
+import img7 from '../../assets/images/echipa/DSC02356 1.webp';
+import img8 from '../../assets/images/echipa/DSC02417 1.webp';
 
 const Team = () => {
     useEffect(() => {

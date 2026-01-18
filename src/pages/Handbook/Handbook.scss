@@ -9,11 +9,13 @@
   min-height: 100vh;
   padding-top: 100px;
   padding-bottom: 60px;
-  position: relative; // Pt logo absolut
-  // overflow: hidden; // Să nu iasă logo-ul cât se scalează -> Removed to allow sticky sidebar
-}
+  position: relative;
 
-// --- LOGO ANIMATION SECTION REMOVED ---
+  @media (max-width: 600px) {
+    padding-top: 100px; // Reduced from 100px
+    padding-bottom: 40px;
+  }
+}
 
 .handbook-container {
   width: 95%; // Full width as requested ("pe tot ecranul")
@@ -33,7 +35,27 @@
     border-radius: 0;
     padding: 0;
     box-shadow: none;
-    animation: fadeInContent 0.5s ease-out; // Simplificat, fără delay
+    animation: fadeInContent 0.5s ease-out;
+  }
+
+  // Tablet & Mobile Layout
+  @media (max-width: 1024px) {
+    flex-direction: column;
+    padding: 0 15px 0 75px; // 60px sidebar + 15px gap (Tablet)
+
+    @media (max-width: 600px) {
+      // 50px sidebar + 5px gap = 55px (Phone)
+      padding: 0 5px 0 55px;
+    }
+
+    .handbook-content {
+      width: 100%;
+      padding: 15px 0;
+
+      @media (max-width: 600px) {
+        padding: 10px 0;
+      }
+    }
   }
 }
 
@@ -49,14 +71,10 @@
   }
 }
 
-@media (max-width: 1024px) {
+// Tablet adjustment large screens
+@media (min-width: 1025px) and (max-width: 1200px) {
   .handbook-container {
-    flex-direction: column;
-    padding: 0 15px;
-
-    .handbook-content {
-      width: 100%;
-      padding: 15px;
-    }
+    gap: 30px;
+    padding: 0 20px;
   }
 }
