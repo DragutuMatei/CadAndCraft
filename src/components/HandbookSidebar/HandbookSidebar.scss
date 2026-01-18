@@ -19,7 +19,7 @@
     pointer-events: all;
   }
 
-  @media (max-width: 1024px) {
+  @media (max-width: 900px) {
     display: block;
   }
 }
@@ -142,29 +142,188 @@
     }
   }
 
-  /* Responsive Mobile */
+  /* Responsive Mobile / Tablet (< 1024px) */
   @media (max-width: 1024px) {
     position: fixed;
     top: 0;
     left: 0;
     height: 100vh;
-    width: 280px;
+    width: 60px; // Standardizing to 60px for touch targets
+    // max-width ignored, forcing width via specific rule if needed
+    min-width: 60px;
     background: $theme-white;
-    transform: translateX(-100%);
-    box-shadow: 4px 0 20px rgba(0, 0, 0, 0.1);
+    transform: none;
+    box-shadow: 4px 0 20px rgba(0, 0, 0, 0.08);
     z-index: 100;
-    padding-top: 80px;
-    max-height: none;
+    padding: 0; // Reset padding, handle in children
+    overflow-y: auto;
+    overflow-x: hidden;
+    transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
-    &.open {
-      transform: translateX(0);
+    &__content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 60px; // Match parent
+      min-width: 60px;
+      padding-top: 10px;
+      transition: width 0.3s;
     }
 
+    // Toggle (Hamburger) - Sticky at top
     &__toggle {
-      display: block;
-      position: absolute;
-      top: 20px;
-      right: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%; // Full width of rail
+      height: 60px; // Tall target
+      margin-bottom: 10px;
+      font-size: 1.8rem;
+      cursor: pointer;
+      color: $theme-heading;
+      position: sticky; // Keep it at top
+      top: 0;
+      background: $theme-white; // Cover content behind
+      z-index: 10;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+
+      &:hover {
+        background: rgba(0, 0, 0, 0.05);
+      }
+    }
+
+    // Navigation Links (Icons)
+    &__link {
+      justify-content: center;
+      width: 44px; // Standard touch
+      height: 44px;
+      padding: 0;
+      margin-bottom: 8px;
+      border-radius: 12px;
+
+      .icon {
+        font-size: 1.4rem;
+        margin: 0;
+        color: $theme-text-dark;
+        display: flex;
+      }
+
+      .text {
+        display: none;
+        opacity: 0;
+      }
+
+      &.active,
+      &:hover {
+        background: rgba(32, 138, 57, 0.1);
+        color: $theme-primary;
+
+        .icon {
+          color: $theme-primary;
+        }
+      }
+    }
+
+    // Hide others
+    &__title,
+    &__lang-switch,
+    &__footer {
+      display: none;
+    }
+
+    // Mobile Phone specific (< 600px)
+    @media (max-width: 600px) {
+      width: 50px; // Thinner on phones
+      min-width: 50px;
+
+      &__content {
+        width: 50px;
+        min-width: 50px;
+      }
+
+      &__toggle {
+        height: 50px;
+        font-size: 1.5rem;
+      }
+
+      &__link {
+        width: 40px;
+        height: 40px;
+
+        .icon {
+          font-size: 1.2rem;
+        }
+      }
+    }
+
+    // === EXPANDED STATE ===
+    &.open {
+      width: 280px;
+      min-width: 280px; // Force expand
+
+      .handbook-sidebar__content {
+        width: 100%;
+        align-items: stretch;
+        padding: 20px 20px; // Add padding back
+      }
+
+      .handbook-sidebar__toggle {
+        position: static; // No stickyness needed in open drawer usually, or keep it?
+        // Let's keep it static flow for cleaner layout
+        width: auto;
+        height: auto;
+        margin: 0 0 20px 0;
+        justify-content: flex-end;
+        border-bottom: none;
+        background: transparent;
+      }
+
+      .handbook-sidebar__link {
+        width: 100%;
+        height: auto;
+        justify-content: flex-start;
+        padding: 10px 12px;
+        margin-bottom: 4px;
+
+        .icon {
+          font-size: 1.1rem;
+          margin-right: 12px;
+        }
+
+        .text {
+          display: inline-block;
+          opacity: 1;
+          white-space: nowrap;
+        }
+      }
+
+      // Show elements
+      .handbook-sidebar__title,
+      .handbook-sidebar__lang-switch,
+      .handbook-sidebar__footer {
+        display: flex;
+      }
+
+      .handbook-sidebar__title {
+        display: block;
+      }
+
+      .text,
+      .handbook-sidebar__title,
+      .handbook-sidebar__lang-switch,
+      .handbook-sidebar__footer {
+        animation: fadeIn 0.3s ease-forward;
+      }
+    }
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+
+    to {
+      opacity: 1;
     }
   }
 }

@@ -7,6 +7,10 @@
     color: $theme-text-dark;
     font-family: $font-body;
 
+    @media (max-width: 600px) {
+        padding: 10px 0; // Almost no side padding, minimal vertical
+    }
+
     /* Typography Improvements */
     h1 {
         font-family: $font-heading;
@@ -17,7 +21,7 @@
         text-transform: uppercase;
         font-weight: 900;
         position: relative;
-        padding-left: 20px;
+        padding-left: 15px; // Less padding for marker
 
         // The "Marker" Effect
         &::before {
@@ -34,6 +38,19 @@
             // Actually, user said "nu imi place... simple". Let's try the Theme Green for consistency.
             background-color: $theme-primary;
             border-radius: 4px;
+
+            @media (max-width: 600px) {
+                width: 4px;
+                top: 2px;
+                bottom: 2px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            font-size: 1.5rem !important; // Drastic reduction
+            margin-bottom: 15px;
+            padding-left: 12px;
+            line-height: 1.1;
         }
     }
 
@@ -47,6 +64,12 @@
         display: flex;
         align-items: center;
 
+        @media (max-width: 600px) {
+            font-size: 1.15rem !important;
+            margin-top: 25px;
+            margin-bottom: 10px;
+        }
+
         // Bullet/Marker for H2
         &::before {
             content: '●'; // Dot style or line?
@@ -54,6 +77,11 @@
             font-size: 1.2rem;
             margin-right: 12px;
             transform: translateY(-2px);
+
+            @media (max-width: 600px) {
+                font-size: 0.8rem;
+                margin-right: 6px;
+            }
         }
     }
 
@@ -64,6 +92,12 @@
         margin-top: 25px;
         margin-bottom: 15px;
         font-weight: 700;
+
+        @media (max-width: 600px) {
+            font-size: 1rem !important;
+            margin-top: 15px;
+            margin-bottom: 8px;
+        }
     }
 
     p {
@@ -72,17 +106,33 @@
         margin-bottom: 20px;
         color: #1d1d1d;
         font-weight: 600; // Stronger weight for readability on pattern
+
+        @media (max-width: 600px) {
+            font-size: 0.9rem !important;
+            line-height: 1.4;
+            margin-bottom: 12px;
+        }
     }
 
     ul {
         padding-left: 20px;
         margin-bottom: 25px;
 
+        @media (max-width: 600px) {
+            padding-left: 15px; // Minimum indentation
+            margin-bottom: 12px;
+        }
+
         li {
             margin-bottom: 12px;
             line-height: 1.6;
             color: #1d1d1d;
             font-weight: 600;
+
+            @media (max-width: 600px) {
+                font-size: 0.95rem;
+                margin-bottom: 8px;
+            }
         }
     }
 
@@ -110,12 +160,19 @@
         width: 100%;
         border-collapse: separate;
         border-spacing: 0;
-        min-width: 650px; // Ensure it doesn't squish on mobile
+        min-width: 650px; // Default safe width
         font-family: $font-heading; // Use the heading font for character
         background: rgba(255, 255, 255, 0.85); // High legibility background
         backdrop-filter: blur(12px); // Glass effect behind
         border-radius: 12px;
         overflow: hidden; // Crop corners
+
+        @media (max-width: 600px) {
+            min-width: 0; // Allow table to shrink to screen width
+            // Actually, keep it table but allow squish
+            display: table;
+            width: 100%;
+        }
 
         thead {
             tr {
@@ -130,6 +187,12 @@
                 padding: 18px 25px;
                 text-align: left;
                 font-weight: 800;
+
+                @media (max-width: 600px) {
+                    padding: 8px 5px; // Very tight padding
+                    font-size: 0.75rem; // Petit font
+                    letter-spacing: 0.5px;
+                }
 
                 &:first-child {
                     border-top-left-radius: 12px;
@@ -164,16 +227,31 @@
                 font-size: 1rem;
                 line-height: 1.5;
 
+                @media (max-width: 600px) {
+                    padding: 8px 6px; // Minimal padding
+                    font-size: 0.8rem;
+                    line-height: 1.2;
+                }
+
                 &.date {
                     color: $theme-primary; // Green date
                     font-weight: 800;
                     width: 25%;
                     font-size: 1.1rem;
+
+                    @media (max-width: 600px) {
+                        font-size: 0.85rem;
+                        width: auto; // Unset fixed width on mobile
+                    }
                 }
 
                 &.event {
                     font-weight: 700;
                     font-size: 1.05rem;
+
+                    @media (max-width: 600px) {
+                        font-size: 0.85rem;
+                    }
                 }
 
                 a {
