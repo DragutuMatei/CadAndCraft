@@ -49,12 +49,18 @@ const Navbar = () => {
     setMobileMenuOpen(false);
   };
 
+  const handleKeyDown = (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      setMobileMenuOpen(!mobileMenuOpen);
+    }
+  };
+
   return (
     <nav className={`navbar ${(scrolled || isHandbook) ? 'navbar--scrolled' : ''}`}>
       <div className="navbar__container">
 
         {/* LOGO */}
-        <Link to="/" className="navbar__logo" onClick={handleLogoClick}>
+        <Link to="/" className="navbar__logo" onClick={handleLogoClick} aria-label="Acasa">
           <svg width="205" height="105" viewBox="0 0 205 105" fill="none" xmlns="http://www.w3.org/2000/svg">
             {/* SVG-ul tău original rămâne aici neschimbat */}
             <path d="M118.405 37.4244C118.405 41.6766 117.412 44.9495 115.428 47.2431C113.444 49.5238 110.615 50.6641 106.943 50.6641C102.449 50.6641 98.806 47.021 98.806 42.527V31.568C98.806 27.7145 101.93 24.5906 105.783 24.5906C110.01 24.5906 113.167 25.6536 115.254 27.7797C117.354 29.8929 118.405 33.1078 118.405 37.4244ZM112.664 37.4244C112.664 34.4994 112.11 32.3669 111.002 31.0268C109.907 29.6738 108.135 28.9974 105.687 28.9974C105.036 28.9974 104.508 29.5252 104.508 30.1764V44.2859C104.508 45.3747 105.39 46.2573 106.479 46.2573C110.603 46.2573 112.664 43.313 112.664 37.4244Z" fill="#208A39" />
@@ -77,7 +83,14 @@ const Navbar = () => {
         </ul>
 
         {/* Hamburger Mobil & Tableta */}
-        <div className="navbar__hamburger" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
+        <div
+          className="navbar__hamburger"
+          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          role="button"
+          tabIndex={0}
+          aria-label="Meniu principal"
+          onKeyDown={handleKeyDown}
+        >
           {mobileMenuOpen ? <HiX /> : <HiMenuAlt3 />}
         </div>
       </div>

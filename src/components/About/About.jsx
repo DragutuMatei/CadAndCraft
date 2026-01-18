@@ -13,7 +13,7 @@ const About = () => {
         {/* === LAYER 1: FUNDAL SVG (Imagine) === */}
         <div className="bg-layer">
           {/* Folosim img tag pentru că e mai curat și se scalează bine */}
-          <img src={AboutBG} alt="About Background" />
+          <img src={AboutBG} alt="About Background" loading="lazy" />
         </div>
 
         {/* === LAYER 2: CONȚINUT === */}

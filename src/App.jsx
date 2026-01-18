@@ -1,9 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import Navbar from './components/Navbar/Navbar';
-import Home from './pages/Home/Home';
-import About from './pages/About/About';
-import Handbook from './pages/Handbook/Handbook';
 import Footer from './components/Footer/Footer';
 import './styles/main.scss'; // Importăm stilurile globale resetate
 
@@ -14,32 +11,44 @@ import HandbookRules from './pages/Handbook/sections/HandbookRules';
 import HandbookAwards from './pages/Handbook/sections/HandbookAwards';
 import HandbookProfile from './pages/Handbook/sections/HandbookProfile';
 import HandbookContact from './pages/Handbook/sections/HandbookContact';
+// --- Lazy Loading Pages ---
+const Home = React.lazy(() => import('./pages/Home/Home'));
+const About = React.lazy(() => import('./pages/About/About'));
+const Team = React.lazy(() => import('./pages/Team/Team'));
+const Register = React.lazy(() => import('./pages/Register/Register'));
+const Handbook = React.lazy(() => import('./pages/Handbook/Handbook'));
 
-import Team from './pages/Team/Team';
-import Register from './pages/Register/Register';
+// Loading Fallback Component
+const Loading = () => (
+  <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
+    <p>Se încarcă...</p>
+  </div>
+);
 
 function App() {
   return (
     <Router>
       <Navbar />
-      <Routes>
-        <Route path="/" element={<Home />} />
+      <React.Suspense fallback={<Loading />}>
+        <Routes>
+          <Route path="/" element={<Home />} />
 
-        <Route path="/about" element={<About />} />
-        <Route path="/team" element={<Team />} />
-        <Route path="/inscriere" element={<Register />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/team" element={<Team />} />
+          <Route path="/inscriere" element={<Register />} />
 
-        <Route path="/handbook" element={<Handbook />}>
-          <Route index element={<Navigate to="about" replace />} />
-          <Route path="about" element={<HandbookAbout />} />
-          <Route path="timeline" element={<HandbookTimeline />} />
-          <Route path="format" element={<HandbookFormat />} />
-          <Route path="rules" element={<HandbookRules />} />
-          <Route path="awards" element={<HandbookAwards />} />
-          <Route path="profile" element={<HandbookProfile />} />
-          <Route path="contact" element={<HandbookContact />} />
-        </Route>
-      </Routes>
+          <Route path="/handbook" element={<Handbook />}>
+            <Route index element={<Navigate to="about" replace />} />
+            <Route path="about" element={<HandbookAbout />} />
+            <Route path="timeline" element={<HandbookTimeline />} />
+            <Route path="format" element={<HandbookFormat />} />
+            <Route path="rules" element={<HandbookRules />} />
+            <Route path="awards" element={<HandbookAwards />} />
+            <Route path="profile" element={<HandbookProfile />} />
+            <Route path="contact" element={<HandbookContact />} />
+          </Route>
+        </Routes>
+      </React.Suspense>
       <Footer />
     </Router>
   );
