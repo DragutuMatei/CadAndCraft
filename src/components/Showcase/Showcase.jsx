@@ -236,6 +236,7 @@ const Showcase = () => {
               src={activeImage}
               alt="Showcase Main"
               className="mobile-static-image"
+              loading="lazy"
             />
 
             <a href="https://cadathon2025.osfiir.ro/" target="_blank" className="btn-absolute">
@@ -263,7 +264,7 @@ const Showcase = () => {
                     >
                       <div className="team-card">
                         {/* pointer-events-none pe img asigură că drag-ul merge bine și nu încearcă să tragă poza în sine */}
-                        <img src={member.img} alt={member.name} style={{ pointerEvents: 'none' }} />
+                        <img src={member.img} alt={member.name} style={{ pointerEvents: 'none' }} loading="lazy" />
                         <div className="green-label">{member.name}</div>
                       </div>
                     </div>
