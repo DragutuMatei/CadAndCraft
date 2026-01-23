@@ -12,6 +12,7 @@ import HandbookAwards from './pages/Handbook/sections/HandbookAwards';
 import HandbookProfile from './pages/Handbook/sections/HandbookProfile';
 import HandbookContact from './pages/Handbook/sections/HandbookContact';
 import Redirect from './pages/QR/Redirect';
+import HomeRedirect from './pages/QR/HomeRedirect';
 // --- Lazy Loading Pages ---
 const Home = React.lazy(() => import('./pages/Home/Home'));
 const About = React.lazy(() => import('./pages/About/About'));
@@ -33,6 +34,7 @@ function App() {
       <React.Suspense fallback={<Loading />}>
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/home" element={<HomeRedirect />} />
 
           <Route path="/about" element={<About />} />
           <Route path="/team" element={<Team />} />
