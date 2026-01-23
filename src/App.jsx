@@ -11,6 +11,7 @@ import HandbookRules from './pages/Handbook/sections/HandbookRules';
 import HandbookAwards from './pages/Handbook/sections/HandbookAwards';
 import HandbookProfile from './pages/Handbook/sections/HandbookProfile';
 import HandbookContact from './pages/Handbook/sections/HandbookContact';
+import Redirect from './pages/QR/Redirect';
 // --- Lazy Loading Pages ---
 const Home = React.lazy(() => import('./pages/Home/Home'));
 const About = React.lazy(() => import('./pages/About/About'));
@@ -36,6 +37,7 @@ function App() {
           <Route path="/about" element={<About />} />
           <Route path="/team" element={<Team />} />
           <Route path="/inscriere" element={<Register />} />
+          <Route path="/qr/*" element={<Redirect />} />
 
           <Route path="/handbook" element={<Handbook />}>
             <Route index element={<Navigate to="about" replace />} />
