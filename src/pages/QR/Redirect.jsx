@@ -1,10 +1,7 @@
-import React, { useEffect } from "react";
-import { deviceDetect } from "react-device-detect";
-import { Navigate, useLocation, useParams } from "react-router-dom";
-import { useDeviceInfo } from "../../utils/useDeviceInfo";
+import { useEffect } from "react";
+import { Navigate } from "react-router-dom";
 import Crud from "../../utils/Crud";
-import { time } from "framer-motion";
-import { h1 } from "framer-motion/client";
+import { useDeviceInfo } from "../../utils/useDeviceInfo";
 
 function Redirect() {
   const splat = window.location.href
