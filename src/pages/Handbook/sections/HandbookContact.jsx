@@ -47,9 +47,9 @@ const HandbookContact = () => {
                                 <td><a href="mailto:matei.dragutu@osfiir.ro">matei.dragutu@osfiir.ro</a></td>
                             </tr>
                             <tr>
-                                <td>Grigore Alecsandru</td>
+                                <td>David-Ioan Andrei</td>
                                 <td>{language === 'RO' ? 'Logistica' : 'Logistics'}</td>
-                                <td><a href="mailto:alecsandru.grigore@osfiir.ro">alecsandru.grigore@osfiir.ro</a></td>
+                                <td><a href="mailto:david.andrei@osfiir.ro">david.andrei@osfiir.ro</a></td>
                             </tr>
                             <tr>
                                 <td>Nedelcu Alexandru-Andrei</td>
