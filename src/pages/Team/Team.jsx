@@ -11,6 +11,7 @@ import img5 from '../../assets/images/echipa/DSC02311 1.webp';
 import img6 from '../../assets/images/echipa/DSC02325 1.webp';
 import img7 from '../../assets/images/echipa/DSC02356 1.webp';
 import img8 from '../../assets/images/echipa/DSC02417 1.webp';
+import imgDavid from '../../assets/images/echipa/david_andrei.jpeg';
 
 const Team = () => {
     useEffect(() => {
@@ -40,11 +41,11 @@ const Team = () => {
             image: img6
         },
         {
-            name: 'Grigore Alecsandru',
+            name: 'David-Ioan Andrei',
             role: 'Logistica',
             roleEn: 'Logistics',
-            email: 'alecsandru.grigore@osfiir.ro',
-            image: img3
+            email: 'david.andrei@osfiir.ro',
+            image: imgDavid
         },
         {
             name: 'Nedelcu Alexandru-Andrei',
