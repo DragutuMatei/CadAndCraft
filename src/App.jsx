@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate, Outlet } from 'react-router-dom';
 import Navbar from './components/Navbar/Navbar';
 import Footer from './components/Footer/Footer';
 import './styles/main.scss'; // Importăm stilurile globale resetate
@@ -19,6 +19,7 @@ const About = React.lazy(() => import('./pages/About/About'));
 const Team = React.lazy(() => import('./pages/Team/Team'));
 const Register = React.lazy(() => import('./pages/Register/Register'));
 const Handbook = React.lazy(() => import('./pages/Handbook/Handbook'));
+const Admin = React.lazy(() => import('./pages/Admin/Admin'));
 
 // Loading Fallback Component
 const Loading = () => (
@@ -27,18 +28,30 @@ const Loading = () => (
   </div>
 );
 
+// Layout Component to include Navbar and Footer
+const MainLayout = () => (
+  <>
+    <Navbar />
+    <React.Suspense fallback={<Loading />}>
+      <Outlet />
+    </React.Suspense>
+    <Footer />
+  </>
+);
+
 function App() {
   return (
     <Router>
-      <Navbar />
-      <React.Suspense fallback={<Loading />}>
-        <Routes>
+      <Routes>
+        {/* Public Routes with Navbar & Footer */}
+        <Route element={<MainLayout />}>
           <Route path="/" element={<Home />} />
           <Route path="/home" element={<HomeRedirect />} />
 
           <Route path="/about" element={<About />} />
           <Route path="/team" element={<Team />} />
           <Route path="/inscriere" element={<Register />} />
+
           <Route path="/qr/*" element={<Redirect />} />
 
           <Route path="/handbook" element={<Handbook />}>
@@ -51,9 +64,16 @@ function App() {
             <Route path="profile" element={<HandbookProfile />} />
             <Route path="contact" element={<HandbookContact />} />
           </Route>
-        </Routes>
-      </React.Suspense>
-      <Footer />
+        </Route>
+
+        {/* Admin Route - Standalone */}
+        <Route path="/admin" element={
+          <React.Suspense fallback={<Loading />}>
+            <Admin />
+          </React.Suspense>
+        } />
+
+      </Routes>
     </Router>
   );
 }

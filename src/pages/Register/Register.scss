@@ -1,0 +1,588 @@
+@use '../../styles/variables' as *;
+
+.register-page {
+    background-color: $theme-accent; // Yellow background
+    background-image: url('../../assets/images/fundal_handbook.svg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    min-height: 100vh;
+    padding-top: 150px; // Match handbook padding
+    padding-bottom: 60px;
+    position: relative;
+    font-family: $font-body;
+
+    .register-container {
+        // width: 95%;
+        max-width: 1400px;
+        margin: 0 auto;
+        display: flex;
+        gap: 40px;
+        padding: 0 20px;
+        position: relative;
+        z-index: 10;
+        align-items: flex-start;
+
+        @media (max-width: 1024px) {
+            flex-direction: column;
+            gap: 20px;
+            padding: 0 10px;
+
+        }
+
+        /* --- SIDEBAR STYLE (MATCHING HANDBOOK) --- */
+        .register-sidebar {
+            width: 300px;
+            flex-shrink: 0;
+            background: $theme-white;
+            border-radius: $border-radius-std;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            padding: 24px;
+            position: sticky;
+            top: 120px;
+
+            @media (max-width: 1024px) {
+                width: 100%;
+                position: static;
+            }
+
+            &__title {
+                font-family: $font-heading;
+                font-size: 1.5rem;
+                font-weight: 800;
+                color: $theme-heading;
+                margin-bottom: 1.5rem;
+                text-transform: uppercase;
+                border-bottom: 2px solid rgba($theme-heading, 0.1);
+                padding-bottom: 12px;
+            }
+
+            &__nav {
+                display: flex;
+                flex-direction: column;
+                gap: 12px;
+
+                @media (max-width: 1024px) {
+                    flex-direction: row;
+                    overflow-x: auto;
+                    white-space: nowrap;
+                    padding-bottom: 5px; // Space for scrollbar if any
+                    -webkit-overflow-scrolling: touch;
+                    gap: 16px;
+
+                    // Hide scrollbar
+                    &::-webkit-scrollbar {
+                        display: none;
+                    }
+
+                    -ms-overflow-style: none;
+                    scrollbar-width: none;
+                }
+            }
+
+            &__link {
+                display: flex;
+                align-items: center;
+                gap: 12px;
+                padding: 12px;
+                border: 1px solid transparent; // Reset border
+                border-radius: 8px;
+                background: transparent; // Reset button bg
+                color: lighten($theme-text-dark, 20%);
+                font-weight: 600;
+                font-family: $font-heading;
+                font-size: 1rem; // Ensure readable size
+                transition: all 0.3s ease;
+                width: 100%; // Fill container
+                text-align: left;
+                cursor: default; // Default non-clickable
+
+                @media (max-width: 1024px) {
+                    padding: 10px 16px;
+                    background: #f5f5f5;
+                    border-radius: 20px;
+                    width: auto; // Auto width for horizontal scroll
+                    flex-shrink: 0;
+                }
+
+                .icon {
+                    width: 28px;
+                    height: 28px;
+                    border-radius: 50%;
+                    background: rgba($theme-heading, 0.1);
+                    color: $theme-heading;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    font-size: 0.9rem;
+                    font-weight: 800;
+                    transition: all 0.3s ease;
+                    flex-shrink: 0;
+                }
+
+                &.clickable {
+                    cursor: pointer;
+
+                    &:hover {
+                        background: rgba($theme-heading, 0.03);
+                    }
+                }
+
+                &.active {
+                    background: rgba($theme-primary, 0.1);
+                    color: $theme-primary;
+                    border-color: rgba($theme-primary, 0.2);
+                    cursor: default; // Active step shouldn't be clickable as "jump to"
+
+                    .icon {
+                        background: $theme-primary;
+                        color: white;
+                    }
+
+                    @media (max-width: 1024px) {
+                        background: $theme-primary;
+                        color: white;
+
+                        .icon {
+                            background: white;
+                            color: $theme-primary;
+                        }
+                    }
+                }
+
+                &.completed {
+                    color: $theme-primary;
+
+                    .icon {
+                        background: $theme-primary;
+                        color: white;
+                    }
+                }
+            }
+
+            &__info {
+                margin-top: 30px;
+                padding: 16px;
+                background: rgba($theme-heading, 0.05);
+                border-radius: 8px;
+                font-size: 0.85rem;
+                color: $theme-text-dark;
+                line-height: 1.5;
+
+                @media (max-width: 1024px) {
+                    display: none;
+                }
+            }
+        }
+
+        /* --- MAIN CONTENT (RIGHT SIDE) --- */
+        .register-content {
+            flex: 1;
+            min-width: 0;
+
+            @media (max-width: 1024px) {
+                width: 100%;
+            }
+
+            .form-step {
+                animation: fadeIn 0.5s ease-out;
+
+                h2 {
+                    font-family: $font-heading;
+                    font-size: 2rem;
+                    color: $theme-heading;
+                    margin-bottom: 24px;
+
+                    @media (max-width: 768px) {
+                        font-size: 1.8rem;
+                    }
+                }
+
+                .section-description {
+                    background: rgba($theme-primary, 0.04); // Very subtle matching tint
+                    padding: 24px;
+                    border-radius: 12px;
+                    margin-bottom: 24px;
+                    border: 1px solid rgba($theme-primary, 0.2); // Full border instead of left border
+                    color: $theme-text-dark;
+                    font-size: 1rem;
+                    line-height: 1.6;
+
+                    &.warning {
+                        border-color: rgba($theme-accent, 0.5);
+                        background: rgba($theme-accent, 0.1);
+                        border-left: none; // Ensure override
+                    }
+
+                    p {
+                        margin-bottom: 8px;
+
+                        &:last-child {
+                            margin-bottom: 0;
+                        }
+                    }
+                }
+            }
+
+            // Cards for grouping fields
+            .register-card,
+            .form-step>.form-group {
+                background: $theme-white;
+                padding: 32px; // More padding for premium feel
+                border-radius: $border-radius-std;
+                box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06); // Softer, larger shadow
+                margin-bottom: 30px;
+                border: 1px solid rgba(0, 0, 0, 0.02);
+                transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+                &:hover {
+                    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08); // Subtle lift
+                }
+
+                &.no-bg {
+                    background: transparent;
+                    box-shadow: none;
+                    padding: 0;
+                    margin-bottom: 0;
+                    border: none;
+
+                    &:hover {
+                        box-shadow: none;
+                        transform: none;
+                    }
+                }
+            }
+
+            .register-card {
+                h3 {
+                    font-family: $font-heading;
+                    font-size: 1.25rem;
+                    color: $theme-heading;
+                    border-bottom: 2px solid rgba($theme-heading, 0.1);
+                    padding-bottom: 16px;
+                    margin-bottom: 24px;
+                    font-weight: 700;
+                    text-transform: uppercase;
+                    letter-spacing: 0.5px;
+                }
+            }
+
+            .form-row {
+                display: flex;
+                gap: 24px;
+                margin-bottom: 20px;
+
+                @media (max-width: 768px) {
+                    flex-direction: column;
+                    gap: 0;
+                }
+
+                .half {
+                    flex: 1;
+                }
+            }
+
+            .form-group {
+                margin-bottom: 24px;
+
+                &:last-child {
+                    margin-bottom: 0;
+                }
+
+                label {
+                    display: block;
+                    font-weight: 700;
+                    margin-bottom: 10px;
+                    color: $theme-heading;
+                    font-family: $font-heading;
+                    font-size: 0.95rem;
+                    text-transform: uppercase;
+                    letter-spacing: 0.5px;
+
+                    .required {
+                        color: #e63946;
+                        margin-left: 4px;
+                    }
+                }
+
+                .sub-label {
+                    display: block;
+                    font-size: 0.85rem;
+                    color: #666;
+                    margin-top: -6px;
+                    margin-bottom: 10px;
+                    font-style: italic;
+                }
+
+                input[type="text"],
+                input[type="email"],
+                input[type="tel"],
+                input[type="url"],
+                select,
+                textarea {
+                    width: 100%;
+                    padding: 10px 18px;
+                    border: 2px solid #e0e0e0;
+                    border-radius: 12px; // Rounder corners
+                    font-family: $font-body;
+                    font-size: 1rem;
+                    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+                    background: #fdfdfd;
+                    color: $theme-text-dark;
+
+                    &:focus {
+                        outline: none;
+                        border-color: $theme-heading; // Dark Blue Border on focus
+                        background: #fff;
+                        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+                        // transform removed
+                    }
+
+                    &::placeholder {
+                        color: #bbb;
+                    }
+
+                    @media (max-width: 768px) {
+                        padding: 12px 14px;
+                        font-size: 0.95rem;
+                    }
+                }
+
+                textarea {
+                    min-height: 120px;
+                    resize: vertical;
+                    line-height: 1.6;
+                }
+
+                /* --- CUSTOM CHECKBOX & RADIO STYLE --- */
+                .checkbox-group,
+                .radio-group {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 16px;
+
+                    &.horizontal {
+                        flex-direction: row;
+                        flex-wrap: wrap;
+                    }
+                }
+
+                .checkbox-option,
+                .radio-option {
+                    position: relative;
+                    display: flex;
+                    align-items: center;
+                    padding: 5px 10px;
+                    border: 2px solid #e0e0e0;
+                    border-radius: 12px;
+                    cursor: pointer;
+                    background: #fff;
+                    transition: all 0.2s ease;
+                    user-select: none;
+
+                    input {
+                        position: absolute;
+                        opacity: 0;
+                        cursor: pointer;
+                        height: 0;
+                        width: 0;
+                    }
+
+                    /* Custom Checkbox/Radio Indicator */
+                    &::before {
+                        content: '';
+                        display: inline-block;
+                        width: 18px; // Smaller size (was 22px)
+                        height: 18px; // Smaller size (was 22px)
+                        margin-right: 12px;
+                        border: 2px solid #bbb;
+                        border-radius: 6px; // Box for check, Circle for Radio override below
+                        background: #fff;
+                        transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+                        flex-shrink: 0;
+                    }
+
+                    span {
+                        font-size: 1rem;
+                        color: $theme-text-dark;
+                        font-weight: 500;
+                        transition: color 0.2s;
+                    }
+
+                    /* Hover State */
+                    &:hover {
+                        border-color: rgba($theme-heading, 0.3);
+                        // transform removed
+                        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+
+                        &::before {
+                            border-color: $theme-heading;
+                        }
+                    }
+
+                    /* Checked State */
+                    &:has(input:checked) {
+                        border-color: $theme-heading;
+                        background-color: rgba($theme-heading, 0.03);
+                        box-shadow: 0 4px 12px rgba($theme-heading, 0.08);
+
+                        span {
+                            color: $theme-heading;
+                            font-weight: 700;
+                        }
+
+                        &::before {
+                            background-color: $theme-heading;
+                            border-color: $theme-heading;
+                            // Checkmark handled by after or SVG in CSS? 
+                            // Using simple CSS shapes for robustness without assets
+                            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'%3E%3C/polyline%3E%3C/svg%3E");
+                            background-size: 70%;
+                            background-repeat: no-repeat;
+                            background-position: center;
+                        }
+                    }
+                }
+
+                @media (max-width: 768px) {
+
+                    .checkbox-option,
+                    .radio-option {
+                        padding: 12px 14px;
+                    }
+
+                    .checkbox-option span,
+                    .radio-option span {
+                        font-size: 0.9rem;
+                    }
+                }
+
+                /* Radio specific overrides */
+                .radio-option {
+                    &::before {
+                        border-radius: 50%; // Circle
+                    }
+
+                    &:has(input:checked) {
+                        &::before {
+                            background-color: #fff; // White center
+                            border-color: $theme-heading;
+                            background-image: none; // No checkmark for radio
+                        }
+                    }
+                }
+            }
+
+            .button-group {
+                display: flex;
+                justify-content: space-between;
+                margin-top: 50px;
+
+                button {
+                    padding: 16px 40px;
+                    border-radius: 50px;
+                    font-family: $font-heading;
+                    font-weight: 800;
+                    cursor: pointer;
+                    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+                    font-size: 1rem;
+                    text-transform: uppercase;
+                    letter-spacing: 0.5px;
+                    display: flex;
+                    align-items: center;
+                    gap: 10px;
+
+                    &.btn-prev {
+                        background: white;
+                        border: 2px solid rgba($theme-heading, 0.15);
+                        color: $theme-heading;
+
+                        &:hover {
+                            border-color: $theme-heading;
+                            background: rgba($theme-heading, 0.05);
+                            // transform removed
+                        }
+                    }
+
+                    &.btn-next,
+                    &.btn-submit {
+                        background: $theme-heading;
+                        color: $theme-accent; // Yellow text on Blue
+                        border: none;
+                        box-shadow: 0 6px 20px rgba($theme-heading, 0.25);
+
+                        &:hover {
+                            // transform removed
+                            box-shadow: 0 10px 25px rgba($theme-heading, 0.35);
+                            background: lighten($theme-heading, 5%);
+                        }
+
+                        &:disabled {
+                            background: #e0e0e0;
+                            color: #999;
+                            cursor: not-allowed;
+                            transform: none;
+                            box-shadow: none;
+                        }
+                    }
+
+                    &.btn-submit {
+                        background: $theme-primary; // Green
+                        color: white;
+                        box-shadow: 0 6px 20px rgba($theme-primary, 0.3);
+
+                        &:hover {
+                            background: darken($theme-primary, 5%);
+                            box-shadow: 0 10px 25px rgba($theme-primary, 0.4);
+                        }
+                    }
+
+
+                    @media (hover: hover) {
+                        &.btn-prev:hover {
+                            border-color: $theme-heading;
+                            background: rgba($theme-heading, 0.05);
+                        }
+
+                        &.btn-next:hover,
+                        &.btn-submit:hover {
+                            box-shadow: 0 10px 25px rgba($theme-heading, 0.35);
+                            background: lighten($theme-heading, 5%);
+                        }
+
+                        &.btn-submit:hover {
+                            background: darken($theme-primary, 5%);
+                            box-shadow: 0 10px 25px rgba($theme-primary, 0.4);
+                        }
+                    }
+
+                    @media (max-width: 768px) {
+                        padding: 12px 20px;
+                        font-size: 0.9rem;
+                        // Allow buttons to shrink/grow naturally or wrap if needed
+                        justify-content: center;
+                        min-width: 0; // Prevent overflow
+                    }
+                }
+            }
+
+            // Align right if only next button
+            &.right {
+                justify-content: flex-end;
+            }
+        }
+    }
+}
+
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
