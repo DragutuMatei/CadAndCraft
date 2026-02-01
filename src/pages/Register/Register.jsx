@@ -160,7 +160,7 @@ const Register = () => {
                     message: "Registration successful!"
                 };
 
-                await emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', templateParams, 'YOUR_PUBLIC_KEY');
+                await emailjs.send(process.env.REACT_APP_M_ID, process.env.REACT_APP_TEM_ID, templateParams, process.env.REACT_APP_M_PUBLIC);
                 console.log("Email logic placeholder executed. Configure IDs to send.");
             } catch (emailError) {
                 console.error("Failed to send email:", emailError);
