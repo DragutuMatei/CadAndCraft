@@ -60,7 +60,7 @@ $black-mobile: #1a1a1a;
     flex: 0.8;
     display: flex;
     align-items: center;
-    padding: 10px 6%;
+    padding: 50px 6%;
     background-color: transparent;
 
     .text-wrapper {
@@ -73,7 +73,7 @@ $black-mobile: #1a1a1a;
         text-transform: uppercase;
         margin-bottom: 0;
         font-size: clamp(1.8rem, 3.5vw, 3.5rem);
-        line-height: 1.2;
+        line-height: 1;
       }
 
       .title {

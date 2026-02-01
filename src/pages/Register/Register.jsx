@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { FaArrowLeft, FaArrowRight, FaCheck } from 'react-icons/fa';
 import { db } from '../../utils/fire';
 import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
+import emailjs from '@emailjs/browser';
 
 const Register = () => {
     const navigate = useNavigate();
@@ -148,15 +149,30 @@ const Register = () => {
                 status: 'new' // Useful for admin filtering later
             });
 
+            // Send Confirmation Email
+            try {
+                // TODO: Replace with your actual EmailJS credentials
+                // Create an account at https://www.emailjs.com/
+                const templateParams = {
+                    to_email: formData.contactEmail,
+                    to_name: formData.teamName || "Participant",
+                    team_size: formData.teamSize,
+                    message: "Registration successful!"
+                };
+
+                await emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', templateParams, 'YOUR_PUBLIC_KEY');
+                console.log("Email logic placeholder executed. Configure IDs to send.");
+            } catch (emailError) {
+                console.error("Failed to send email:", emailError);
+                // Don't block success message for email failure
+            }
+
             // Success handling
             console.log("Form Submitted Successfully");
             alert("Înscriere recepționată cu succes! Vei primi un email de confirmare în curând.");
 
             // Clear storage
             localStorage.removeItem(STORAGE_KEY);
-
-            // Optional: Email logic here (or via Cloud Function triggered by Firestore create)
-            // For now, client-side alert is enough per first step.
 
             // Reset form or navigate
             navigate('/'); // Navigate home or to a success page

@@ -1,15 +1,17 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { BsArrowRightCircle } from 'react-icons/bs';
 import './Countdown.scss';
 // Importăm SVG-ul extern (care conține formele verde/galben)
 import AboutSVG from '../../assets/icons/countdown.svg';
 
 const Countdown = () => {
+  const navigate = useNavigate();
   const [expiryDate] = useState(() => {
     const now = new Date();
     const currentYear = now.getFullYear();
-    // Data țintă: 20 Februarie
-    let target = new Date(currentYear, 1, 2);
+    // Data țintă: 6 Martie
+    let target = new Date(currentYear, 2, 6);
     if (now > target) target.setFullYear(currentYear + 1);
     return target;
   });
@@ -69,8 +71,9 @@ const Countdown = () => {
           {/* ZONA SUS (VERDE ÎN SVG) */}
           <div className="top-section">
             <div className="text-wrapper">
-              <h2 className="subtitle">ÎNSCRIERILE SE</h2>
-              <h1 className="title">DESCHID ÎN:</h1>
+              <h2 className="subtitle">ÎNSCRIERILE SUNT</h2>
+              <h1 className="title">DESCHISE</h1>
+              <h2 className="subtitle">TIMP DE:</h2>
             </div>
           </div>
 
@@ -95,11 +98,9 @@ const Countdown = () => {
                 <span className="label">secunde</span>
               </div>
             </div>
-            {false &&
-              <button className="btn-register">
-                ÎNSCRIE-TE AICI <BsArrowRightCircle className="icon" />
-              </button>
-            }
+            <button className="btn-register" onClick={() => navigate('/inscriere')}>
+              ÎNSCRIE-TE AICI <BsArrowRightCircle className="icon" />
+            </button>
           </div>
 
         </div>
