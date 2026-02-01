@@ -31,7 +31,7 @@ const About = () => {
                 <p>
                   CAD&CRAFT – De la idee la realitate în 24 de ore
 
-                  Ești gata pentru provocarea supremă? Pe 21-22 Martie, OSFIIR transformă Facultatea de Inginerie într-o arenă a inovației. Competiția te provoacă în două etape esențiale:
+                  Ești gata pentru provocarea supremă? Pe 21-22 Martie, OSFIIR transformă Facultatea de Inginerie Industrială și Robotică într-o arenă a inovației. Competiția te provoacă în două etape esențiale:
 
                   CAD: Proiectare 3D avansată și soluții smart pe o temă surpriză.
 

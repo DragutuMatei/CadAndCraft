@@ -6,6 +6,18 @@ import { db } from '../../utils/fire';
 import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
 import emailjs from '@emailjs/browser';
 
+const isValidUrl = (string) => {
+    if (!string) return false;
+    try {
+        new URL(string);
+        return true;
+    } catch (_) {
+        // Allow www. without http
+        if (string.startsWith('www.') && string.includes('.')) return true;
+        return false;
+    }
+};
+
 const Register = () => {
     const navigate = useNavigate();
     const STORAGE_KEY = 'cad_craft_register_draft';
@@ -34,7 +46,8 @@ const Register = () => {
         member1Phone: '', // Usually same as contact
         member1City: '',
         member1Institution: '', // School or University
-        member1Details: '', // Class (HS) or Faculty/Year (Uni)
+        member1Details: '', // Class (HS) or Faculty (Uni)
+        member1Year: '', // Year (Uni Only)
         member1Social: '',
         member1Cv: '', // For University
 
@@ -45,6 +58,7 @@ const Register = () => {
         member2City: '',
         member2Institution: '',
         member2Details: '',
+        member2Year: '',
         member2Social: '',
         member2Cv: '',
 
@@ -55,6 +69,7 @@ const Register = () => {
         member3City: '',
         member3Institution: '',
         member3Details: '',
+        member3Year: '',
         member3Social: '',
         member3Cv: '',
 
@@ -253,20 +268,26 @@ const Register = () => {
                 // Member 1 checks
                 if (!formData.member1Name || !formData.member1Email || !formData.member1Phone ||
                     !formData.member1City || !formData.member1Institution || !formData.member1Details ||
-                    !formData.member1Social) return false;
-                if (!isHighSchool && !formData.member1Cv) return false;
+                    !isValidUrl(formData.member1Social)) return false;
+                if (!isHighSchool) {
+                    if (!formData.member1Year || !isValidUrl(formData.member1Cv)) return false;
+                }
                 return true;
             case 3: // Member 2
                 if (!formData.member2Name || !formData.member2Email || !formData.member2Phone ||
                     !formData.member2City || !formData.member2Institution || !formData.member2Details ||
-                    !formData.member2Social) return false;
-                if (!isHighSchool && !formData.member2Cv) return false;
+                    !isValidUrl(formData.member2Social)) return false;
+                if (!isHighSchool) {
+                    if (!formData.member2Year || !isValidUrl(formData.member2Cv)) return false;
+                }
                 return true;
             case 4: // Member 3
                 if (!formData.member3Name || !formData.member3Email || !formData.member3Phone ||
                     !formData.member3City || !formData.member3Institution || !formData.member3Details ||
-                    !formData.member3Social) return false;
-                if (!isHighSchool && !formData.member3Cv) return false;
+                    !isValidUrl(formData.member3Social)) return false;
+                if (!isHighSchool) {
+                    if (!formData.member3Year || !isValidUrl(formData.member3Cv)) return false;
+                }
                 return true;
             case 5: // Logistic (Accommodation default is 'Nu', others have defaults)
                 // Accommodation is required but has default checked, so always true?
@@ -302,6 +323,28 @@ const Register = () => {
 
                                 <br /> <p>Cu respect,
                                     Organizația Studenților din Facultatea de Inginerie Industrială și Robotică</p>
+                            </div> <div className="section-description">
+
+                                <p> By completing this registration form, you agree to the processing of personal data.
+                                </p>
+                                <p>We would like to inform you about the processing of personal data that we collect and process as a data controller in accordance with Regulation (EU) 2016/679 (GDPR) and the applicable national data protection legislation.
+                                </p>
+                                <p>
+                                    The Organization of Students from the Faculty of Industrial Engineering and Robotics and the third parties we collaborate with (partner companies and associations with which we have established a contractual collaboration) process personal data such as name, surname, photo/video recordings, and CVs for a period of 3 years for the purpose of carrying out our current activities and fulfilling our legal obligations.
+                                </p>
+                                <p>
+                                    Personal data is processed in accordance with GDPR principles and is handled with respect for the rights of the data subjects. This data will not be transferred outside the European Union.
+                                </p>
+                                <p>
+                                    If you are a data subject whose personal data is processed by the Organization of Students from the Faculty of Industrial Engineering and Robotics and you wish to exercise your rights under the GDPR (such as the right of access, rectification, or deletion), please contact us via email at office@osfiir.ro.
+                                </p>
+                                <p>
+                                    Thank you for your understanding and cooperation.
+                                </p> <br />
+                                <p>
+                                    Respectfully,
+                                    The Organization of Students from the Faculty of Industrial Engineering and Robotics
+                                </p>
                             </div>
 
                             <div className="form-group checkbox-group">
@@ -652,6 +695,43 @@ const Register = () => {
 const MemberFields = ({ index, data, onChange, isHighSchool, title }) => {
     const p = (field) => `member${index}${field}`;
 
+    // Simple internal touched state for immediate feedback on blur
+    // Ideally this should be lifted, but for "under field" messages without blocking nav, this is fine.
+    // Actually, to persist, we should lift it. But let's try a quicker win: 
+    // Show error if value is INVALID (regex) OR if value is empty AND field was focused.
+    // To do that without lifting, we can use local state.
+
+    const [touched, setTouched] = React.useState({});
+
+    const onBlur = (e) => {
+        setTouched(prev => ({ ...prev, [e.target.name]: true }));
+    };
+
+    const getError = (name, value, isUrl = false) => {
+        if (touched[name] && !value) return "Acest câmp este obligatoriu.";
+        if (value && isUrl && !isValidUrl(value)) return "Te rugăm să introduci un link valid (ex: https://...).";
+        return null;
+    };
+
+    const renderInput = (label, name, type = "text", placeholder = "", required = true, isUrl = false) => (
+        <div className={`form-group ${type === 'half' ? 'half' : ''}`}>
+            {/* Note: 'half' logic is in parent div usually. I'll adjust usage below. */}
+            <label>{label} {required && <span className="required">*</span>}</label>
+            <input
+                type={type === 'half' ? 'text' : type}
+                name={name}
+                value={data[name]}
+                onChange={onChange}
+                placeholder={placeholder}
+                required={required}
+                onBlur={onBlur}
+            />
+            {required && getError(name, data[name], isUrl) && (
+                <span className="error-message">{getError(name, data[name], isUrl)}</span>
+            )}
+        </div>
+    );
+
     return (
         <div className="register-card">
             <h3>{title}</h3>
@@ -659,48 +739,64 @@ const MemberFields = ({ index, data, onChange, isHighSchool, title }) => {
             <div className="form-row">
                 <div className="form-group half">
                     <label>Nume și Prenume <span className="required">*</span></label>
-                    <input type="text" name={p('Name')} value={data[p('Name')]} onChange={onChange} required />
+                    <input type="text" name={p('Name')} value={data[p('Name')]} onChange={onChange} required onBlur={onBlur} />
+                    {getError(p('Name'), data[p('Name')]) && <span className="error-message">{getError(p('Name'), data[p('Name')])}</span>}
                 </div>
 
                 <div className="form-group half">
                     <label>Email <span className="required">*</span></label>
-                    <input type="email" name={p('Email')} value={data[p('Email')]} onChange={onChange} required />
+                    <input type="email" name={p('Email')} value={data[p('Email')]} onChange={onChange} required onBlur={onBlur} />
+                    {getError(p('Email'), data[p('Email')]) && <span className="error-message">{getError(p('Email'), data[p('Email')])}</span>}
                 </div>
             </div>
 
             <div className="form-row">
                 <div className="form-group half">
                     <label>Telefon <span className="required">*</span></label>
-                    <input type="tel" name={p('Phone')} value={data[p('Phone')]} onChange={onChange} required />
+                    <input type="tel" name={p('Phone')} value={data[p('Phone')]} onChange={onChange} required onBlur={onBlur} />
+                    {getError(p('Phone'), data[p('Phone')]) && <span className="error-message">{getError(p('Phone'), data[p('Phone')])}</span>}
                 </div>
 
                 <div className="form-group half">
                     <label>Oraș de proveniență <span className="required">*</span></label>
-                    <input type="text" name={p('City')} value={data[p('City')]} onChange={onChange} required />
+                    <input type="text" name={p('City')} value={data[p('City')]} onChange={onChange} required onBlur={onBlur} />
+                    {getError(p('City'), data[p('City')]) && <span className="error-message">{getError(p('City'), data[p('City')])}</span>}
                 </div>
             </div>
 
             <div className="form-row">
                 <div className="form-group half">
                     <label>{isHighSchool ? 'Unitatea de învățământ (Liceu)' : 'Centru Universitar'} <span className="required">*</span></label>
-                    <input type="text" name={p('Institution')} value={data[p('Institution')]} onChange={onChange} required />
+                    <input type="text" name={p('Institution')} value={data[p('Institution')]} onChange={onChange} required onBlur={onBlur} />
+                    {getError(p('Institution'), data[p('Institution')]) && <span className="error-message">{getError(p('Institution'), data[p('Institution')])}</span>}
                 </div>
 
                 <div className="form-group half">
-                    <label>{isHighSchool ? 'Clasa' : 'Facultatea & Anul'} <span className="required">*</span></label>
-                    <input type="text" name={p('Details')} value={data[p('Details')]} onChange={onChange} placeholder={isHighSchool ? "ex: 11C" : "Facultate / An"} required />
+                    <label>{isHighSchool ? 'Clasa' : 'Facultatea'} <span className="required">*</span></label>
+                    <input type="text" name={p('Details')} value={data[p('Details')]} onChange={onChange} placeholder={isHighSchool ? "ex: 11C" : "ex: Automatică"} required onBlur={onBlur} />
+                    {getError(p('Details'), data[p('Details')]) && <span className="error-message">{getError(p('Details'), data[p('Details')])}</span>}
                 </div>
             </div>
 
+            {!isHighSchool && (
+                <div className="form-group">
+                    <label>Anul de Studiu <span className="required">*</span></label>
+                    <input type="text" name={p('Year')} value={data[p('Year')]} onChange={onChange} placeholder="ex: 1, 2, Master 1..." required onBlur={onBlur} />
+                    {getError(p('Year'), data[p('Year')]) && <span className="error-message">{getError(p('Year'), data[p('Year')])}</span>}
+                </div>
+            )}
+
             <div className="form-group">
                 <label>Social Media (Link) <span className="required">*</span></label>
-                <input type="text" name={p('Social')} value={data[p('Social')]} onChange={onChange} placeholder="LinkedIn, Instagram..." required />
+                <input type="text" name={p('Social')} value={data[p('Social')]} onChange={onChange} placeholder="LinkedIn, Instagram..." required onBlur={onBlur} />
+                {getError(p('Social'), data[p('Social')], true) && <span className="error-message">{getError(p('Social'), data[p('Social')], true)}</span>}
             </div>
 
             {!isHighSchool && (
                 <div className="form-group">
                     <label>Link CV <span className="required">*</span></label>
-                    <input type="url" name={p('Cv')} value={data[p('Cv')]} onChange={onChange} placeholder="Link public (Drive/Dropbox/LinkedIn)" required />
+                    <input type="url" name={p('Cv')} value={data[p('Cv')]} onChange={onChange} placeholder="Link public (Drive/Dropbox/LinkedIn)" required onBlur={onBlur} />
+                    {getError(p('Cv'), data[p('Cv')], true) && <span className="error-message">{getError(p('Cv'), data[p('Cv')], true)}</span>}
                 </div>
             )}
         </div>

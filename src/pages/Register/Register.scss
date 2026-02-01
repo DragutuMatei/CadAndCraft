@@ -586,3 +586,12 @@
         transform: translateY(0);
     }
 }
+
+// Validation Error Message
+.error-message {
+    color: #e63946;
+    font-size: 0.8rem;
+    margin-top: 5px;
+    display: block;
+    font-weight: 500;
+}
