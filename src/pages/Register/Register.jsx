@@ -136,7 +136,12 @@ const Register = () => {
 
     const nextStep = () => {
         setStep(prev => {
-            const next = prev + 1;
+            let next = prev + 1;
+            // Skip Member 2 if size < 2
+            if (next === 3 && numMembers < 2) next = 4;
+            // Skip Member 3 if size < 3
+            if (next === 4 && numMembers < 3) next = 5;
+
             setMaxStepReached(Math.max(maxStepReached, next));
             return next;
         });
@@ -145,7 +150,14 @@ const Register = () => {
 
     const prevStep = () => {
         window.scrollTo(0, 0);
-        setStep(prev => prev - 1);
+        setStep(prev => {
+            let next = prev - 1;
+            // Skip Member 3 back if size < 3
+            if (next === 4 && numMembers < 3) next = 3;
+            // Skip Member 2 back if size < 2
+            if (next === 3 && numMembers < 2) next = 2;
+            return next;
+        });
     };
 
     const handleSubmit = async (e) => {
@@ -499,9 +511,8 @@ const Register = () => {
                 );
 
             case 3: // Member 2
-                if (numMembers < 2) {
-                    return <div className="hidden-step">{setTimeout(nextStep, 0) && null}</div>
-                }
+                // Skip logic handled in nextStep/prevStep
+                if (numMembers < 2) return null;
                 return (
                     <div className="form-step">
                         <h2>Membri Echipă</h2>
@@ -516,9 +527,8 @@ const Register = () => {
                 );
 
             case 4: // Member 3
-                if (numMembers < 3) {
-                    return <div className="hidden-step">{setTimeout(nextStep, 0) && null}</div>
-                }
+                // Skip logic handled in nextStep/prevStep
+                if (numMembers < 3) return null;
                 return (
                     <div className="form-step">
                         <h2>Membri Echipă</h2>
