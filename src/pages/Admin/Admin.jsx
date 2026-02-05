@@ -1,9 +1,10 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import './Admin.scss';
+import TeamDetailsModal from './TeamDetailsModal'; // Import Modal
 import { auth, googleProvider, db } from '../../utils/fire';
 import { signInWithPopup, signOut, onAuthStateChanged } from "firebase/auth";
-import { collection, query, orderBy, onSnapshot, doc, getDoc, setDoc, deleteDoc, getDocs } from "firebase/firestore";
-import { FaSignOutAlt, FaGoogle, FaTrash, FaEye, FaTimes, FaUserShield } from 'react-icons/fa';
+import { collection, query, orderBy, onSnapshot, doc, getDoc, setDoc, deleteDoc, updateDoc } from "firebase/firestore";
+import { FaSignOutAlt, FaGoogle, FaTrash, FaEye, FaTimes, FaUserShield, FaSearch } from 'react-icons/fa';
 import {
     Chart as ChartJS,
     CategoryScale,
@@ -38,6 +39,7 @@ const Admin = () => {
     const [isAdmin, setIsAdmin] = useState(false);
     const [newAdminEmail, setNewAdminEmail] = useState('');
     const [selectedReg, setSelectedReg] = useState(null);
+    const [searchTerm, setSearchTerm] = useState(''); // New State for Search
 
     // Listen for auth state
     useEffect(() => {
@@ -132,6 +134,40 @@ const Admin = () => {
         }
     };
 
+    const handleStatusUpdate = async (teamId, newStatus) => {
+        if (!window.confirm(`Are you sure you want to change status to ${newStatus}?`)) return;
+
+        try {
+            await updateDoc(doc(db, "inscrieri", teamId), {
+                status: newStatus
+            });
+            // Optimization: Local state will update via listener
+            if (selectedReg && selectedReg.id === teamId) {
+                setSelectedReg(prev => ({ ...prev, status: newStatus }));
+            }
+        } catch (error) {
+            console.error("Error updating status:", error);
+            alert("Failed to update status");
+        }
+    };
+
+    const normalizeYear = (val) => {
+        if (!val) return 'N/A';
+        let s = val.toString().trim().toLowerCase();
+        s = s.replace(/anul|an|year/g, '').trim();
+
+        // Roman to Number
+        if (s === 'i' || s === '1') return 'Anul 1';
+        if (s === 'ii' || s === '2') return 'Anul 2';
+        if (s === 'iii' || s === '3') return 'Anul 3';
+        if (s === 'iv' || s === '4') return 'Anul 4';
+
+        // Master
+        if (s.includes('master') || s === 'm1' || s === 'm2') return 'Master';
+
+        return `Anul ${s.toUpperCase()}`; // Fallback
+    };
+
     // --- Statistics Processing ---
     const stats = useMemo(() => {
         if (!registrations.length) return null;
@@ -140,10 +176,9 @@ const Admin = () => {
         const teamSizes = { '1': 0, '2': 0, '3': 0 };
         const environments = { 'highschool': 0, 'university': 0 };
         const hsClasses = {};
-        const hsYears = {}; // Actually university years or HS years? Request said "HS: Class, Year" 
-        // Usually HS has Class (9-12). University has Year (1-4).
-        // Let's track both from 'member1Details' etc if available? 
-        // Actually 'details' field usually holds Class/Year.
+        const faculties = {};
+        const cities = {};
+        const uniYears = {};
 
         registrations.forEach(reg => {
             // Timeline (Group by Day)
@@ -158,21 +193,40 @@ const Admin = () => {
             // Environment
             if (reg.teamEnvironment) environments[reg.teamEnvironment] = (environments[reg.teamEnvironment] || 0) + 1;
 
-            // Classes/Years (Naive extraction from 'Details' fields for simplification)
-            // We'll iterate members
-            [1, 2, 3].forEach(i => {
-                const details = reg[`member${i}Details`]; // e.g., "11C" or "Anul 2"
-                if (details && i <= parseInt(reg.teamSize)) {
-                    // Very basic cleaning
-                    const key = details.trim().toUpperCase();
-                    if (reg.teamEnvironment === 'highschool') {
+            // Teams per City (Based on Captain's City)
+            if (reg.member1City) {
+                const city = reg.member1City.trim(); // Formatting could be improved
+                cities[city] = (cities[city] || 0) + 1;
+            }
+
+            // Teams per Faculty (Only University)
+            if (reg.teamEnvironment === 'university' && reg.member1Details) {
+                // Often "Faculty of ..." or similar.
+                const faculty = reg.member1Details.trim();
+                faculties[faculty] = (faculties[faculty] || 0) + 1;
+
+                // Years
+                [1, 2, 3].forEach(i => {
+                    const y = reg[`member${i}Year`];
+                    if (y && i <= parseInt(reg.teamSize)) {
+                        const norm = normalizeYear(y);
+                        uniYears[norm] = (uniYears[norm] || 0) + 1;
+                    }
+                });
+
+            } else if (reg.teamEnvironment === 'highschool') {
+                // Keep class logic if desired, or skip
+                [1, 2, 3].forEach(i => {
+                    const details = reg[`member${i}Details`];
+                    if (details && i <= parseInt(reg.teamSize)) {
+                        const key = details.trim().toUpperCase();
                         hsClasses[key] = (hsClasses[key] || 0) + 1;
                     }
-                }
-            });
+                });
+            }
         });
 
-        return { timeline, teamSizes, environments, hsClasses };
+        return { timeline, teamSizes, environments, hsClasses, faculties, cities, uniYears };
     }, [registrations]);
 
     // --- Chart Configs ---
@@ -207,11 +261,76 @@ const Admin = () => {
     const chartClasses = {
         labels: stats ? Object.keys(stats.hsClasses) : [],
         datasets: [{
-            label: 'Distribuție Clase/Ani (Brut)',
+            label: 'Clase (Liceu)',
             data: stats ? Object.values(stats.hsClasses) : [],
             backgroundColor: 'rgba(153, 102, 255, 0.5)',
         }]
     };
+
+    const chartFaculties = {
+        labels: stats ? Object.keys(stats.faculties) : [],
+        datasets: [{
+            label: 'Echipe pe Facultate',
+            data: stats ? Object.values(stats.faculties) : [],
+            backgroundColor: 'rgba(255, 159, 64, 0.5)',
+        }]
+    };
+
+    const chartCities = {
+        labels: stats ? Object.keys(stats.cities) : [],
+        datasets: [{
+            label: 'Echipe pe Oraș',
+            data: stats ? Object.values(stats.cities) : [],
+            backgroundColor: 'rgba(54, 162, 235, 0.5)',
+        }]
+    };
+
+    const chartYears = {
+        labels: stats ? Object.keys(stats.uniYears).sort() : [],
+        datasets: [{
+            label: 'Studenți pe An',
+            data: stats ? Object.keys(stats.uniYears).sort().map(k => stats.uniYears[k]) : [],
+            backgroundColor: 'rgba(75, 192, 192, 0.5)',
+        }]
+    };
+
+    // --- Search Filtering ---
+    const filteredRegistrations = useMemo(() => {
+        if (!searchTerm.trim()) return registrations;
+
+        const lowerTerm = searchTerm.toLowerCase();
+        return registrations.filter(reg => {
+            // Check main fields
+            if (reg.teamName?.toLowerCase().includes(lowerTerm)) return true;
+            if (reg.contactEmail?.toLowerCase().includes(lowerTerm)) return true;
+            if (reg.id?.toLowerCase().includes(lowerTerm)) return true;
+
+            // Check Members
+            for (let i = 1; i <= 3; i++) {
+                if (reg[`member${i}Name`]?.toLowerCase().includes(lowerTerm)) return true;
+                if (reg[`member${i}City`]?.toLowerCase().includes(lowerTerm)) return true;
+                if (reg[`member${i}Details`]?.toLowerCase().includes(lowerTerm)) return true; // Faculty/Class
+                if (reg[`member${i}Institution`]?.toLowerCase().includes(lowerTerm)) return true; // Uni/HS Name
+            }
+
+            return false;
+        });
+    }, [registrations, searchTerm]);
+
+    // --- Detailed Stats Component ---
+    const StatsList = ({ title, data }) => (
+        <div className="stats-list-box">
+            <h4>{title}</h4>
+            <ul>
+                {Object.entries(data).sort((a, b) => b[1] - a[1]).map(([key, count]) => (
+                    <li key={key}>
+                        <span className="name">{key || 'N/A'}</span>
+                        <span className="count">{count}</span>
+                    </li>
+                ))}
+            </ul>
+        </div>
+    );
 
 
     if (loading) return <div className="admin-loading">Checking access...</div>;
@@ -270,14 +389,53 @@ const Admin = () => {
                             </div>
                         </div>
                         <div className="chart-box">
-                            <h4>Distribuție Clase/Ani</h4>
+                            <h4>Clase (Liceu)</h4>
                             <Bar data={chartClasses} />
                         </div>
+                        <div className="chart-box">
+                            <h4>Facultăți</h4>
+                            <Bar data={chartFaculties} />
+                        </div>
+                        <div className="chart-box">
+                            <h4>Ani Studiu</h4>
+                            <Bar data={chartYears} />
+                        </div>
+                        <div className="chart-box">
+                            <h4>Orașe</h4>
+                            <Bar data={chartCities} />
+                            <StatsList title="Toate Orașele" data={stats ? stats.cities : {}} />
+                        </div>
+                    </div>
+                    {/* Detailed Stats Lists Row for Universities/HS */}
+                    <div className="stats-details-grid">
+                        {stats && Object.keys(stats.faculties).length > 0 && (
+                            <StatsList title="Toate Facultățile" data={stats.faculties} />
+                        )}
+                        {stats && Object.keys(stats.hsClasses).length > 0 && (
+                            <StatsList title="Toate Clasele (Liceu)" data={stats.hsClasses} />
+                        )}
+                        {stats && Object.keys(stats.environments).length > 0 && (
+                            <StatsList title="Mediu" data={stats.environments} />
+                        )}
+                        {stats && Object.keys(stats.uniYears).length > 0 && (
+                            <StatsList title="Ani de Studiu" data={stats.uniYears} />
+                        )}
                     </div>
                 </div>
 
                 <div className="admin-section">
-                    <h3>Înscrieri Recente ({registrations.length})</h3>
+                    <div className="section-header-row">
+                        <h3>Înscrieri Recente ({filteredRegistrations.length})</h3>
+                        <div className="search-bar">
+                            <FaSearch />
+                            <input
+                                type="text"
+                                placeholder="Caută echipă, membru, oraș, școală..."
+                                value={searchTerm}
+                                onChange={(e) => setSearchTerm(e.target.value)}
+                            />
+                        </div>
+                    </div>
                     <div className="table-responsive">
                         <table>
                             <thead>
@@ -291,7 +449,7 @@ const Admin = () => {
                                 </tr>
                             </thead>
                             <tbody>
-                                {registrations.map(reg => (
+                                {filteredRegistrations.map(reg => (
                                     <tr key={reg.id}>
                                         <td>
                                             {reg.submittedAt || 'N/A'}<br />
@@ -307,7 +465,26 @@ const Admin = () => {
                                             <small>{reg.contactPhone}</small>
                                         </td>
                                         <td>
-                                            <span className={`status-badge ${reg.status || 'new'}`}>{reg.status || 'New'}</span>
+                                            {(() => {
+                                                const createdDate = reg.createdAt?.toDate ? reg.createdAt.toDate() : new Date();
+                                                const isToday = createdDate.toLocaleDateString('ro-RO') === new Date().toLocaleDateString('ro-RO');
+                                                const currentStatus = reg.status || 'new'; // Default to 'new' if missing
+
+                                                let displayStatus = currentStatus;
+                                                let badgeClass = currentStatus;
+
+                                                // "statusul sa fie new doar daca e din ziua actuala"
+                                                if (currentStatus === 'new' && !isToday) {
+                                                    displayStatus = 'Pending';
+                                                    badgeClass = 'pending';
+                                                }
+
+                                                return (
+                                                    <span className={`status-badge ${badgeClass}`}>
+                                                        {displayStatus}
+                                                    </span>
+                                                );
+                                            })()}
                                         </td>
                                         <td>
                                             <button className="btn-view" onClick={() => setSelectedReg(reg)}><FaEye /> Detalii</button>
@@ -348,18 +525,11 @@ const Admin = () => {
 
             {/* Details Modal */}
             {selectedReg && (
-                <div className="admin-modal-overlay" onClick={() => setSelectedReg(null)}>
-                    <div className="admin-modal" onClick={e => e.stopPropagation()}>
-                        <div className="modal-header">
-                            <h3>Detalii Înscriere</h3>
-                            <button className="close-btn" onClick={() => setSelectedReg(null)}><FaTimes /></button>
-                        </div>
-                        <div className="modal-body">
-                            <pre>{JSON.stringify(selectedReg, null, 2)}</pre>
-                            {/* Improved display could go here, but JSON is requested "all details" */}
-                        </div>
-                    </div>
-                </div>
+                <TeamDetailsModal
+                    team={selectedReg}
+                    onClose={() => setSelectedReg(null)}
+                    onStatusUpdate={handleStatusUpdate}
+                />
             )}
         </div>
     );
