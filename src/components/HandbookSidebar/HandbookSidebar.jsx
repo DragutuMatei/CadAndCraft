@@ -23,7 +23,7 @@ const HandbookSidebar = ({ language, setLanguage }) => {
         { label: 'Timeline', icon: <FaCalendarAlt />, link: '/handbook/timeline' },
         { label: language === 'RO' ? 'Format Eveniment' : 'Event Format', icon: <FaListUl />, link: '/handbook/format' },
         { label: language === 'RO' ? 'Regulament' : 'Rules', icon: <FaBook />, link: '/handbook/rules' },
-        { label: language === 'RO' ? 'Premii' : 'Awards', icon: <FaPenNib />, link: '/handbook/awards' },
+        // { label: language === 'RO' ? 'Premii' : 'Awards', icon: <FaPenNib />, link: '/handbook/awards' },
         { label: language === 'RO' ? 'Profil Candidat' : 'Candidate Profile', icon: <FaInfoCircle />, link: '/handbook/profile' },
         { label: 'Contact', icon: <FaEnvelope />, link: '/handbook/contact' }
     ];
