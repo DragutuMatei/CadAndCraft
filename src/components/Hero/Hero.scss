@@ -188,6 +188,29 @@
         }
     }
 
+    &__date {
+        font-family: 'Bricolage Grotesque', sans-serif;
+        font-size: 2.5rem;
+        font-weight: 800;
+        color: $color-white-off;
+        margin-bottom: 1.5rem;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+
+        @media (max-width: 1200px) {
+            font-size: 2rem;
+        }
+
+        @media (max-width: 1024px) {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        @media (max-width: 480px) {
+            font-size: 1.5rem;
+        }
+    }
+
     &__description {
         font-family: 'Raleway', sans-serif;
         font-size: 1.15rem;
