@@ -1,11 +1,22 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { BsArrowUpRight } from 'react-icons/bs';
 import './About.scss';
 // 1. Importăm SVG-ul corect
 import AboutBG from '../../assets/icons/about.svg';
 import { Link } from 'react-router-dom';
+import { db } from '../../utils/fire';
+import { collection, onSnapshot } from 'firebase/firestore';
 
 const About = () => {
+  const [teamCount, setTeamCount] = useState(0);
+
+  useEffect(() => {
+    const unsubscribe = onSnapshot(collection(db, "inscrieri"), (snapshot) => {
+      setTeamCount(snapshot.size);
+    });
+    return () => unsubscribe();
+  }, []);
+
   return (
     <section className="about-section-wrapper" id="about-cadcraft">
       <div className="main-card">
@@ -64,7 +75,7 @@ const About = () => {
               {/* Coloana 1 */}
               <div className="grid-col col-1">
                 <div className="stat-box">
-                  <h3>20</h3>
+                  <h3>{teamCount}</h3>
                   <p>ECHIPE</p>
                 </div>
                 <div className="stat-box">
@@ -76,11 +87,11 @@ const About = () => {
               {/* Coloana 2 */}
               <div className="grid-col col-2">
                 <div className="stat-box">
-                  <h3>10+</h3>
+                  <h3>30+</h3>
                   <p>PARTENERI</p>
                 </div>
                 <div className="stat-box">
-                  <h3>3000€</h3>
+                  <h3>7000€</h3>
                   <p>VALOARE MINIMA PREMII</p>
                 </div>
               </div>
