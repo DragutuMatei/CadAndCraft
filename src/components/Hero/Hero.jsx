@@ -64,7 +64,7 @@ const Hero = () => {
           <h1 className="hero__title">
             CAD<span className="brand-ampersand text-highlight">&</span>CRAFT
           </h1>
-          <h2 className="hero__date">7-9 Martie 2026</h2>
+          <h2 className="hero__date">21-22 Martie 2026</h2>
 
           <p className="hero__description">
             CAD&CRAFT revine și anul acesta să îți provoace imaginația!
