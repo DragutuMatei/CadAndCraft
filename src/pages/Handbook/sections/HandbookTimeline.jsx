@@ -24,7 +24,7 @@ const HandbookTimeline = () => {
                             <td className="event">➜ {language === 'RO' ? 'START ÎNSCRIERI' : 'REGISTRATIONS OPEN'}</td>
                         </tr>
                         <tr>
-                            <td className="date">7 MARTIE</td>
+                            <td className="date">6 MARTIE</td>
                             <td className="event">
                                 ➜ {language === 'RO' ? 'STOP ÎNSCRIERI' : 'REGISTRATIONS CLOSE'} <br />
                                 ➜ {language === 'RO' ? 'ÎNCEPEREA PROCESULUI DE SELECȚIE' : 'TEAM SELECTION BEGINS'}
