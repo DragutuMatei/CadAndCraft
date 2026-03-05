@@ -11,7 +11,7 @@ const Countdown = () => {
     const now = new Date();
     const currentYear = now.getFullYear();
     // Data țintă: 6 Martie
-    let target = new Date(currentYear, 2, 6);
+    let target = new Date(currentYear, 2, 7);
     if (now > target) target.setFullYear(currentYear + 1);
     return target;
   });
