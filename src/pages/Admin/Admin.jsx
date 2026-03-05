@@ -2,9 +2,9 @@ import React, { useState, useEffect, useMemo } from 'react';
 import './Admin.scss';
 import TeamDetailsModal from './TeamDetailsModal'; // Import Modal
 import { auth, googleProvider, db } from '../../utils/fire';
-import { signInWithPopup, signOut, onAuthStateChanged } from "firebase/auth";
+import { signInWithPopup, signOut, onAuthStateChanged, GoogleAuthProvider } from "firebase/auth";
 import { collection, query, orderBy, onSnapshot, doc, getDoc, setDoc, deleteDoc, updateDoc } from "firebase/firestore";
-import { FaSignOutAlt, FaGoogle, FaTrash, FaEye, FaTimes, FaUserShield, FaSearch } from 'react-icons/fa';
+import { FaSignOutAlt, FaGoogle, FaTrash, FaEye, FaTimes, FaUserShield, FaSearch, FaDownload, FaSpinner } from 'react-icons/fa';
 import {
     Chart as ChartJS,
     CategoryScale,
@@ -40,6 +40,8 @@ const Admin = () => {
     const [newAdminEmail, setNewAdminEmail] = useState('');
     const [selectedReg, setSelectedReg] = useState(null);
     const [searchTerm, setSearchTerm] = useState(''); // New State for Search
+    const [accessToken, setAccessToken] = useState(null);
+    const [isExporting, setIsExporting] = useState(false);
 
     // Listen for auth state
     useEffect(() => {
@@ -96,7 +98,11 @@ const Admin = () => {
 
     const handleLogin = async () => {
         try {
-            await signInWithPopup(auth, googleProvider);
+            const result = await signInWithPopup(auth, googleProvider);
+            const credential = GoogleAuthProvider.credentialFromResult(result);
+            if (credential?.accessToken) {
+                setAccessToken(credential.accessToken);
+            }
         } catch (error) {
             console.error("Login failed:", error);
         }
@@ -294,6 +300,249 @@ const Admin = () => {
         }]
     };
 
+    // --- Export Google Sheets ---
+    const exportToGoogleSheets = async () => {
+        if (!registrations || registrations.length === 0) {
+            alert("Nu există înscrieri de exportat.");
+            return;
+        }
+
+        let token = accessToken;
+
+        // Automatically prompt for sheet scope consent if missing
+        try {
+            const provider = new GoogleAuthProvider();
+            provider.addScope('https://www.googleapis.com/auth/spreadsheets');
+            provider.addScope('https://www.googleapis.com/auth/drive'); // Full drive scope to access the specific folder/search
+
+            // Force the consent screen to ensure the new 'drive' scope is actually granted
+            // otherwise Firebase might silently reused a cached token with only the old 'drive.file' scope.
+            provider.setCustomParameters({
+                prompt: 'consent'
+            });
+
+            const result = await signInWithPopup(auth, provider);
+            const credential = GoogleAuthProvider.credentialFromResult(result);
+            token = credential?.accessToken;
+            if (token) setAccessToken(token);
+        } catch (error) {
+            console.error("Auth failed:", error);
+            alert("Autentificarea a eșuat. Aveți nevoie de permisiuni Google Sheets și Drive.");
+            return;
+        }
+
+        if (!token) {
+            alert("Nu s-a putut obține token-ul Google pentru export.");
+            return;
+        }
+
+        setIsExporting(true);
+
+        const headers = [
+            "ID", "Data Înscrierii", "Nume Echipă", "Mărime Echipă", "Mediu",
+            "Email Contact", "Telefon Contact", "Status",
+            "Membru 1 Nume", "Membru 1 Email", "Membru 1 Telefon", "Membru 1 Oraș", "Membru 1 Instituție", "Membru 1 Detalii/Clasă/Facultate", "Membru 1 An", "Membru 1 Discord",
+            "Membru 2 Nume", "Membru 2 Email", "Membru 2 Telefon", "Membru 2 Oraș", "Membru 2 Instituție", "Membru 2 Detalii/Clasă/Facultate", "Membru 2 An", "Membru 2 Discord",
+            "Membru 3 Nume", "Membru 3 Email", "Membru 3 Telefon", "Membru 3 Oraș", "Membru 3 Instituție", "Membru 3 Detalii/Clasă/Facultate", "Membru 3 An", "Membru 3 Discord"
+        ];
+
+        const rows = registrations.map(reg => {
+            const date = reg.createdAt?.toDate ? reg.createdAt.toDate().toLocaleString('ro-RO') : (reg.submittedAt || "");
+            return [
+                reg.id || "",
+                date,
+                reg.teamName || "",
+                reg.teamSize || "",
+                reg.teamEnvironment || "",
+                reg.contactEmail || "",
+                reg.contactPhone || "",
+                reg.status || "",
+                reg.member1Name || "", reg.member1Email || "", reg.member1Phone || "", reg.member1City || "", reg.member1Institution || "", reg.member1Details || "", reg.member1Year || "", reg.member1Discord || "",
+                reg.member2Name || "", reg.member2Email || "", reg.member2Phone || "", reg.member2City || "", reg.member2Institution || "", reg.member2Details || "", reg.member2Year || "", reg.member2Discord || "",
+                reg.member3Name || "", reg.member3Email || "", reg.member3Phone || "", reg.member3City || "", reg.member3Institution || "", reg.member3Details || "", reg.member3Year || "", reg.member3Discord || ""
+            ].map(val => String(val));
+        });
+
+        try {
+            const folderId = "1Cci5Yhbf8qTGsZkQZGfBfdaoIrvPMF-2";
+            const fileName = "Inscrieri CAD&Craft Export";
+
+            // In loc de search (care da gres din cauza problemelor de api/permisiuni Google Drive pentru aplicatii terte nevalidate),
+            // Salvam ID-ul fisierului creat direct in Firebase pentru a-l refolosi de fiecare data.
+            const configRef = doc(db, "config", "export");
+            const configSnap = await getDoc(configRef);
+
+            let spreadsheetId = null;
+            let isNewFile = false;
+
+            if (configSnap.exists() && configSnap.data().spreadsheetId) {
+                spreadsheetId = configSnap.data().spreadsheetId;
+                console.log("Found existing spreadsheet ID in Firebase:", spreadsheetId);
+            } else {
+                // Nu exista ID salvat in Firebase, creăm fisierul
+                isNewFile = true;
+                const createRes = await fetch('https://sheets.googleapis.com/v4/spreadsheets', {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': `Bearer ${token}`,
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        properties: {
+                            title: fileName
+                        }
+                    })
+                });
+
+                if (!createRes.ok) {
+                    const errData = await createRes.json();
+                    console.error("API Sheets error (create):", errData);
+                    throw new Error("Eroare la crearea fișierului Sheets automat.");
+                }
+
+                const sheetData = await createRes.json();
+                spreadsheetId = sheetData.spreadsheetId;
+
+                // Move the newly created file to the specific folder
+                const getFileRes = await fetch(`https://www.googleapis.com/drive/v3/files/${spreadsheetId}?fields=parents&supportsAllDrives=true`, {
+                    headers: { 'Authorization': `Bearer ${token}` }
+                });
+
+                if (getFileRes.ok) {
+                    const fileMeta = await getFileRes.json();
+                    const previousParents = fileMeta.parents ? fileMeta.parents.join(',') : '';
+
+                    await fetch(`https://www.googleapis.com/drive/v3/files/${spreadsheetId}?addParents=${folderId}&removeParents=${previousParents}&supportsAllDrives=true`, {
+                        method: 'PATCH',
+                        headers: { 'Authorization': `Bearer ${token}` }
+                    });
+                }
+
+                // Salvam ID-ul in Firebase ca sa dam overwrite data viitoare
+                try {
+                    await setDoc(configRef, { spreadsheetId: spreadsheetId }, { merge: true });
+                    console.log("Saved new spreadsheet ID to Firebase config/export");
+                } catch (firebaseErr) {
+                    console.error("Nu s-a putut salva ID-ul fisierului in DB. La urmatoarea exportare va face alt fisier nou.", firebaseErr);
+                }
+            }
+
+            // 3. Clear existing data to ensure we don't have left-over rows if the new data is smaller
+            if (!isNewFile) {
+                // Testam daca fisierul vechi chiar mai exista sau l-a sters manual userul
+                const clearRes = await fetch(`https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/A1:Z:clear`, {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': `Bearer ${token}`,
+                        'Content-Type': 'application/json'
+                    }
+                });
+
+                if (!clearRes.ok) {
+                    const errorData = await clearRes.json();
+                    if (errorData.error?.status === 'NOT_FOUND') {
+                        console.log("Sheet-ul vechi salvat in baza de date a fost sters. Resetam...");
+                        // Fisierul a fost sters din Drive, stergem id-ul din baza de date si cerem userului sa mai dea click o data
+                        await deleteDoc(configRef);
+                        setIsExporting(false);
+                        alert("Fișierul vechi folosit pentru export a fost șters din Drive manual. Am resetat legătura în sistem.\nTe rog APASĂ DIN NOU BUTONUL de EXPORT pentru a crea unul nou.");
+                        return; // oprim
+                    } else {
+                        // Alta eroare la clear (ex: permisiuni)
+                        throw new Error(`Nu s-a putut curăța fișierul existent. Eroare: ${errorData.error?.message}`);
+                    }
+                }
+            }
+
+            // 4. Update the spreadsheet with new data using PUT
+            const updateRes = await fetch(`https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/A1?valueInputOption=USER_ENTERED`, {
+                method: 'PUT',
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    range: 'A1',
+                    majorDimension: 'ROWS',
+                    values: [headers, ...rows]
+                })
+            });
+
+            if (!updateRes.ok) {
+                const errData = await updateRes.json();
+                console.error("API Sheets error (update):", errData);
+                throw new Error("Datele nu au putut fi salvate în fișier (Eroare " + (errData.error?.message || updateRes.status) + ").");
+            }
+
+            // 5. Format the Spreadsheet (Bold Headers, Auto-resize columns, Background color)
+            const formatData = {
+                requests: [
+                    {
+                        repeatCell: {
+                            range: {
+                                sheetId: 0,
+                                startRowIndex: 0,
+                                endRowIndex: 1,
+                                startColumnIndex: 0,
+                                endColumnIndex: headers.length
+                            },
+                            cell: {
+                                userEnteredFormat: {
+                                    backgroundColor: { red: 0.2, green: 0.2, blue: 0.2 }, // Dark Gray
+                                    textFormat: {
+                                        foregroundColor: { red: 1.0, green: 1.0, blue: 1.0 }, // White Text
+                                        bold: true,
+                                        fontSize: 11
+                                    },
+                                    horizontalAlignment: "CENTER",
+                                    verticalAlignment: "MIDDLE"
+                                }
+                            },
+                            fields: "userEnteredFormat(backgroundColor,textFormat,horizontalAlignment,verticalAlignment)"
+                        }
+                    },
+                    {
+                        autoResizeDimensions: {
+                            dimensions: {
+                                sheetId: 0,
+                                dimension: "COLUMNS",
+                                startIndex: 0,
+                                endIndex: headers.length
+                            }
+                        }
+                    },
+                    {
+                        updateSheetProperties: {
+                            properties: {
+                                sheetId: 0,
+                                gridProperties: {
+                                    frozenRowCount: 1 // Freeze header row
+                                }
+                            },
+                            fields: "gridProperties.frozenRowCount"
+                        }
+                    }
+                ]
+            };
+
+            await fetch(`https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}:batchUpdate`, {
+                method: 'POST',
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(formatData)
+            });
+
+            window.open(`https://docs.google.com/spreadsheets/d/${spreadsheetId}`, '_blank');
+        } catch (error) {
+            console.error("Export error:", error);
+            alert("A apărut o eroare: " + error.message);
+        } finally {
+            setIsExporting(false);
+        }
+    };
+
     // --- Search Filtering ---
     const filteredRegistrations = useMemo(() => {
         if (!searchTerm.trim()) return registrations;
@@ -426,14 +675,20 @@ const Admin = () => {
                 <div className="admin-section">
                     <div className="section-header-row">
                         <h3>Înscrieri Recente ({filteredRegistrations.length})</h3>
-                        <div className="search-bar">
-                            <FaSearch />
-                            <input
-                                type="text"
-                                placeholder="Caută echipă, membru, oraș, școală..."
-                                value={searchTerm}
-                                onChange={(e) => setSearchTerm(e.target.value)}
-                            />
+                        <div className="header-actions" style={{ display: 'flex', gap: '15px', alignItems: 'center' }}>
+                            <button onClick={exportToGoogleSheets} disabled={isExporting} className="btn-export" style={{ padding: '8px 12px', backgroundColor: '#109D59', color: 'white', border: 'none', borderRadius: '4px', cursor: isExporting ? 'not-allowed' : 'pointer', display: 'flex', alignItems: 'center', gap: '8px', fontSize: '14px', fontWeight: 'bold', opacity: isExporting ? 0.7 : 1 }}>
+                                {isExporting ? <FaSpinner className="fa-spin" style={{ animation: 'spin 1s linear infinite' }} /> : <FaDownload />}
+                                {isExporting ? "Se creează..." : "Export to Google Sheets"}
+                            </button>
+                            <div className="search-bar">
+                                <FaSearch />
+                                <input
+                                    type="text"
+                                    placeholder="Caută echipă, membru, oraș, școală..."
+                                    value={searchTerm}
+                                    onChange={(e) => setSearchTerm(e.target.value)}
+                                />
+                            </div>
                         </div>
                     </div>
                     <div className="table-responsive">
