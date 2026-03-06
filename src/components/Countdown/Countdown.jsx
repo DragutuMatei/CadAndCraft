@@ -71,16 +71,16 @@ const Countdown = () => {
           {/* ZONA SUS (VERDE ÎN SVG) */}
           <div className="top-section">
             <div className="text-wrapper">
-              <h2 className="subtitle">ÎNSCRIERILE SUNT</h2>
-              <h1 className="title">DESCHISE</h1>
-              <h2 className="subtitle">TIMP DE:</h2>
+              <h2 className="subtitle">ÎNSCRIERILE S-AU</h2>
+              <h1 className="title">ÎNCHEIAT</h1>
             </div>
           </div>
 
           {/* ZONA JOS (GALBEN ÎN SVG) */}
           <div className="bottom-section">
-
-            <div className="timer-container">
+            <h1 style={{ fontWeight: "bold", fontSize: 40 }} className="title">VĂ MULȚUMIM PENTRU PARTICIPARE!</h1>
+            <h1 className="subtitle">Asteptati mailul de confirmare!</h1>
+            {/* <div className="timer-container">
               <div className="timer-item">
                 <span className="number">{formatNumber(timeLeft.days)}</span>
                 <span className="label">zile</span>
@@ -100,7 +100,7 @@ const Countdown = () => {
             </div>
             <button className="btn-register" onClick={() => navigate('/inscriere')}>
               ÎNSCRIE-TE AICI <BsArrowRightCircle className="icon" />
-            </button>
+            </button> */}
           </div>
 
         </div>
