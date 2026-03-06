@@ -3,13 +3,13 @@ import { getFirestore } from "firebase/firestore";
 import { getAuth, GoogleAuthProvider } from "firebase/auth";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyA14H6bEuDU5AepoxRj1vhtKfO55sgGXyQ",
-  authDomain: "cadathon-2f0a7.firebaseapp.com",
-  projectId: "cadathon-2f0a7",
-  storageBucket: "cadathon-2f0a7.firebasestorage.app",
-  messagingSenderId: "658826509832",
-  appId: "1:658826509832:web:61785c8a2122bd61b89bbd",
-  measurementId: "G-QQ9EJW0B0P"
+  apiKey: process.env.FIREBASE_API_KEY,
+  authDomain: process.env.FIREBASE_AUTH_DOMAIN,
+  projectId: process.env.FIREBASE_PROJECT_ID,
+  storageBucket: process.env.FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.FIREBASE_MESSAGING_SENDER_ID,
+  appId: process.env.FIREBASE_APP_ID,
+  measurementId: process.env.FIREBASE_MEASUREMENT_ID
 };
 
 const app = initializeApp(firebaseConfig);
