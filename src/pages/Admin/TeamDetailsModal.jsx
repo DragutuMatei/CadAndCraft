@@ -1,8 +1,11 @@
-import React from 'react';
-import { FaTimes, FaCheck, FaBan, FaUser, FaSchool, FaMapMarkerAlt, FaEnvelope, FaPhone, FaLink } from 'react-icons/fa';
+import React, { useState } from 'react';
+import { FaTimes, FaCheck, FaBan, FaUser, FaSchool, FaMapMarkerAlt, FaEnvelope, FaPhone, FaLink, FaSpinner } from 'react-icons/fa';
 import './Admin.scss'; // We'll reuse/extend Admin.scss
+import emailjs from '@emailjs/browser';
 
 const TeamDetailsModal = ({ team, onClose, onStatusUpdate }) => {
+    const [isSending, setIsSending] = useState(false);
+
     if (!team) return null;
 
     const isHighSchool = team.teamEnvironment === 'highschool';
@@ -49,6 +52,53 @@ const TeamDetailsModal = ({ team, onClose, onStatusUpdate }) => {
         );
     };
 
+    // Handle Email & Status Update
+    const handleStatusAction = async (newStatus) => {
+        setIsSending(true);
+        try {
+            // Determine dynamic values based on status
+            const isAccepted = newStatus === 'accepted';
+
+            // Set the single template ID you have set in your env
+            const templateId = process.env.REACT_APP_ACCEPT;
+
+            const templateParams = {
+                to_email: team.contactEmail,
+                to_name: team.member1Name || "Participant",
+                team_name: team.teamName || "Participare Individuală",
+
+                // Dynamic Content Variables
+                header_color: isAccepted ? "#208A39" : "#FFC300",
+                header_title_color: isAccepted ? "#208A39" : "#003566",
+                title: isAccepted ? "Felicitări! Ești Acceptat" : "Rezultat Selecție",
+
+                // The main message paragraph
+                message_paragraph: isAccepted
+                    ? `Ne bucurăm să te anunțăm că aplicația ta a fost <strong>acceptată</strong>. Felicitări!<br><br>În perioada următoare vei primi informații suplimentare legate de organizare, program și pașii următori pe care va trebui să îi parcurgi.`
+                    : `În urma evaluării aplicațiilor, din păcate, de această dată <strong>nu ai fost selectat(ă)</strong> pentru participare.<br><br>Decizia a fost luată în urma unui proces competitiv de selecție destul de riguros. Cu toate acestea, te încurajăm să aplici și la edițiile viitoare sau la alte evenimente organizate de noi.`,
+
+                // Highlighting the text block (optional style var)
+                status_bg_color: isAccepted ? "#f4f8f4" : "#f8f9fa",
+                status_border_color: isAccepted ? "#208A39" : "#003566",
+                status_text_color: isAccepted ? "#1a6b2a" : "#333333",
+            };
+
+            // Send Email via EmailJS
+            await emailjs.send(process.env.REACT_APP_M_ID, templateId, templateParams, process.env.REACT_APP_M_PUBLIC);
+
+            // If email succeeded, update status in Firestore
+            await onStatusUpdate(team.id, newStatus);
+            alert(`Email trimis cu succes către ${team.contactEmail} și status actualizat la ${newStatus}.`);
+
+        } catch (error) {
+            console.error("Failed to send email or update status:", error);
+            alert("A apărut o eroare la trimiterea emailului. Statusul NU a fost actualizat.");
+        } finally {
+            setIsSending(false);
+        }
+    };
+
+
     return (
         <div className="admin-modal-overlay" onClick={onClose}>
             <div className="admin-modal wide" onClick={e => e.stopPropagation()}>
@@ -65,11 +115,11 @@ const TeamDetailsModal = ({ team, onClose, onStatusUpdate }) => {
                     {/* Actions Toolbar */}
                     <div className="actions-toolbar">
                         <strong>Acțiuni:</strong>
-                        <button className="btn-accept" onClick={() => onStatusUpdate(team.id, 'accepted')}>
-                            <FaCheck /> Acceptă
+                        <button className="btn-accept" onClick={() => handleStatusAction('accepted')} disabled={isSending}>
+                            {isSending ? <FaSpinner className="fa-spin" /> : <FaCheck />} Acceptă
                         </button>
-                        <button className="btn-reject" onClick={() => onStatusUpdate(team.id, 'rejected')}>
-                            <FaBan /> Respinge
+                        <button className="btn-reject" onClick={() => handleStatusAction('rejected')} disabled={isSending}>
+                            {isSending ? <FaSpinner className="fa-spin" /> : <FaBan />} Respinge
                         </button>
                     </div>
 

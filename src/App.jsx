@@ -18,6 +18,7 @@ const Home = React.lazy(() => import('./pages/Home/Home'));
 const About = React.lazy(() => import('./pages/About/About'));
 const Team = React.lazy(() => import('./pages/Team/Team'));
 const Register = React.lazy(() => import('./pages/Register/Register'));
+const Inscrieri = React.lazy(() => import('./pages/Inscrieri/Inscrieri'));
 const Handbook = React.lazy(() => import('./pages/Handbook/Handbook'));
 const Admin = React.lazy(() => import('./pages/Admin/Admin'));
 
@@ -50,7 +51,7 @@ function App() {
 
           <Route path="/about" element={<About />} />
           <Route path="/team" element={<Team />} />
-          <Route path="/inscriere" element={<Register />} />
+          <Route path="/inscriere" element={<Inscrieri />} />
 
           <Route path="/qr/*" element={<Redirect />} />
 

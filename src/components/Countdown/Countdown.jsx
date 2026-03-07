@@ -78,9 +78,12 @@ const Countdown = () => {
 
           {/* ZONA JOS (GALBEN ÎN SVG) */}
           <div className="bottom-section">
-            <h1 style={{ fontWeight: "bold", fontSize: 40 }} className="title">VĂ MULȚUMIM PENTRU PARTICIPARE!</h1>
-            <h1 className="subtitle">Asteptati mailul de confirmare!</h1>
-            {/* <div className="timer-container">
+            <h1 style={{ fontWeight: "bold", fontSize: 40 }} className="title">VĂ MULȚUMIM PENTRU ÎNSCRIERE!</h1>
+
+            <div>
+              <h1 style={{ margin: "0", textAlign: "center" }} className="subtitle">Asteptati mailul de confirmare</h1>
+              <h1 style={{ fontWeight: "bold", fontSize: 40, marginTop: "0", textAlign: "center" }} className="title">până pe 15.03!</h1>
+            </div>{/* <div className="timer-container">
               <div className="timer-item">
                 <span className="number">{formatNumber(timeLeft.days)}</span>
                 <span className="label">zile</span>
