@@ -8,8 +8,8 @@ const Navbar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const location = useLocation();
 
-  // Force scrolled alignment (background visible) on handbook pages
-  const isHandbook = location.pathname.includes('/handbook');
+  // Force scrolled alignment (background visible) on specific pages
+  const forceScrolled = location.pathname.includes('/handbook') || location.pathname.includes('/inscrieri');
 
   useEffect(() => {
     const handleScroll = () => {
@@ -56,7 +56,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className={`navbar ${(scrolled || isHandbook) ? 'navbar--scrolled' : ''}`}>
+    <nav className={`navbar ${(scrolled || forceScrolled) ? 'navbar--scrolled' : ''}`}>
       <div className="navbar__container">
 
         {/* LOGO */}
@@ -78,7 +78,6 @@ const Navbar = () => {
         <ul className="navbar__menu">
           <li><Link to="/#about" className="nav-pill" onClick={(e) => handleScrollTo(e, 'about')}>Despre</Link></li>
           <li><Link to="/handbook" className="nav-pill">Regulament</Link></li>
-          <li><Link to="/inscriere" className="nav-pill">Inscriere</Link></li>
           <li><Link to="/team" className="nav-pill">Echipa</Link></li>
         </ul>
 
@@ -100,7 +99,6 @@ const Navbar = () => {
         <Link to="/" onClick={closeMobileMenu}>Acasa</Link>
         <Link to="/#about" onClick={(e) => handleScrollTo(e, 'about')}>Despre</Link>
         <Link to="/handbook" onClick={closeMobileMenu}>Regulament</Link>
-        <Link to="/inscriere" onClick={closeMobileMenu}>Inscriere</Link>
         <Link to="/team" onClick={closeMobileMenu}>Echipa</Link>
       </div>
 
