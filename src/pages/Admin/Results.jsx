@@ -166,6 +166,10 @@ function Results() {
                         <span className="label">Email:</span>
                         <span className="value">{data.email}</span>
                     </div>
+                      <div className="info-item">
+                        <span className="label">Echipa:</span>
+                        <span className="value">{data.echipa}</span>
+                    </div>
                 </div>
                 
                 <div className="actions">
