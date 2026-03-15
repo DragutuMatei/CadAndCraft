@@ -9,7 +9,7 @@ const Navbar = () => {
   const location = useLocation();
 
   // Force scrolled alignment (background visible) on specific pages
-  const forceScrolled = location.pathname.includes('/handbook') || location.pathname.includes('/inscrieri');
+  const forceScrolled = location.pathname.includes('/handbook') || location.pathname.includes('/inscrieri') || location.pathname.includes('/admin/confirmare');
 
   useEffect(() => {
     const handleScroll = () => {
