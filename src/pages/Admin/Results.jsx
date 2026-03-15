@@ -158,15 +158,14 @@ function Results() {
                 </div>
                 
                 <div className="info-grid">
-                    <div className="info-item">
-                        <span className="label">ID Securizat:</span>
-                        <span className="value">{data.secure_id?.slice(0,8)}...</span>
+                  <div className="info-item">
+                        <span className="label">Nume:</span>
+                        <span className="value">{data.nume} {data.prenume}</span>
                     </div>
                     <div className="info-item">
                         <span className="label">Email:</span>
                         <span className="value">{data.email}</span>
                     </div>
-                    {/* Poți afișa și alte detalii dacă le adaugi în viitor în tabela `confirmari` */}
                 </div>
                 
                 <div className="actions">
