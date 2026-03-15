@@ -47,7 +47,7 @@ function VerifQr() {
   const navigate= useNavigate();
     
   const onScanSuccess = (decodedText, decodedResult) => {
-    console.log(`Code matched = ${decodedText}`, decodedResult);
+    alert(`Code matched = ${decodedText}`, decodedResult);
     // navigate(dec);
   };
   const onScanFailure = (error) => {
