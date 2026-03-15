@@ -25,6 +25,7 @@ import {
   getDocs,
   addDoc,
   where,
+  serverTimestamp,
 } from "firebase/firestore";
 import {
   FaSignOutAlt,
@@ -823,7 +824,9 @@ const Admin = () => {
         await addDoc(collection(db, "confirmari"), {
           secure_id: uuidv4(),
           email: data.member3Email,
-          status: STATUS_CONFIRMARE.NECONFIRMAT,
+          status: STATUS_CONFIRMARE.NECONFIRMAT,         
+           createdAt: serverTimestamp(),
+          
         });
       }
 
@@ -831,6 +834,7 @@ const Admin = () => {
         await addDoc(collection(db, "confirmari"), {
           secure_id: uuidv4(),
           email: data.member2Email,
+           createdAt: serverTimestamp(),
           status: STATUS_CONFIRMARE.NECONFIRMAT,
         });
       }
@@ -839,6 +843,7 @@ const Admin = () => {
         await addDoc(collection(db, "confirmari"), {
           secure_id: uuidv4(),
           email: data.member1Email,
+           createdAt: serverTimestamp(),
           status: STATUS_CONFIRMARE.NECONFIRMAT,
         });
       }
@@ -1120,7 +1125,7 @@ const Admin = () => {
                     <td>{a?.echipa}</td>
                     <td>{a?.varsta}</td>
                     <td>{a?.email}</td>
-                    <td>{a?.acordParental}</td>
+                    <td>{a?.acordParental ? a?.varsta === "minor" ? "Are": "E major, nu are nevoie" : "Nu are"}</td>
                     <td>{a.status}</td>
                   </tr>
                 );
