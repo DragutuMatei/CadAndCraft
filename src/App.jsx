@@ -52,6 +52,8 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/home" element={<HomeRedirect />} />
           <Route path="/formular" element={<Form />} />
+          <Route path="/admin/confirmare/check" element={<CheckQR />} />
+          <Route path="/admin/confirmare/verif" element={<Results />} />
 
           <Route path="/about" element={<About />} />
           <Route path="/team" element={<Team />} />
@@ -78,8 +80,6 @@ function App() {
             <Admin />
           </React.Suspense>
         } />
-        <Route path="/admin/confirmare/check" element={<CheckQR />} />
-        <Route path="/admin/confirmare/verif" element={<Results />} />
 
       </Routes>
     </Router>
