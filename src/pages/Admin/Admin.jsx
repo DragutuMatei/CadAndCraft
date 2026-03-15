@@ -80,30 +80,33 @@ const Admin = () => {
   const [isTableOpen, setIsTableOpen] = useState(false);
 
   const [accepteds, setAccepteds] = useState([]);
-  const getAccepted = async () => {
-    const data = [];
-    // const q = query(
-    //   ,
-    //   where("status", "==", "accepted"),
-    // );
-    const refs = await getDocs(collection(db, "confirmari"));
-    refs.forEach((ref) => {
-      data.push(ref.data());
+  const getAccepted = () => {
+    const q = collection(db, "confirmari");
+    const unsubscribe = onSnapshot(q, (snapshot) => {
+      const data = [];
+      snapshot.forEach((doc) => {
+        data.push(doc.data());
+      });
+      setAccepteds(data);
     });
-    setAccepteds(data);
+    return unsubscribe;
   };
   // Listen for auth state
   useEffect(() => {
+    let unsubscribeConfirmari;
     const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
       setUser(currentUser);
       if (currentUser) {
         await checkAdminStatus(currentUser.email);
+        unsubscribeConfirmari = getAccepted();
       } else {
         setLoading(false);
       }
     });
-    getAccepted();
-    return () => unsubscribe();
+    return () => {
+      unsubscribe();
+      if (unsubscribeConfirmari) unsubscribeConfirmari();
+    };
   }, []);
 
   const checkAdminStatus = async (email) => {
@@ -385,8 +388,8 @@ const Admin = () => {
         label: "Studenți pe An",
         data: stats
           ? Object.keys(stats.uniYears)
-              .sort()
-              .map((k) => stats.uniYears[k])
+            .sort()
+            .map((k) => stats.uniYears[k])
           : [],
         backgroundColor: "rgba(75, 192, 192, 0.5)",
       },
@@ -657,8 +660,8 @@ const Admin = () => {
         console.error("API Sheets error (update):", errData);
         throw new Error(
           "Datele nu au putut fi salvate în fișier (Eroare " +
-            (errData.error?.message || updateRes.status) +
-            ").",
+          (errData.error?.message || updateRes.status) +
+          ").",
         );
       }
 
@@ -824,9 +827,9 @@ const Admin = () => {
         await addDoc(collection(db, "confirmari"), {
           secure_id: uuidv4(),
           email: data.member3Email,
-          status: STATUS_CONFIRMARE.NECONFIRMAT,         
-           createdAt: serverTimestamp(),
-          
+          status: STATUS_CONFIRMARE.NECONFIRMAT,
+          createdAt: serverTimestamp(),
+
         });
       }
 
@@ -834,7 +837,7 @@ const Admin = () => {
         await addDoc(collection(db, "confirmari"), {
           secure_id: uuidv4(),
           email: data.member2Email,
-           createdAt: serverTimestamp(),
+          createdAt: serverTimestamp(),
           status: STATUS_CONFIRMARE.NECONFIRMAT,
         });
       }
@@ -843,7 +846,7 @@ const Admin = () => {
         await addDoc(collection(db, "confirmari"), {
           secure_id: uuidv4(),
           email: data.member1Email,
-           createdAt: serverTimestamp(),
+          createdAt: serverTimestamp(),
           status: STATUS_CONFIRMARE.NECONFIRMAT,
         });
       }
@@ -851,15 +854,15 @@ const Admin = () => {
     setGata(true);
   };
   const sendmails = async () => {
-    const data = 
-    // await getDocs(collection(db, "confirmari"));
-    [
-      {
-        email: "mateidr7@gmail.com",
-        secure_id: "85aca453-86a1-9c4c-a2e8-a9dd3402722t",
-        status: "neconfirmat",
-      },
-    ];
+    const data =
+      // await getDocs(collection(db, "confirmari"));
+      [
+        {
+          email: "mateidr7@gmail.com",
+          secure_id: "85aca453-86a1-9c4c-a2e8-a9dd3402722t",
+          status: "neconfirmat",
+        },
+      ];
 
     data.forEach(async (d) => {
       const link = `${process.env.REACT_APP_LINK}/formular/?id=${d.secure_id}&mail=${d.email}`;
@@ -868,12 +871,12 @@ const Admin = () => {
       const qrDataUrl = await QRCode.toDataURL(linkQR);
       console.log("Generated QR code data URL:", qrDataUrl);
 
-    await emailjs.send(process.env.REACT_APP_M_ID, process.env.REACT_APP_ACCEPT, {
-      secure_id: d.secure_id,
-      email: d.email,
-      qrUrl: qrDataUrl,
-    }, process.env.REACT_APP_M_PUBLIC);      
-      
+      await emailjs.send(process.env.REACT_APP_M_ID, process.env.REACT_APP_ACCEPT, {
+        secure_id: d.secure_id,
+        email: d.email,
+        qrUrl: qrDataUrl,
+      }, process.env.REACT_APP_M_PUBLIC);
+
     });
   };
 
@@ -954,8 +957,8 @@ const Admin = () => {
 
         <div className="admin-section">
           <div className="section-header-row">
-            <h3 
-              onClick={() => setIsTableOpen(!isTableOpen)} 
+            <h3
+              onClick={() => setIsTableOpen(!isTableOpen)}
               style={{ cursor: "pointer", display: "flex", alignItems: "center", gap: "10px", userSelect: "none" }}
               title="Apasă pentru a ascunde / afișa tabelul"
             >
@@ -1019,119 +1022,138 @@ const Admin = () => {
             </div>
           </div>
           {isTableOpen && (
+            <div className="table-responsive">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Când</th>
+                    <th>Echipă</th>
+                    <th>Membri</th>
+                    <th>Contact</th>
+                    <th>Status</th>
+                    <th>Acțiuni</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {filteredRegistrations.map((reg) => (
+                    <tr key={reg.id}>
+                      <td>
+                        {reg.submittedAt || "N/A"}
+                        <br />
+                        <small style={{ color: "#999" }}>
+                          {reg.id.slice(0, 5)}...
+                        </small>
+                      </td>
+                      <td>{reg.teamName || "Individual"}</td>
+                      <td>
+                        <span style={{ fontWeight: "bold" }}>{reg.teamSize}</span>
+                        <span style={{ fontSize: "0.8em", color: "#666" }}>
+                          {" "}
+                          ({reg.teamEnvironment === "highschool" ? "Lic" : "Univ"}
+                          )
+                        </span>
+                      </td>
+                      <td>
+                        {reg.contactEmail}
+                        <br />
+                        <small>{reg.contactPhone}</small>
+                      </td>
+                      <td>
+                        {(() => {
+                          const createdDate = reg.createdAt?.toDate
+                            ? reg.createdAt.toDate()
+                            : new Date();
+                          const isToday =
+                            createdDate.toLocaleDateString("ro-RO") ===
+                            new Date().toLocaleDateString("ro-RO");
+                          const currentStatus = reg.status || "new"; // Default to 'new' if missing
+
+                          let displayStatus = currentStatus;
+                          let badgeClass = currentStatus;
+
+                          // "statusul sa fie new doar daca e din ziua actuala"
+                          if (currentStatus === "new" && !isToday) {
+                            displayStatus = "Pending";
+                            badgeClass = "pending";
+                          }
+
+                          return (
+                            <span className={`status-badge ${badgeClass}`}>
+                              {displayStatus}
+                            </span>
+                          );
+                        })()}
+                      </td>
+                      <td>
+                        <button
+                          className="btn-view"
+                          onClick={() => setSelectedReg(reg)}
+                        >
+                          <FaEye /> Detalii
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          )}
+        </div>
+        <div className="admin-section">
+          <div className="section-header-row">
+            <h3>Confirmări Prezență (Live)</h3>
+            <div className="header-actions">
+              <button onClick={async () => await sendmails()} className="btn-prepare">
+                Trimite Email-uri Check-IN
+              </button>
+            </div>
+          </div>
           <div className="table-responsive">
             <table>
               <thead>
                 <tr>
-                  <th>Când</th>
+                  <th>#</th>
+                  <th>Nume Participant</th>
                   <th>Echipă</th>
-                  <th>Membri</th>
-                  <th>Contact</th>
-                  <th>Status</th>
-                  <th>Acțiuni</th>
+                  <th>Vârsta</th>
+                  <th>Email</th>
+                  <th>Acord Parental</th>
+                  <th>Status Check-IN</th>
                 </tr>
               </thead>
               <tbody>
-                {filteredRegistrations.map((reg) => (
-                  <tr key={reg.id}>
-                    <td>
-                      {reg.submittedAt || "N/A"}
-                      <br />
-                      <small style={{ color: "#999" }}>
-                        {reg.id.slice(0, 5)}...
-                      </small>
-                    </td>
-                    <td>{reg.teamName || "Individual"}</td>
-                    <td>
-                      <span style={{ fontWeight: "bold" }}>{reg.teamSize}</span>
-                      <span style={{ fontSize: "0.8em", color: "#666" }}>
-                        {" "}
-                        ({reg.teamEnvironment === "highschool" ? "Lic" : "Univ"}
-                        )
-                      </span>
-                    </td>
-                    <td>
-                      {reg.contactEmail}
-                      <br />
-                      <small>{reg.contactPhone}</small>
-                    </td>
-                    <td>
-                      {(() => {
-                        const createdDate = reg.createdAt?.toDate
-                          ? reg.createdAt.toDate()
-                          : new Date();
-                        const isToday =
-                          createdDate.toLocaleDateString("ro-RO") ===
-                          new Date().toLocaleDateString("ro-RO");
-                        const currentStatus = reg.status || "new"; // Default to 'new' if missing
-
-                        let displayStatus = currentStatus;
-                        let badgeClass = currentStatus;
-
-                        // "statusul sa fie new doar daca e din ziua actuala"
-                        if (currentStatus === "new" && !isToday) {
-                          displayStatus = "Pending";
-                          badgeClass = "pending";
-                        }
-
-                        return (
-                          <span className={`status-badge ${badgeClass}`}>
-                            {displayStatus}
+                {accepteds &&
+                  accepteds.map((a, index) => {
+                    return (
+                      <tr key={index}>
+                        <td>{index + 1}</td>
+                        <td>
+                          {a?.nume} {a?.prenume}
+                        </td>
+                        <td>{a?.echipa}</td>
+                        <td>{a?.varsta}</td>
+                        <td>{a?.email}</td>
+                        <td>
+                          {a?.acordParental
+                            ? a?.varsta === "minor"
+                              ? "Are"
+                              : "E major, nu are nevoie"
+                            : "Nu are"}
+                        </td>
+                        <td>
+                          <span
+                            className={`status-badge ${a?.status || "pending"}`}
+                          >
+                            {a?.status}
                           </span>
-                        );
-                      })()}
-                    </td>
-                    <td>
-                      <button
-                        className="btn-view"
-                        onClick={() => setSelectedReg(reg)}
-                      >
-                        <FaEye /> Detalii
-                      </button>
-                    </td>
-                  </tr>
-                ))}
+                        </td>
+                      </tr>
+                    );
+                  })}
               </tbody>
             </table>
           </div>
-          )}
         </div>
-        <div>
-          <button onClick={async () => await sendmails()}>
-            send them all mail
-          </button>
-        </div>
-        <table>
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>Nume</th>
-              <th>Echipa</th>
-              <th>Vârsta</th>
-              <th>Email</th>
-              <th>Acord Parental</th>
-              <th>Status</th>
-            </tr>
-          </thead>
-          <tbody>
-            {accepteds &&
-              accepteds.map((a, index) => {
-                return (
-                  <tr>
-                    <td>{index + 1}</td>
-                    <td>
-                      {a?.nume} {a?.prenume}
-                    </td>
-                    <td>{a?.echipa}</td>
-                    <td>{a?.varsta}</td>
-                    <td>{a?.email}</td>
-                    <td>{a?.acordParental ? a?.varsta === "minor" ? "Are": "E major, nu are nevoie" : "Nu are"}</td>
-                    <td>{a.status}</td>
-                  </tr>
-                );
-              })}
-          </tbody>
-        </table>
         <div className="admin-section">
           <h3>Manage Admins</h3>
           <div className="admins-list">

@@ -286,9 +286,24 @@
                     font-weight: 600;
                     text-transform: uppercase;
 
-                    &.new {
+                    &.new, &.confirmat {
                         background: #e3f2fd;
                         color: #1976d2;
+                    }
+                    
+                    &.neconfirmat {
+                        background: #fff3e0;
+                        color: #ef6c00;
+                    }
+
+                    &.venit {
+                        background: #e8f5e9;
+                        color: #2e7d32;
+                    }
+
+                    &.anulat {
+                        background: #ffebee;
+                        color: #c62828;
                     }
                 }
 
@@ -439,17 +454,22 @@
                 text-transform: uppercase;
                 font-weight: bold;
 
-                &.new {
+                &.new, &.confirmat {
                     background: #e3f2fd;
                     color: #1976d2;
                 }
 
-                &.accepted {
+                &.neconfirmat {
+                    background: #fff3e0;
+                    color: #ef6c00;
+                }
+
+                &.accepted, &.venit {
                     background: #e8f5e9;
                     color: #2e7d32;
                 }
 
-                &.rejected {
+                &.rejected, &.anulat {
                     background: #ffebee;
                     color: #c62828;
                 }
