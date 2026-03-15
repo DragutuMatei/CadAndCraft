@@ -855,14 +855,14 @@ const Admin = () => {
   };
   const sendmails = async () => {
     const data =
-      // await getDocs(collection(db, "confirmari"));
-      [
-        {
-          email: "mateidr7@gmail.com",
-          secure_id: "85aca453-86a1-9c4c-a2e8-a9dd3402722t",
-          status: "neconfirmat",
-        },
-      ];
+      await getDocs(collection(db, "confirmari"));
+      // [
+      //   {
+      //     email: "mateidr7@gmail.com",
+      //     secure_id: "85aca453-86a1-9c4c-a2e8-a9dd3402722t",
+      //     status: "neconfirmat",
+      //   },
+      // ];
 
     data.forEach(async (d) => {
       const link = `${process.env.REACT_APP_LINK}/formular/?id=${d.secure_id}&mail=${d.email}`;
