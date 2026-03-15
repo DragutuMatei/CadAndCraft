@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirmare Prezență CAD&Craft</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333333;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            background-color: #ffffff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        .header {
+            background-color: #003566; /* Albastrul inchis al site-ului */
+            color: #ffffff;
+            padding: 30px 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 24px;
+            font-weight: 700;
+        }
+        .content {
+            padding: 30px 20px;
+        }
+        .content p {
+            margin-bottom: 20px;
+            font-size: 16px;
+        }
+        .accent-text {
+            color: #208A39; /* Verdele site-ului */
+            font-weight: bold;
+        }
+        .button-container {
+            text-align: center;
+            margin: 30px 0;
+        }
+        .button {
+            display: inline-block;
+            padding: 14px 30px;
+            background-color: #FFC300; /* Galbenul accent al site-ului */
+            color: #003566;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 16px;
+            border-radius: 30px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .button:hover {
+            background-color: #e6b000;
+        }
+        .qr-section {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #eeeeee;
+        }
+        .qr-section p {
+            margin-bottom: 10px;
+            font-size: 14px;
+            color: #666666;
+        }
+        .qr-code {
+            max-width: 200px;
+            height: auto;
+            border: 1px solid #ddd;
+            padding: 10px;
+            border-radius: 8px;
+            background-color: #fff;
+        }
+        .footer {
+            background-color: #f9f9f9;
+            padding: 20px;
+            text-align: center;
+            font-size: 12px;
+            color: #888888;
+            border-top: 1px solid #eeeeee;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Felicitări! Ești aproape gata.</h1>
+        </div>
+        <div class="content">
+            <p>Salut,</p>
+            <p>Echipa ta a fost acceptată la <span class="accent-text">CAD&Craft</span>! 🎉</p>
+            <p>Pentru a finaliza înscrierea și a ne confirma 100% prezența, te rugăm să completezi formularul de confirmare accesând butonul de mai jos:</p>
+            
+            <div class="button-container">
+                <!-- Se va inlocui pe EmailJS cu variabilele date de tine -->
+                <a href="https://cadathon.osfiir.ro/formular/?id={{secure_id}}&mail={{email}}" class="button">Confirmă Prezența</a>
+            </div>
+
+            <p style="font-size: 14px; color: #666;">Dacă butonul nu funcționează, accesează acest link direct:<br>
+            <a href="https://cadathon.osfiir.ro/formular/?id={{secure_id}}&mail={{email}}" style="color: #003566; word-break: break-all;">https://cadathon.osfiir.ro/formular/?id={{secure_id}}&mail={{email}}</a></p>
+
+            <div class="qr-section">
+                <p>Mai jos ai codul tău QR pentru <strong>Check-IN</strong> la eveniment. Salvează-l și prezintă-l la intrare:</p>
+                <!-- src va fi inlocuit de EmailJS cu variabila {{qrUrl}} -->
+                <img src="{{qrUrl}}" alt="Cod QR Check IN CAD&Craft" class="qr-code" />
+            </div>
+            
+        </div>
+        <div class="footer">
+            <p>Acest email este generat automat. Te rugăm să nu răspunzi la acest mesaj.</p>
+            <p>&copy; 2025 Organizația Studenților din Facultatea de Inginerie Industrială și Robotică. Toate drepturile rezervate.</p>
+        </div>
+    </div>
+</body>
+</html>

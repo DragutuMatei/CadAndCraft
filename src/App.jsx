@@ -13,6 +13,8 @@ import HandbookProfile from './pages/Handbook/sections/HandbookProfile';
 import HandbookContact from './pages/Handbook/sections/HandbookContact';
 import Redirect from './pages/QR/Redirect';
 import HomeRedirect from './pages/QR/HomeRedirect';
+import Form from './pages/Form/Form';
+import VerifQr from './pages/Admin/VerifQr';
 // --- Lazy Loading Pages ---
 const Home = React.lazy(() => import('./pages/Home/Home'));
 const About = React.lazy(() => import('./pages/About/About'));
@@ -48,10 +50,13 @@ function App() {
         <Route element={<MainLayout />}>
           <Route path="/" element={<Home />} />
           <Route path="/home" element={<HomeRedirect />} />
+          <Route path="/formular" element={<Form />} />
+          <Route path="/admin/confirmare/verif" element={<VerifQr />} />
 
           <Route path="/about" element={<About />} />
           <Route path="/team" element={<Team />} />
           <Route path="/inscriere" element={<Inscrieri />} />
+          {/* <Route path="/inscriere" element={<Register />} /> */}
 
           <Route path="/qr/*" element={<Redirect />} />
 

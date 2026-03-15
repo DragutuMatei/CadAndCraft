@@ -1,0 +1,405 @@
+@use '../../styles/variables' as *;
+
+.form-page {
+    background-color: $theme-accent; // Yellow background matching register
+    background-image: url('../../assets/images/fundal_handbook.svg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    min-height: 100vh;
+    padding-top: 150px; // Provide space for the static navbar
+    padding-bottom: 60px;
+    position: relative;
+    font-family: $font-body;
+
+    .form-container {
+        max-width: 800px; // Narrower since it doesn't have a sidebar like register
+        margin: 0 auto;
+        padding: 0 20px;
+        position: relative;
+        z-index: 10;
+        display: flex;
+        justify-content: center;
+
+        @media (max-width: 1024px) {
+            padding: 0 10px;
+        }
+
+        .form-content {
+            flex: 1;
+            min-width: 0;
+
+            .form-step {
+                animation: fadeIn 0.5s ease-out;
+
+                h2 {
+                    font-family: $font-heading;
+                    font-size: 2rem;
+                    color: $theme-heading;
+                    margin-bottom: 24px;
+                    text-align: center; // Center title on this solo-page
+
+                    @media (max-width: 768px) {
+                        font-size: 1.8rem;
+                    }
+                }
+
+                .section-description {
+                    background: rgba($theme-primary, 0.04);
+                    padding: 24px;
+                    border-radius: 12px;
+                    margin-bottom: 24px;
+                    border: 1px solid rgba($theme-primary, 0.2);
+                    color: $theme-text-dark;
+                    font-size: 1rem;
+                    line-height: 1.6;
+
+                    &.warning {
+                        border-color: rgba($theme-accent, 0.5);
+                        background: rgba($theme-accent, 0.1);
+                        border-left: none; 
+                    }
+
+                    p {
+                        margin-bottom: 8px;
+
+                        &:last-child {
+                            margin-bottom: 0;
+                        }
+                    }
+                }
+            }
+
+            // The main card styling exactly matching Register.scss
+            .register-card {
+                background: $theme-white;
+                padding: 32px; 
+                border-radius: $border-radius-std;
+                box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
+                margin-bottom: 30px;
+                border: 1px solid rgba(0, 0, 0, 0.02);
+                transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+                &:hover {
+                    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
+                }
+            }
+
+            .form-row {
+                display: flex;
+                gap: 24px;
+                margin-bottom: 20px;
+
+                @media (max-width: 768px) {
+                    flex-direction: column;
+                    gap: 0;
+                }
+
+                .half {
+                    flex: 1;
+                }
+            }
+
+            .form-group {
+                margin-bottom: 24px;
+
+                &:last-child {
+                    margin-bottom: 0;
+                }
+
+                label {
+                    display: block;
+                    font-weight: 700;
+                    margin-bottom: 10px;
+                    color: $theme-heading;
+                    font-family: $font-heading;
+                    font-size: 0.95rem;
+                    text-transform: uppercase;
+                    letter-spacing: 0.5px;
+
+                    .required {
+                        color: #e63946;
+                        margin-left: 4px;
+                    }
+                }
+
+                input[type="text"],
+                input[type="email"],
+                input[type="tel"] {
+                    width: 100%;
+                    padding: 10px 18px;
+                    border: 2px solid #e0e0e0;
+                    border-radius: 12px;
+                    font-family: $font-body;
+                    font-size: 1rem;
+                    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+                    background: #fdfdfd;
+                    color: $theme-text-dark;
+
+                    &:focus {
+                        outline: none;
+                        border-color: $theme-heading;
+                        background: #fff;
+                        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+                    }
+
+                    &::placeholder {
+                        color: #bbb;
+                    }
+
+                    @media (max-width: 768px) {
+                        padding: 12px 14px;
+                        font-size: 0.95rem;
+                    }
+                }
+
+                /* --- CUSTOM CHECKBOX & RADIO STYLE --- */
+                .checkbox-group,
+                .radio-group {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 16px;
+
+                    &.horizontal {
+                        flex-direction: row;
+                        flex-wrap: wrap;
+                    }
+                }
+
+                .checkbox-option,
+                .radio-option {
+                    position: relative;
+                    display: flex;
+                    align-items: center;
+                    padding: 5px 10px;
+                    border: 2px solid #e0e0e0;
+                    border-radius: 12px;
+                    cursor: pointer;
+                    background: #fff;
+                    transition: all 0.2s ease;
+                    user-select: none;
+
+                    input {
+                        position: absolute;
+                        opacity: 0;
+                        cursor: pointer;
+                        height: 0;
+                        width: 0;
+                    }
+
+                    &::before {
+                        content: '';
+                        display: inline-block;
+                        width: 18px;
+                        height: 18px;
+                        margin-right: 12px;
+                        border: 2px solid #bbb;
+                        border-radius: 6px;
+                        background: #fff;
+                        transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+                        flex-shrink: 0;
+                    }
+
+                    span {
+                        font-size: 1rem;
+                        color: $theme-text-dark;
+                        font-weight: 500;
+                        transition: color 0.2s;
+                    }
+
+                    &:hover {
+                        border-color: rgba($theme-heading, 0.3);
+                        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+
+                        &::before {
+                            border-color: $theme-heading;
+                        }
+                    }
+
+                    &:has(input:checked) {
+                        border-color: $theme-heading;
+                        background-color: rgba($theme-heading, 0.03);
+                        box-shadow: 0 4px 12px rgba($theme-heading, 0.08);
+
+                        span {
+                            color: $theme-heading;
+                            font-weight: 700;
+                        }
+
+                        &::before {
+                            background-color: $theme-heading;
+                            border-color: $theme-heading;
+                            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'%3E%3C/polyline%3E%3C/svg%3E");
+                            background-size: 70%;
+                            background-repeat: no-repeat;
+                            background-position: center;
+                        }
+                    }
+                }
+
+                @media (max-width: 768px) {
+                    .checkbox-option,
+                    .radio-option {
+                        padding: 12px 14px;
+                    }
+
+                    .checkbox-option span,
+                    .radio-option span {
+                        font-size: 0.9rem;
+                    }
+                }
+
+                .radio-option {
+                    &::before {
+                        border-radius: 50%;
+                    }
+
+                    &:has(input:checked) {
+                        &::before {
+                            background-color: #fff;
+                            border-color: $theme-heading;
+                            background-image: none;
+                        }
+                    }
+                    
+                    // Specific checked state for the radio element to place a blue dot
+                    input:checked + span {
+                        &::before {
+                            content: '';
+                            position: absolute;
+                            left: 14px; // 10px padding + 4px offset relative to the dot area
+                            top: 50%;
+                            transform: translateY(-50%);
+                            width: 10px;
+                            height: 10px;
+                            border-radius: 50%;
+                            background-color: $theme-heading;
+                        }
+                    }
+                }
+            }
+
+            .button-group {
+                display: flex;
+                justify-content: space-between;
+                margin-top: 50px;
+
+                // For form button to be on right side
+                &.right {
+                    justify-content: flex-end;
+                }
+
+                button {
+                    padding: 16px 40px;
+                    border-radius: 50px;
+                    font-family: $font-heading;
+                    font-weight: 800;
+                    cursor: pointer;
+                    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+                    font-size: 1rem;
+                    text-transform: uppercase;
+                    letter-spacing: 0.5px;
+                    display: flex;
+                    align-items: center;
+                    gap: 10px;
+
+                    &.btn-submit {
+                        background: $theme-primary; // Green main action submit!
+                        color: white;
+                        border: none;
+                        box-shadow: 0 6px 20px rgba($theme-primary, 0.3);
+
+                        &:hover {
+                            background: darken($theme-primary, 5%);
+                            box-shadow: 0 10px 25px rgba($theme-primary, 0.4);
+                        }
+
+                        &:disabled {
+                            background: #e0e0e0;
+                            color: #999;
+                            cursor: not-allowed;
+                            box-shadow: none;
+                        }
+                    }
+
+                    @media (max-width: 768px) {
+                        width: 100%;
+                        padding: 12px 20px;
+                        font-size: 0.9rem;
+                        justify-content: center;
+                    }
+                }
+            }
+        }
+    }
+}
+
+// Toasts positioned within .form-page bounds (fixed at top but below navbar roughly)
+.toast-container {
+    position: fixed;
+    top: 100px; // Below navbar
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 100%;
+    max-width: 450px;
+    padding: 0 20px;
+    pointer-events: none; // let clicks pass through toasts
+}
+
+.toast {
+    padding: 1rem 1.5rem;
+    border-radius: 12px;
+    backdrop-filter: blur(10px);
+    font-weight: 600;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    pointer-events: auto;
+
+    span {
+        line-height: 1.4;
+    }
+
+    &.success-toast {
+        background: rgba(32, 138, 57, 0.2); // $color-green via RGBA
+        border: 1px solid rgba(32, 138, 57, 0.3);
+        color: #2fb94e;
+    }
+
+    &.error-toast {
+        background: rgba(239, 68, 68, 0.2);
+        border: 1px solid rgba(239, 68, 68, 0.3);
+        color: #f87171;
+    }
+}
+
+.loader {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 3px solid rgba(255,255,255,0.3);
+    border-radius: 50%;
+    border-top-color: #fff;
+    animation: spin 1s ease-in-out infinite;
+    margin-right: 0.5rem;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
