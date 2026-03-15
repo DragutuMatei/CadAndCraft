@@ -53,12 +53,6 @@ function VerifQr() {
   const onScanFailure = (error) => {
     console.log(`Code scan error = ${error}`);
   };
-  useEffect(() => {
-  html5QrcodeScanner.render(onScanSuccess, onScanFailure);
-
-
-  }, []);
-
   const config = {
     qrbox: { width: 400, height: 400 },
      fps: 10,
@@ -66,7 +60,14 @@ function VerifQr() {
   // Only support camera scan type.
   supportedScanTypes: [Html5QrcodeScanType.SCAN_TYPE_CAMERA]
   }
-  const html5QrcodeScanner = new Html5QrcodeScanner("reader", config, /* verbose= */ true);
+ 
+  useEffect(() => { 
+    const html5QrcodeScanner = new Html5QrcodeScanner("reader", config, /* verbose= */ false);
+  html5QrcodeScanner.render(onScanSuccess, onScanFailure);
+
+
+  }, []);
+
 
 
 
