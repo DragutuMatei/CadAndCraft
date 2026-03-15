@@ -1103,7 +1103,20 @@ const Admin = () => {
           <div className="section-header-row">
             <h3>Confirmări Prezență (Live)</h3>
             <div className="header-actions">
-              <button onClick={async () => await sendmails()} className="btn-prepare">
+              <button onClick={async () => await sendmails()} className="btn-export"
+                style={{
+                  padding: "8px 12px",
+                  backgroundColor: "#109D59",
+                  color: "white",
+                  border: "none",
+                  borderRadius: "4px",
+                  cursor: "pointer",
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "8px",
+                  fontSize: "14px",
+                  fontWeight: "bold",
+                }}>
                 Trimite Email-uri Check-IN
               </button>
             </div>
