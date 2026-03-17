@@ -855,15 +855,17 @@ const Admin = () => {
   };
   const sendmails = async () => {
     const data =
-      // await getDocs(collection(db, "confirmari"));
-      [
-        {
-          email: "mateidr7@gmail.com",
-          secure_id: "e7h2b6db-f777-4i40-99j9-0ca1f8bdf35e4",
-          status: "neconfirmat",
-        },
-      ];
-console.log(data);
+      await getDocs(collection(db, "confirmari"));
+      // [
+      //   {
+      //     email: "mateidr7@gmail.com",
+      //     secure_id: "e7h2b6db-f777-4i40-99j9-0ca1f8bdf35e4",
+      //     status: "neconfirmat",
+      //   },
+      // ];
+    
+      // console.log(data);
+    
     data.forEach(async (d) => {
       const link = `${process.env.REACT_APP_LINK}/formular/?id=${d.secure_id}&mail=${d.email}`;
 
@@ -871,9 +873,11 @@ console.log(data);
       const qrDataUrl = await QRCode.toDataURL(linkQR);
       console.log("Generated QR code data URL:", qrDataUrl);
 
+      console.log(d.data());
+
       await emailjs.send(process.env.REACT_APP_M_ID, process.env.REACT_APP_TEM_ID, {
-        secure_id: d.secure_id,
-        email: d.email,
+        secure_id: d.data().secure_id,
+        email: d.data().email,
         qrUrl: qrDataUrl,
       }, process.env.REACT_APP_M_PUBLIC);
 
