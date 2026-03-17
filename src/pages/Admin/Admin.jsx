@@ -859,11 +859,11 @@ const Admin = () => {
       [
         {
           email: "mateidr7@gmail.com",
-          secure_id: "85aca453-86a1-9c4c-a2e8-a9dd3402722t",
+          secure_id: "e7h2b6db-f777-4i40-99j9-0ca1f8bdf35e4",
           status: "neconfirmat",
         },
       ];
-
+console.log(data);
     data.forEach(async (d) => {
       const link = `${process.env.REACT_APP_LINK}/formular/?id=${d.secure_id}&mail=${d.email}`;
 
@@ -871,7 +871,7 @@ const Admin = () => {
       const qrDataUrl = await QRCode.toDataURL(linkQR);
       console.log("Generated QR code data URL:", qrDataUrl);
 
-      await emailjs.send(process.env.REACT_APP_M_ID, process.env.REACT_APP_ACCEPT, {
+      await emailjs.send(process.env.REACT_APP_M_ID, process.env.REACT_APP_TEM_ID, {
         secure_id: d.secure_id,
         email: d.email,
         qrUrl: qrDataUrl,
