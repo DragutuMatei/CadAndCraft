@@ -67,6 +67,15 @@ const HandbookSidebar = ({ language, setLanguage }) => {
                         ))}
                     </nav>
 
+                    <div className="handbook-sidebar__notice">
+                        <span className="notice-icon">⚠️</span>
+                        <span className="notice-text">
+                            {language === 'RO'
+                                ? 'Regulamentul se poate modifica în orice moment. Urmăriți-l constant pe parcursul evenimentului!'
+                                : 'The rules may change at any time. Keep checking throughout the event!'}
+                        </span>
+                    </div>
+
                     {/* <div className="handbook-sidebar__footer" style={{ marginTop: 'auto', paddingTop: '20px' }}>
                         <a
                             href="/Handbook 2026 (PENTRU INSCRIERI)_organized.pdf"
