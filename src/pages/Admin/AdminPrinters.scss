@@ -1,0 +1,369 @@
+@import '../../styles/variables';
+
+.admin-printers-container.dark-theme {
+    padding: 2rem;
+    max-width: $container-max-width;
+    margin: 0 auto;
+    font-family: $font-body;
+    background-color: #0b0c10;
+    color: #f1f1f1;
+    min-height: 100vh; // Ensure it covers the screen if it's the main container
+    
+    // Quick fix: if the parent has generic background, we can force this container to act as the page background
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding-top: 100px; // account for headers
+    box-sizing: border-box;
+
+    h1, h2 {
+        color: #fff;
+        font-family: $font-heading;
+    }
+
+    .header-section {
+        margin-bottom: 2rem;
+        p {
+            color: #aaa;
+        }
+        
+        .user-info {
+            span { color: #aaa !important; }
+            .btn-logout { 
+                color: #ff4d4f !important;
+                &:hover {
+                    opacity: 0.8;
+                }
+            }
+        }
+    }
+
+    .controls-section {
+        .btn-open-modal {
+            padding: 0.8rem 1.5rem;
+            background: $color-green;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-family: $font-heading;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s ease, transform 0.2s ease;
+
+            &:hover {
+                background: darken($color-green, 10%);
+                transform: translateY(-2px);
+            }
+        }
+    }
+
+    // Modal Styles
+    .popup-modal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background: rgba(0, 0, 0, 0.8);
+        backdrop-filter: blur(5px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 1000;
+
+        .dark-modal {
+            background: #1a1a1d;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            width: 90%;
+            max-width: 500px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+            animation: modalFadeIn 0.3s ease;
+
+            .modal-header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 1.5rem;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+
+                h2 {
+                    margin: 0;
+                    font-size: 1.3rem;
+                }
+
+                .close-btn {
+                    background: none;
+                    border: none;
+                    color: #aaa;
+                    font-size: 1.2rem;
+                    cursor: pointer;
+                    transition: color 0.2s;
+
+                    &:hover {
+                        color: #fff;
+                    }
+                }
+            }
+
+            .modal-content {
+                padding: 1.5rem;
+
+                .add-printer-form {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 1.5rem;
+
+                    .form-group {
+                        display: flex;
+                        flex-direction: column;
+                        gap: 0.5rem;
+
+                        label {
+                            font-size: 0.95rem;
+                            color: #bbb;
+                            font-weight: 500;
+                        }
+
+                        input {
+                            padding: 0.8rem 1rem;
+                            border-radius: 8px;
+                            border: 1px solid rgba(255, 255, 255, 0.1);
+                            background: rgba(0, 0, 0, 0.3);
+                            color: #fff;
+                            font-size: 1rem;
+                            outline: none;
+                            transition: border-color 0.2s, box-shadow 0.2s;
+
+                            &:focus {
+                                border-color: $color-green;
+                                box-shadow: 0 0 0 3px rgba(32, 138, 57, 0.2);
+                            }
+                            
+                            &::placeholder {
+                                color: #666;
+                            }
+                        }
+                    }
+
+                    .modal-actions {
+                        display: flex;
+                        justify-content: flex-end;
+                        gap: 1rem;
+                        margin-top: 1rem;
+
+                        button {
+                            padding: 0.8rem 1.5rem;
+                            border-radius: 8px;
+                            font-size: 1rem;
+                            font-weight: 600;
+                            cursor: pointer;
+                            transition: all 0.2s;
+                        }
+
+                        .btn-cancel {
+                            background: transparent;
+                            border: 1px solid rgba(255, 255, 255, 0.2);
+                            color: #ccc;
+
+                            &:hover {
+                                background: rgba(255, 255, 255, 0.05);
+                                color: #fff;
+                            }
+                        }
+
+                        .btn-add {
+                            background: $color-green;
+                            color: white;
+                            border: none;
+
+                            &:hover {
+                                background: darken($color-green, 10%);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .printers-list {
+        h2 {
+            margin-bottom: 1.5rem;
+        }
+
+        .no-data {
+            color: #888;
+            font-style: italic;
+            background: rgba(255, 255, 255, 0.02);
+            padding: 3rem;
+            text-align: center;
+            border-radius: 12px;
+            border: 1px dashed rgba(255, 255, 255, 0.1);
+        }
+
+        .printers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 1.5rem;
+
+            .printer-card {
+                background: rgba(30, 30, 35, 0.6);
+                border-radius: 12px;
+                padding: 1.5rem;
+                border: 1px solid rgba(255, 255, 255, 0.05);
+                box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+                transition: transform 0.2s ease, box-shadow 0.2s;
+                position: relative;
+                overflow: hidden;
+
+                &::before {
+                    content: '';
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 4px;
+                    height: 100%;
+                }
+
+                &.liber {
+                    &::before { background: $color-green; }
+                }
+
+                &.ocupat {
+                    border: 1px solid rgba(217, 68, 54, 0.2);
+                    &::before { background: #D94436; }
+                }
+
+                .printer-header {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: flex-start;
+                    margin-bottom: 0.8rem;
+                    padding-left: 10px;
+
+                    h3 {
+                        margin: 0;
+                        font-size: 1.25rem;
+                        color: #fff;
+                        font-family: $font-heading;
+                    }
+
+                    .btn-delete {
+                        background: none;
+                        border: none;
+                        color: #666;
+                        cursor: pointer;
+                        font-size: 1.1rem;
+                        transition: color 0.2s;
+                        padding: 5px;
+
+                        &:hover {
+                            color: #D94436;
+                        }
+                    }
+                }
+
+                .printer-desc {
+                    color: #aaa;
+                    font-size: 0.95rem;
+                    margin-bottom: 1.5rem;
+                    min-height: 2lh;
+                    padding-left: 10px;
+                }
+
+                .printer-status-control {
+                    background: rgba(0, 0, 0, 0.3);
+                    padding: 1.2rem;
+                    border-radius: 8px;
+                    border: 1px solid rgba(255, 255, 255, 0.05);
+
+                    label {
+                        display: block;
+                        font-size: 0.85rem;
+                        color: #888;
+                        margin-bottom: 0.5rem;
+                        font-weight: 500;
+                    }
+
+                    .time-control-row {
+                        display: flex;
+                        gap: 1rem;
+                        margin-bottom: 1rem;
+                        align-items: center;
+
+                        @media (max-width: 480px) {
+                            flex-direction: column;
+                            align-items: stretch;
+                        }
+
+                        .time-input {
+                            flex: 1;
+                            padding: 0.6rem;
+                            border-radius: 6px;
+                            border: 1px solid rgba(255, 255, 255, 0.1);
+                            background: rgba(0, 0, 0, 0.5);
+                            color: #fff;
+                            font-size: 1rem;
+                            font-family: inherit;
+                            outline: none;
+                            transition: border-color 0.2s;
+
+                            &::-webkit-calendar-picker-indicator {
+                                filter: invert(1);
+                                opacity: 0.6;
+                            }
+
+                            &:focus {
+                                border-color: $color-green;
+                            }
+                        }
+
+                        .btn-free {
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            gap: 0.5rem;
+                            padding: 0.6rem 1rem;
+                            background: rgba(32, 138, 57, 0.2);
+                            color: $color-green;
+                            border: 1px solid rgba(32, 138, 57, 0.5);
+                            border-radius: 6px;
+                            font-weight: 600;
+                            cursor: pointer;
+                            transition: all 0.2s;
+
+                            &:hover {
+                                background: $color-green;
+                                color: #fff;
+                            }
+                        }
+                    }
+
+                    .status-badge {
+                        font-size: 0.95rem;
+                        color: #aaa;
+
+                        strong {
+                            color: #fff;
+                            font-weight: 600;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@keyframes modalFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}

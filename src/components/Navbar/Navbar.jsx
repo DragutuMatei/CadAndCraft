@@ -79,6 +79,7 @@ const Navbar = () => {
           <li><Link to="/#about" className="nav-pill" onClick={(e) => handleScrollTo(e, 'about')}>Despre</Link></li>
           <li><Link to="/handbook" className="nav-pill">Regulament</Link></li>
           <li><Link to="/team" className="nav-pill">Echipa</Link></li>
+          <li><Link to="/printers" className="nav-pill">Imprimante 3D</Link></li>
         </ul>
 
         {/* Hamburger Mobil & Tableta */}
@@ -100,6 +101,7 @@ const Navbar = () => {
         <Link to="/#about" onClick={(e) => handleScrollTo(e, 'about')}>Despre</Link>
         <Link to="/handbook" onClick={closeMobileMenu}>Regulament</Link>
         <Link to="/team" onClick={closeMobileMenu}>Echipa</Link>
+        <Link to="/printers" onClick={closeMobileMenu}>Imprimante 3D</Link>
       </div>
 
     </nav>

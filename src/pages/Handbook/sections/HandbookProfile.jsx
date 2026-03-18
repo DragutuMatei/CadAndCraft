@@ -18,13 +18,13 @@ const HandbookProfile = () => {
 
                     <SectionHeading level={2} id="hard-skills"><span className="num-font">1</span>. Hard Skills (Abilități Tehnice)</SectionHeading>
                     <p>
-                        Candidatul ideal deține competențe solide în domenii tehnice esențiale pentru tema evenimentului, care implică proiectarea și implementarea unui sistem mecanic inovator. Aceste abilități asigură capacitatea de a transforma idei abstracte în modele funcționale, respectând constrângerile temei.
+                        Candidatul ideal deține competențe solide în domenii tehnice esențiale pentru tema evenimentului, care implică proiectarea și implementarea unui sistem inovator. Aceste abilități asigură capacitatea de a transforma idei abstracte în modele funcționale, respectând constrângerile temei.
                     </p>
                     <ul>
-                        <li><span className="keyword-highlight">Expertiză în CAD:</span> Cunoștințe în software de proiectare 3D. Abilitatea de a crea modele precise, cu simulări de mișcare și analize structurale, adaptate la soluții creative precum mecanisme bazate pe gravitație, fricțiune sau propulsie pasivă.</li>
+                        <li><span className="keyword-highlight">Expertiză în CAD:</span> Cunoștințe în software de proiectare 3D. Abilitatea de a crea modele precise, cu simulări de mișcare și analize structurale, adaptate la soluții creative.</li>
                         <li><span className="keyword-highlight">Imprimare 3D și Prototipare:</span> Cunoștințe de bază în pregătirea fișierelor pentru imprimare 3D (de exemplu, formatul STL și slicing cu software precum Cura sau PrusaSlicer), familiarizare cu materialele comune (cum ar fi PLA și ABS) și noțiuni despre optimizarea designului pentru rezistență și greutate redusă, utile pentru testarea funcțională a robotului.</li>
                         <li><span className="keyword-highlight">Robotică și Mecanică:</span> Cunoștințe în principii de mecanică (fricțiune, echilibru, forțe), electronică de bază. Abilitatea de a aborda tema în moduri variate.</li>
-                        <li><span className="keyword-highlight">Electronică:</span> Cunoștințe de bază în electronică.</li>
+                        <li><span className="keyword-highlight">Electronică:</span> Cunoștințe de bază în electronică sunt necesare pe parcusul testării finale a robotului.</li>
                         <li><span className="keyword-highlight">Alte Aspecte Tehnice:</span> Cunoștințe teoretice în ceea ce privește un ciclu complet de producție (de la concept la testare), pentru a fii capabil de depanare și optimizare.</li>
                     </ul>
 
@@ -91,13 +91,13 @@ const HandbookProfile = () => {
 
                     <SectionHeading level={2} id="hard-skills"><span className="num-font">1</span>. Hard Skills (Technical Abilities)</SectionHeading>
                     <p>
-                        The ideal candidate possesses solid skills in essential technical areas for the event's theme, which involves the design and implementation of an innovative mechanical system. These skills ensure the ability to transform abstract ideas into functional models, respecting the theme's constraints.
+                        The ideal candidate possesses solid skills in essential technical areas for the event's theme, which involves the design and implementation of an innovative system. These skills ensure the ability to transform abstract ideas into functional models, respecting the theme's constraints.
                     </p>
                     <ul>
-                        <li><span className="keyword-highlight">CAD Expertise:</span> Knowledge in 3D design software. Ability to create precise models, with motion simulations and structural analyzes, adapted to creative solutions such as mechanisms based on gravity, friction or passive propulsion.</li>
+                        <li><span className="keyword-highlight">CAD Expertise:</span> Knowledge in 3D design software. Ability to create precise models, with motion simulations and structural analyzes, adapted to creative solutions.</li>
                         <li><span className="keyword-highlight">3D Printing and Prototyping:</span> Basic knowledge in preparing files for 3D printing (e.g. STL format and slicing with software such as Cura or PrusaSlicer), familiarity with common materials (such as PLA and ABS) and notions about design optimization for strength and low weight, useful for the functional testing of the robot.</li>
                         <li><span className="keyword-highlight">Robotics and Mechanics:</span> Knowledge of principles of mechanics (friction, balance, forces), basic electronics. Ability to approach the theme in varied ways.</li>
-                        <li><span className="keyword-highlight">Electronics:</span> Basic knowledge in electronics.</li>
+                        <li><span className="keyword-highlight">Electronics:</span> Basic knowledge in electronics is required during the final testing of the robot.</li>
                         <li><span className="keyword-highlight">Other Technical Aspects:</span> Theoretical knowledge regarding a complete production cycle (from concept to testing), to be able to debug and optimize.</li>
                     </ul>
 

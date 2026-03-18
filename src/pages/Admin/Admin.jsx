@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useMemo } from "react";
+import { useNavigate } from "react-router-dom";
 import emailjs from '@emailjs/browser';
 import "./Admin.scss";
 import TeamDetailsModal from "./TeamDetailsModal"; // Import Modal
@@ -66,6 +67,7 @@ ChartJS.register(
 );
 
 const Admin = () => {
+  const navigate = useNavigate();
   const [user, setUser] = useState(null);
   const [registrations, setRegistrations] = useState([]);
   const [admins, setAdmins] = useState([]);
@@ -887,7 +889,18 @@ const Admin = () => {
   return (
     <div className="admin-dashboard">
       <header className="admin-header">
-        <h2>CAD&Craft Admin</h2>
+        <div className="admin-header-left">
+          <h2>CAD&Craft Admin</h2>
+          <div className="admin-quick-actions">
+            <button onClick={() => navigate('/admin/confirmare/check')} className="admin-action-btn btn-primary">
+              <span className="icon">📷</span> Scan QR
+            </button>
+            <button onClick={() => navigate('/admin/printers')} className="admin-action-btn btn-warning">
+              <span className="icon">🔌</span> Imprimante
+            </button>
+          </div>
+        </div>
+
         <div className="user-info">
           <span>{user.email}</span>
           <button onClick={handleLogout} className="btn-logout">
