@@ -44,67 +44,6 @@ const HandbookRules = () => {
 
                     <SectionHeading level={2} id="competition-rules"><span className="num-font">4.3</span>. Regulile din timpul competiției</SectionHeading>
                     <SectionHeading level={3} id="marathon-challenge">Proba Maraton</SectionHeading>
-                    <p>Proba de Maraton constă într-o confruntare directă între două sau mai multe echipe, în care proiectele realizate sunt testate în condiții identice.</p>
-
-                    <p><strong>Obiectiv:</strong></p>
-                    <p>Robotul fiecărei echipe trebuie să transporte un recipient plin (doză sau cutie de suc) de-a lungul sforii, în direcția de deplasare stabilită, pe toate cele 3 trasee evaluate, în cel mai scurt timp posibil.</p>
-
-                    <p><strong>Ce înseamnă “sensul de parcurgere al traseului”?</strong></p>
-                    <p>Sensul de parcurgere al traseului reprezintă direcția obligatorie de deplasare pe sfoară; este unică și este indicată de punctul de “Start” și cel de “Finish”.</p>
-
-                    <p><strong>Specificatii ale traseelor:</strong></p>
-                    <ul>
-                        <li>Proba practică este alcătuită din 3 (trei) trasee care trebuie parcurse de către fiecare robot:</li>
-                        <li>Traseu 1:
-                            <ul>
-                                <li>Dispus paralel cu solul;</li>
-                                <li>Distanța totală a sforii: 2000 mm;</li>
-                                <li>Distanța utilă (de parcurs): 1500 mm (delimitată de marcajele de start și finish);</li>
-                                <li>Înălțimea de amplasare a sforii față de sol: 600 mm.</li>
-                            </ul>
-                        </li>
-                        <li>Traseu 2:
-                            <ul>
-                                <li>Înclinat la un unghi de aproximativ 25 de grade față de sol;</li>
-                                <li>Distanța totală a sforii: 2000 mm;</li>
-                                <li>Distanța utilă (de parcurs): 1500 mm (delimitată de marcajele de start și finish);</li>
-                                <li>Înalțimea punctului de plecare raportat la sol: 400 mm;</li>
-                                <li>Înalțimea punctului final raportat la sol: 1200 mm;</li>
-                            </ul>
-                        </li>
-                    </ul>
-
-                    <ul>
-                        <li>Pentru evaluarea performanței fiecărui robot, pe lângă notarea juraților, se adoptă și un sistem de punctare obiectiv:
-                            <ul>
-                                <li>Toate traseele vor fi marcate la fiecare 300 mm cu un punct de control (checkpoint), reprezentat de un tub termocontractabil colorat, ultimul reprezentând chiar marcajul de sosire (finish);</li>
-                                <li>Pentru fiecare punct de control atins de robot, echipei i se va acorda un punct;</li>
-                                <li>Pentru punctajul pe distanță, se va lua în considerare cea mai mare distanță parcursă de robot pe fiecare traseu;</li>
-                                <li>La fiecare încercare, pe oricare dintre trasee, roboții vor fi cronometrați;</li>
-                                <li>În urma executării probei practice de către toate echipele, primilor trei roboți care au parcurs cea mai mare distanță în cel mai scurt timp li se vor acorda puncte de viteză astfel: 3 puncte pentru cel mai rapid, 2 puncte pentru al doilea și 1 punct pentru al treilea;</li>
-                                <li>Punctele acordate pentru viteză vor fi distribuite separat pentru echipele din mediul preuniversitar și cele din mediul universitar, la fiecare traseu în parte;</li>
-                            </ul>
-                        </li>
-                    </ul>
-
-                    <p><strong>Terminologie:</strong></p>
-                    <p>Pentru o bună înțelegere a punctelor ce urmează, se vor lua în considerare următoarele definiții:</p>
-                    <ul>
-                        <li>Axa longitudinală a robotului este axa paralelă cu direcția de deplasare (sensul de parcurgere a traseului);</li>
-                        <li>Axa transversală a robotului este axa perpendiculară pe direcția de deplasare și paralelă cu solul;</li>
-                        <li>Axa verticală a robotului este axa perpendiculară pe planul format de axa longitudinală și axa transversală;</li>
-                    </ul>
-
-                    <p><strong>Specificații ale proiectelor:</strong></p>
-                    <ul>
-                        <li>Dimensiunea maximă admisă pe axa longitudinală: 125 mm;</li>
-                        <li>Dimensiunea maximă admisă pe axa transversală: 125 mm;</li>
-                        <li>Dimensiunea maximă admisă pe axa verticală: 200 mm;</li>
-                        <li>Robotul nu are voie să deterioreze traseul în timpul probelor/testelor;</li>
-                        <li>Robotul trebuie să se afle permanent în contact cu sfoara traseului, în cel puțin un punct;</li>
-                        <li>Robotul poate avea maxim 5 puncte de contact simultane cu sfoara;</li>
-                    </ul>
-
                     <p>❗ Este interzisă utilizarea altor componente electronice în afara celor oferite de către organizatori!</p>
                 </div>
             ) : (
