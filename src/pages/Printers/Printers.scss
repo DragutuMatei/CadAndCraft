@@ -208,13 +208,32 @@
     .printers-page {
         .printers-hero {
             padding: 130px 1.5rem 4rem; // pt 90px navbar
-            h1 { font-size: 2.5rem; }
+            .hero-content {
+                h1 { font-size: 2.5rem; }
+            }
         }
         .printers-main-content {
             padding: 2rem 1.5rem;
             
             .printers-grid {
                 grid-template-columns: 1fr;
+            }
+        }
+    }
+}
+
+@media (max-width: 480px) {
+    .printers-page {
+        .printers-hero {
+            padding: 110px 1rem 3rem;
+            .hero-content {
+                h1 { 
+                    font-size: 1.8rem; 
+                    line-height: 1.2;
+                }
+                p {
+                    font-size: 1rem;
+                }
             }
         }
     }
