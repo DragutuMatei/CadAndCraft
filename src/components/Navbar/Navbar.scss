@@ -78,7 +78,7 @@ $bg-pill: rgba(0, 0, 0, 0.4);
   .nav-pill {
     text-decoration: none;
     color: $color-white-off;
-
+    text-wrap-mode: nowrap;
     font-family: $font-heading;
     font-size: 1.15rem;
     font-weight: 700;
