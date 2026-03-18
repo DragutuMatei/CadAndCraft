@@ -80,6 +80,7 @@ const Admin = () => {
   const [isExporting, setIsExporting] = useState(false);
   const [gata, setGata] = useState("");
   const [isTableOpen, setIsTableOpen] = useState(false);
+  const [confirmariSearchTerm, setConfirmariSearchTerm] = useState("");
 
   const [accepteds, setAccepteds] = useState([]);
   const getAccepted = () => {
@@ -770,6 +771,12 @@ const Admin = () => {
     });
   }, [registrations, searchTerm]);
 
+  const filteredConfirmari = useMemo(() => {
+    if (!confirmariSearchTerm.trim()) return accepteds;
+    const lowerTerm = confirmariSearchTerm.toLowerCase();
+    return accepteds.filter((a) => a.email?.toLowerCase().includes(lowerTerm));
+  }, [accepteds, confirmariSearchTerm]);
+
   // --- Detailed Stats Component ---
   const StatsList = ({ title, data }) => (
     <div className="stats-list-box">
@@ -1119,7 +1126,16 @@ const Admin = () => {
         <div className="admin-section">
           <div className="section-header-row">
             <h3>Confirmări Prezență (Live)</h3>
-            <div className="header-actions">
+            <div className="header-actions" style={{ display: "flex", alignItems: "center", gap: "15px" }}>
+              <div className="search-bar">
+                <FaSearch />
+                <input
+                  type="text"
+                  placeholder="Caută după email..."
+                  value={confirmariSearchTerm}
+                  onChange={(e) => setConfirmariSearchTerm(e.target.value)}
+                />
+              </div>
               <button onClick={async () => await sendmails()} className="btn-export"
                 style={{
                   padding: "8px 12px",
@@ -1152,8 +1168,8 @@ const Admin = () => {
                 </tr>
               </thead>
               <tbody>
-                {accepteds &&
-                  accepteds.map((a, index) => {
+                {filteredConfirmari &&
+                  filteredConfirmari.map((a, index) => {
                     return (
                       <tr key={index}>
                         <td>{index + 1}</td>
