@@ -58,6 +58,19 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
+        flex-wrap: wrap; // Allows stacking on small screens
+
+        .admin-header-left {
+            display: flex;
+            align-items: center;
+
+            @media (max-width: 768px) {
+                flex-direction: column;
+                align-items: flex-start;
+                width: 100%;
+                margin-bottom: 10px;
+            }
+        }
 
         h2 {
             margin: 0;
@@ -90,10 +103,66 @@
         }
     }
 
+    .admin-quick-actions {
+        display: flex;
+        gap: 12px;
+        margin-left: 20px;
+
+        @media (max-width: 768px) {
+            margin-left: 0;
+            margin-top: 15px;
+            width: 100%;
+            justify-content: space-between;
+        }
+
+        .admin-action-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            border-radius: 6px;
+            border: none;
+            color: white;
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: transform 0.2s ease, filter 0.2s ease;
+
+            @media (max-width: 480px) {
+                padding: 8px 12px;
+                font-size: 0.85rem;
+                flex: 1;
+                justify-content: center;
+            }
+
+            &:hover {
+                transform: translateY(-2px);
+                filter: brightness(1.1);
+            }
+
+            .icon {
+                font-size: 1.1rem;
+            }
+
+            &.btn-primary {
+                background-color: #3b82f6;
+            }
+
+            &.btn-warning {
+                background-color: #f59e0b;
+                color: #fff;
+            }
+        }
+    }
+
     .admin-content {
         padding: 30px;
         max-width: 1400px;
         margin: 0 auto;
+
+        @media (max-width: 768px) {
+            padding: 15px; // Reduced padding on mobile
+        }
 
         .admin-section {
             background: white;
@@ -207,6 +276,8 @@
                 margin-bottom: 20px;
                 border-bottom: 1px solid #eee;
                 padding-bottom: 15px;
+                flex-wrap: wrap; // Allow wrapping on small screens
+                gap: 15px;
 
                 h3 {
                     margin: 0;
@@ -222,6 +293,11 @@
                     border-radius: 25px;
                     border: 1px solid #ddd;
                     width: 350px;
+                    max-width: 100%; // Responsive width
+
+                    @media (max-width: 500px) {
+                        width: 100%;
+                    }
 
                     svg {
                         color: #999;
@@ -271,6 +347,7 @@
                     text-align: left;
                     border-bottom: 1px solid #eee;
                     vertical-align: middle;
+                    white-space: nowrap; // Ensure content doesn't break in unpredictable ways on mobile
                 }
 
                 th {
@@ -375,6 +452,11 @@
                 gap: 10px;
                 max-width: 500px;
                 margin-top: 15px;
+
+                @media (max-width: 500px) {
+                    flex-direction: column;
+                    width: 100%;
+                }
 
                 input {
                     flex: 1;

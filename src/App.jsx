@@ -24,6 +24,8 @@ const Register = React.lazy(() => import('./pages/Register/Register'));
 const Inscrieri = React.lazy(() => import('./pages/Inscrieri/Inscrieri'));
 const Handbook = React.lazy(() => import('./pages/Handbook/Handbook'));
 const Admin = React.lazy(() => import('./pages/Admin/Admin'));
+const Printers = React.lazy(() => import('./pages/Printers/Printers'));
+const AdminPrinters = React.lazy(() => import('./pages/Admin/AdminPrinters'));
 
 // Loading Fallback Component
 const Loading = () => (
@@ -59,6 +61,11 @@ function App() {
           <Route path="/team" element={<Team />} />
           <Route path="/inscriere" element={<Inscrieri />} />
           {/* <Route path="/inscriere" element={<Register />} /> */}
+          <Route path="/printers" element={
+            <React.Suspense fallback={<Loading />}>
+              <Printers />
+            </React.Suspense>
+          } />
 
           <Route path="/qr/*" element={<Redirect />} />
 
@@ -78,6 +85,12 @@ function App() {
         <Route path="/admin" element={
           <React.Suspense fallback={<Loading />}>
             <Admin />
+          </React.Suspense>
+        } />
+        
+        <Route path="/admin/printers" element={
+          <React.Suspense fallback={<Loading />}>
+            <AdminPrinters />
           </React.Suspense>
         } />
 

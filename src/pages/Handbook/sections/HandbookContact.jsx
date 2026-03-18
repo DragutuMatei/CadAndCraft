@@ -13,12 +13,12 @@ const HandbookContact = () => {
             <div className="handbook-block">
                 <p>
                     {language === 'RO'
-                        ? 'Dacă ai întrebări sau ai nevoie de ajutor pe durata evenimentului, nu ezita să ne contactezi.'
-                        : 'If you have any questions or need assistance during the event, don\'t hesitate to reach out.'}
+                        ? 'Dacă ai întrebări sau ai nevoie de ajutor pe durata evenimentului, nu ezita să ne contactezi prin grupul de WhatsApp sau direct prin coordonator.'
+                        : 'If you have any questions or need assistance during the event, don\'t hesitate to reach out through the WhatsApp group or directly to the coordinator.'}
                 </p>
                 <SectionHeading level={3} id="main-contacts">{language === 'RO' ? 'Contacte principale:' : 'Main Contacts:'}</SectionHeading>
                 <p>📧 Email: <a href="mailto:office@osfiir.ro">office@osfiir.ro</a></p>
-                <p>📧 Email: <a href="mailto:cadathon2026@osfiir.ro">cadathon<span className="num-font">2026</span>@osfiir.ro</a></p>
+                <p>📧 Email: <a href="mailto:cadandcraft@osfiir.ro">cadandcraft@osfiir.ro</a></p>
 
                 <SectionHeading level={2} id="organizing-team">{language === 'RO' ? 'Echipa de organizare' : 'Organizing Team'}</SectionHeading>
                 <div className="handbook-table-container">

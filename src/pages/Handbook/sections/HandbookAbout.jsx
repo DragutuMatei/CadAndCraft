@@ -15,7 +15,7 @@ const HandbookAbout = () => {
                     <div className="handbook-block">
                         <SectionHeading level={2} id="what-is"><span className="num-font">1.1</span> Ce este <span className="keyword-highlight">CAD<span className="brand-ampersand">&</span>Craft</span>?</SectionHeading>
                         <p>
-                            <span className="keyword-highlight">CAD<span className="brand-ampersand">&</span>Craft</span> este un eveniment de tip <span className="keyword-highlight">CADATHON</span>, inspirat de formatul Hackathon-urilor, care se concentrează pe aplicarea cunoștințelor de proiectare pentru a rezolva o temă prestabilită. Participanții sunt provocați să își folosească creativitatea în proiectare asistată pe calculator pentru a dezvolta soluții inovative și eficiente, într-un cadru colaborativ și competitiv.
+                            <span className="keyword-highlight">CAD<span className="brand-ampersand">&</span>Craft</span> este un eveniment de tip <span className="keyword-highlight">CADATHON</span>, inspirat de formatul hackathon-urilor, care se concentrează pe aplicarea cunoștințelor de proiectare pentru a rezolva o temă prestabilită. Participanții sunt provocați să își folosească creativitatea în proiectare asistată pe calculator pentru a dezvolta soluții inovative și eficiente, într-un cadru colaborativ și competitiv.
                         </p>
                         <p>
                             Evenimentul, ce implică o competiție intensă, invită studenții pasionați de inginerie și proiectare asistată de calculator să colaboreze și să își dezvolte abilitățile practice în modelarea 3D a unei piese folosind platforma <span className="keyword-highlight">Onshape</span> sau alt software CAD.
@@ -24,7 +24,7 @@ const HandbookAbout = () => {
                             Participanții își pot pune la încercare cunoștințele tehnice în cadrul unei provocări captivante ce presupune transformarea ideilor în realitate. Concurenții vor fi împărțiți în echipe, în cadrul unui maraton de <span className="keyword-highlight"><span className="num-font">24</span> de ore</span>.
                         </p>
                         <p>
-                            Tema proiectului va fi dezvăluită la începutul evenimentului, asigurând astfel o provocare echitabilă pentru toți participanții și stimulându-le capacitatea de adaptare și găsirea unor soluții îndrăznețe.
+                            Tema proiectului va fi dezvăluită la începutul evenimentului, asigurând astfel o provocare echitabilă pentru toți participanții și stimulându-le capacitatea de adaptare și găsirea unor soluții îndrăznețe .
                         </p>
                     </div>
 
@@ -69,6 +69,9 @@ const HandbookAbout = () => {
                             <li>Find innovative solutions to develop a functional prototype;</li>
                             <li>Develop CAD design skills using <span className="keyword-highlight">Onshape</span> and other software.</li>
                         </ul>
+                        <p>
+                            CAD<span className="brand-ampersand">&</span>Craft was born from the idea of challenging students with knowledge in CAD, CAE, and CAM concepts. This event offers an opportunity to apply this knowledge practically to create a functional product.
+                        </p>
                     </div>
                 </>
             )}
