@@ -81,6 +81,8 @@ const Admin = () => {
   const [gata, setGata] = useState("");
   const [isTableOpen, setIsTableOpen] = useState(false);
   const [confirmariSearchTerm, setConfirmariSearchTerm] = useState("");
+  const [isMailing, setIsMailing] = useState(false);
+  const [mailingStatus, setMailingStatus] = useState({ total: 0, current: 0, successes: 0, errors: 0, details: [] });
 
   const [accepteds, setAccepteds] = useState([]);
   const getAccepted = () => {
@@ -863,34 +865,55 @@ const Admin = () => {
     setGata(true);
   };
   const sendmails = async () => {
-    const data =
-      await getDocs(collection(db, "confirmari"));
-      // [
-      //   {
-      //     email: "mateidr7@gmail.com",
-      //     secure_id: "e7h2b6db-f777-4i40-99j9-0ca1f8bdf35e4",
-      //     status: "neconfirmat",
-      //   },
-      // ];
+    if (isMailing) return;
     
-      // console.log(data);
+    const querySnapshot = await getDocs(collection(db, "confirmari"));
+    const total = querySnapshot.docs.length;
     
-    data.forEach(async (d) => {
-      const link = `${process.env.REACT_APP_LINK}/formular/?id=${d.secure_id}&mail=${d.email}`;
+    if (total === 0) {
+      alert("Nu există email-uri de trimis.");
+      return;
+    }
 
-      const linkQR = `${process.env.REACT_APP_LINK}/admin/confirmare/verif/?id=${d.secure_id}`;
-      const qrDataUrl = await QRCode.toDataURL(linkQR);
-      console.log("Generated QR code data URL:", qrDataUrl);
+    if (!window.confirm(`Ești sigur că vrei să trimiți ${total} email-uri?`)) return;
 
-      console.log(d.data());
+    setIsMailing(true);
+    setMailingStatus({ total, current: 0, successes: 0, errors: 0, details: [] });
 
-      await emailjs.send(process.env.REACT_APP_M_ID, process.env.REACT_APP_TEM_ID, {
-        secure_id: d.data().secure_id,
-        email: d.data().email,
-        qrUrl: qrDataUrl,
-      }, process.env.REACT_APP_M_PUBLIC);
-
-    });
+    for (let i = 0; i < querySnapshot.docs.length; i++) {
+      const d = querySnapshot.docs[i];
+      const docData = d.data();
+      const email = docData.email;
+      
+      try {
+        const linkQR = `${process.env.REACT_APP_LINK}/admin/confirmare/verif/?id=${docData.secure_id}`;
+        const qrDataUrl = await QRCode.toDataURL(linkQR);
+        
+        await emailjs.send(process.env.REACT_APP_M_ID, process.env.REACT_APP_TEM_ID, {
+          secure_id: docData.secure_id,
+          email: email,
+          qrUrl: qrDataUrl,
+        }, process.env.REACT_APP_M_PUBLIC);
+        
+        setMailingStatus(prev => ({
+          ...prev,
+          current: i + 1,
+          successes: prev.successes + 1,
+          details: [...prev.details, { email, status: 'success' }]
+        }));
+      } catch (error) {
+        console.error(`Error sending email to ${email}:`, error);
+        setMailingStatus(prev => ({
+          ...prev,
+          current: i + 1,
+          errors: prev.errors + 1,
+          details: [...prev.details, { email, status: 'error', error: error.message }]
+        }));
+      }
+    }
+    
+    setIsMailing(false);
+    alert(`Proces finalizat: ${querySnapshot.docs.length} email-uri procesate.`);
   };
 
   return (
@@ -1136,21 +1159,26 @@ const Admin = () => {
                   onChange={(e) => setConfirmariSearchTerm(e.target.value)}
                 />
               </div>
-              <button onClick={async () => await sendmails()} className="btn-export"
+              <button onClick={async () => { console.log(uuidv4());console.log(await serverTimestamp()) }}>generate id</button>
+              <button 
+                onClick={async () => await sendmails()} 
+                className="btn-export"
+                disabled={isMailing}
                 style={{
                   padding: "8px 12px",
-                  backgroundColor: "#109D59",
+                  backgroundColor: isMailing ? "#ccc" : "#109D59",
                   color: "white",
                   border: "none",
                   borderRadius: "4px",
-                  cursor: "pointer",
+                  cursor: isMailing ? "not-allowed" : "pointer",
                   display: "flex",
                   alignItems: "center",
                   gap: "8px",
                   fontSize: "14px",
                   fontWeight: "bold",
                 }}>
-                Trimite Email-uri Check-IN
+                {isMailing ? <FaSpinner className="spinner" /> : null}
+                {isMailing ? `Se trimit... (${mailingStatus.current}/${mailingStatus.total})` : "Trimite Email-uri Check-IN"}
               </button>
             </div>
           </div>
@@ -1232,6 +1260,71 @@ const Admin = () => {
           </form>
         </div>
       </div>
+
+      {/* Mailing Progress Modal */}
+      {(isMailing || mailingStatus.details.length > 0) && (
+        <div className="admin-modal-overlay" style={{ zIndex: 1100 }}>
+          <div className="admin-modal" style={{ maxWidth: '600px' }}>
+            <div className="modal-header">
+              <h2>Status Trimitere Email-uri</h2>
+              {!isMailing && (
+                <button className="close-btn" onClick={() => setMailingStatus({ total: 0, current: 0, successes: 0, errors: 0, details: [] })}>
+                  <FaTimes />
+                </button>
+              )}
+            </div>
+            <div className="modal-scroll-content">
+              <div className="mailing-progress-summary" style={{ marginBottom: '20px', padding: '15px', background: '#f8f9fa', borderRadius: '8px' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '10px' }}>
+                  <span>Progres: <strong>{mailingStatus.current} / {mailingStatus.total}</strong></span>
+                  <span>Succes: <strong style={{ color: '#2e7d32' }}>{mailingStatus.successes}</strong></span>
+                  <span>Erori: <strong style={{ color: '#d32f2f' }}>{mailingStatus.errors}</strong></span>
+                </div>
+                <div className="progress-bar-container" style={{ width: '100%', height: '10px', background: '#eee', borderRadius: '5px', overflow: 'hidden' }}>
+                  <div className="progress-bar" style={{ 
+                    width: mailingStatus.total > 0 ? `${(mailingStatus.current / mailingStatus.total) * 100}%` : '0%', 
+                    height: '100%', 
+                    backgroundColor: '#3b82f6', 
+                    transition: 'width 0.3s' 
+                  }}></div>
+                </div>
+              </div>
+              <div className="mailing-details-list" style={{ maxHeight: '300px', overflowY: 'auto' }}>
+                <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+                  <thead>
+                    <tr>
+                      <th style={{ textAlign: 'left', padding: '8px', borderBottom: '1px solid #eee' }}>Email</th>
+                      <th style={{ textAlign: 'right', padding: '8px', borderBottom: '1px solid #eee' }}>Status</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {mailingStatus.details.map((detail, idx) => (
+                      <tr key={idx}>
+                        <td style={{ padding: '8px', borderBottom: '1px solid #f9f9f9', fontSize: '0.9rem' }}>{detail.email}</td>
+                        <td style={{ padding: '8px', borderBottom: '1px solid #f9f9f9', textAlign: 'right' }}>
+                          <span className={`status-badge ${detail.status === 'success' ? 'venit' : 'anulat'}`}>
+                            {detail.status === 'success' ? 'Trimis' : 'Eroare'}
+                          </span>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            {!isMailing && (
+              <div style={{ padding: '15px', textAlign: 'right', borderTop: '1px solid #eee' }}>
+                <button 
+                  className="btn-view" 
+                  onClick={() => setMailingStatus({ total: 0, current: 0, successes: 0, errors: 0, details: [] })}
+                >
+                  Închide
+                </button>
+              </div>
+            )}
+          </div>
+        </div>
+      )}
 
       {/* Details Modal */}
       {selectedReg && (
