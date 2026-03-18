@@ -41,9 +41,8 @@ const HandbookRules = () => {
                         <li>Respectarea deciziilor juriului este obligatorie și face parte din spiritul competiției.</li>
                         <li>Orice conflict trebuie gestionat în mod civilizat, iar în caz de necesitate, organizatorii vor interveni pentru a asigura o soluționare adecvată.</li>
                     </ul>
-
-                    <SectionHeading level={2} id="competition-rules"><span className="num-font">4.3</span>. Regulile din timpul competiției</SectionHeading>
-                    <SectionHeading level={3} id="marathon-challenge">Proba Maraton</SectionHeading>
+ 
+                  
                     <p>❗ Este interzisă utilizarea altor componente electronice în afara celor oferite de către organizatori!</p>
                 </div>
             ) : (
