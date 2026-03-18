@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { collection, query, onSnapshot } from 'firebase/firestore';
+import { collection, query, onSnapshot, updateDoc, doc } from 'firebase/firestore';
 import { db } from '../../utils/fire';
 import './Printers.scss';
 import { FaPrint, FaClock, FaCheckCircle, FaExclamationCircle } from 'react-icons/fa';
@@ -29,6 +29,34 @@ const Printers = () => {
         return () => clearInterval(timer);
     }, []);
 
+    // Auto-check for expired printers
+    useEffect(() => {
+        const checkExpired = async () => {
+            const now = new Date();
+            const currentHHMM = `${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}`;
+            
+            for (const printer of printers) {
+                if (printer.status === 'Ocupat' && printer.ocupataPanaLa) {
+                    if (currentHHMM >= printer.ocupataPanaLa) {
+                        try {
+                            await updateDoc(doc(db, 'printers', printer.id), {
+                                ocupataPanaLa: '',
+                                status: 'Liber'
+                            });
+                            console.log(`Public view auto-released printer ${printer.nume}`);
+                        } catch (error) {
+                            console.error("Error auto-releasing printer:", error);
+                        }
+                    }
+                }
+            }
+        };
+
+        if (printers.length > 0) {
+            checkExpired();
+        }
+    }, [printers]);
+
     // Helper pt a calcula formatul HH:MM:SS rams
     const getRemainingTimeFormat = (targetTimeStr) => {
         if (!targetTimeStr) return null;
@@ -38,12 +66,6 @@ const Printers = () => {
         targetDate.setHours(targetHours, targetMinutes, 0, 0);
 
         let diff = targetDate.getTime() - currentTime.getTime();
-
-        // Dacă ora setată este în trecut față de ora curentă, înseamnă că este pentru ziua următoare
-        if (diff < 0) {
-            targetDate.setDate(targetDate.getDate() + 1);
-            diff = targetDate.getTime() - currentTime.getTime();
-        }
 
         if (diff <= 0) {
             return "00:00:00"; // Expirat/Liber

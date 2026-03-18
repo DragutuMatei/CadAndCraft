@@ -61,6 +61,27 @@ const AdminPrinters = () => {
         // For simplicity, we just leave it active or attach to state later.
     };
 
+    // Auto-check for expired printers
+    useEffect(() => {
+        const interval = setInterval(() => {
+            const now = new Date();
+            const currentHHMM = `${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}`;
+            
+            printers.forEach(printer => {
+                if (printer.status === 'Ocupat' && printer.ocupataPanaLa) {
+                    // Check if current time is >= occupied until time
+                    // Simple HH:MM comparison works for same-day context
+                    if (currentHHMM >= printer.ocupataPanaLa) {
+                        console.log(`Auto-releasing printer ${printer.nume} (expired at ${printer.ocupataPanaLa})`);
+                        setFree(printer.id);
+                    }
+                }
+            });
+        }, 30000); // Check every 30 seconds
+
+        return () => clearInterval(interval);
+    }, [printers]);
+
     const handleLogin = async () => {
         try {
             await signInWithPopup(auth, googleProvider);
