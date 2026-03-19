@@ -38,6 +38,9 @@ import {
   FaSearch,
   FaDownload,
   FaSpinner,
+  FaEdit,
+  FaCheck,
+  FaPaperPlane,
 } from "react-icons/fa";
 import {
   Chart as ChartJS,
@@ -83,6 +86,9 @@ const Admin = () => {
   const [confirmariSearchTerm, setConfirmariSearchTerm] = useState("");
   const [isMailing, setIsMailing] = useState(false);
   const [mailingStatus, setMailingStatus] = useState({ total: 0, current: 0, successes: 0, errors: 0, details: [] });
+  const [editingEmailId, setEditingEmailId] = useState(null);
+  const [tempEmail, setTempEmail] = useState("");
+  const [resendingEmailId, setResendingEmailId] = useState(null);
 
   const [accepteds, setAccepteds] = useState([]);
   const getAccepted = () => {
@@ -90,7 +96,7 @@ const Admin = () => {
     const unsubscribe = onSnapshot(q, (snapshot) => {
       const data = [];
       snapshot.forEach((doc) => {
-        data.push(doc.data());
+        data.push({ id: doc.id, ...doc.data() });
       });
       setAccepteds(data);
     });
@@ -916,6 +922,46 @@ const Admin = () => {
     alert(`Proces finalizat: ${querySnapshot.docs.length} email-uri procesate.`);
   };
 
+  const handleUpdateEmail = async (id, newEmail) => {
+    if (!newEmail || !newEmail.includes('@')) {
+      alert("Te rog introdu o adresă de email validă.");
+      return;
+    }
+    try {
+      const docRef = doc(db, "confirmari", id);
+      await updateDoc(docRef, { email: newEmail });
+      setEditingEmailId(null);
+      alert("Email actualizat cu succes!");
+    } catch (error) {
+      console.error("Error updating email:", error);
+      alert("Eroare la actualizarea email-ului.");
+    }
+  };
+
+  const handleSingleResend = async (record) => {
+    if (resendingEmailId) return;
+    if (!window.confirm(`Vrei să retrimiti email-ul către ${record.email}?`)) return;
+
+    setResendingEmailId(record.id);
+    try {
+      const linkQR = `${process.env.REACT_APP_LINK}/admin/confirmare/verif/?id=${record.secure_id}`;
+      const qrDataUrl = await QRCode.toDataURL(linkQR);
+      
+      await emailjs.send(process.env.REACT_APP_M_ID, process.env.REACT_APP_TEM_ID, {
+        secure_id: record.secure_id,
+        email: record.email,
+        qrUrl: qrDataUrl,
+      }, process.env.REACT_APP_M_PUBLIC);
+      
+      alert(`Email trimis cu succes către ${record.email}!`);
+    } catch (error) {
+      console.error(`Error sending email to ${record.email}:`, error);
+      alert(`Eroare la trimiterea email-ului: ${error.message}`);
+    } finally {
+      setResendingEmailId(null);
+    }
+  };
+
   return (
     <div className="admin-dashboard">
       <header className="admin-header">
@@ -1193,6 +1239,7 @@ const Admin = () => {
                   <th>Email</th>
                   <th>Acord Parental</th>
                   <th>Status Check-IN</th>
+                  <th style={{ textAlign: "center" }}>Acțiuni</th>
                 </tr>
               </thead>
               <tbody>
@@ -1206,7 +1253,82 @@ const Admin = () => {
                         </td>
                         <td>{a?.echipa}</td>
                         <td>{a?.varsta}</td>
-                        <td>{a?.email}</td>
+                        <td style={{ minWidth: "250px" }}>
+                          {editingEmailId === a.id ? (
+                            <div style={{ display: "flex", gap: "5px", alignItems: "center" }}>
+                              <input
+                                type="email"
+                                value={tempEmail}
+                                onChange={(e) => setTempEmail(e.target.value)}
+                                style={{
+                                  padding: "4px 8px",
+                                  borderRadius: "4px",
+                                  border: "1px solid #3b82f6",
+                                  fontSize: "0.9rem",
+                                  width: "100%",
+                                  outline: "none",
+                                }}
+                                autoFocus
+                              />
+                              <button
+                                onClick={() => handleUpdateEmail(a.id, tempEmail)}
+                                style={{
+                                  background: "#109D59",
+                                  color: "white",
+                                  border: "none",
+                                  borderRadius: "4px",
+                                  padding: "5px 8px",
+                                  cursor: "pointer",
+                                  display: "flex",
+                                  alignItems: "center",
+                                }}
+                                title="Salvează"
+                              >
+                                <FaCheck />
+                              </button>
+                              <button
+                                onClick={() => setEditingEmailId(null)}
+                                style={{
+                                  background: "#d32f2f",
+                                  color: "white",
+                                  border: "none",
+                                  borderRadius: "4px",
+                                  padding: "5px 8px",
+                                  cursor: "pointer",
+                                  display: "flex",
+                                  alignItems: "center",
+                                }}
+                                title="Anulează"
+                              >
+                                <FaTimes />
+                              </button>
+                            </div>
+                          ) : (
+                            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                              <span>{a?.email}</span>
+                              <button
+                                onClick={() => {
+                                  setEditingEmailId(a.id);
+                                  setTempEmail(a.email);
+                                }}
+                                style={{
+                                  background: "transparent",
+                                  border: "none",
+                                  color: "#666",
+                                  cursor: "pointer",
+                                  padding: "4px",
+                                  display: "flex",
+                                  alignItems: "center",
+                                  transition: "color 0.2s",
+                                }}
+                                className="edit-email-btn"
+                                title="Editează Email"
+                              >
+                                <FaEdit />
+                              </button>
+                            </div>
+                          )}
+                        </td>
                         <td>
                           {a?.acordParental
                             ? a?.varsta === "minor"
@@ -1220,6 +1342,31 @@ const Admin = () => {
                           >
                             {a?.status}
                           </span>
+                        </td>
+                        <td style={{ textAlign: "center" }}>
+                          <button
+                            onClick={() => handleSingleResend(a)}
+                            disabled={resendingEmailId === a.id}
+                            title="Retrimite Email cu noile date"
+                            style={{
+                              background: resendingEmailId === a.id ? "#ccc" : "#3b82f6",
+                              color: "white",
+                              border: "none",
+                              borderRadius: "4px",
+                              padding: "8px 12px",
+                              cursor: resendingEmailId === a.id ? "not-allowed" : "pointer",
+                              display: "inline-flex",
+                              alignItems: "center",
+                              justifyContent: "center",
+                              transition: "background 0.2s",
+                            }}
+                          >
+                            {resendingEmailId === a.id ? (
+                              <FaSpinner className="fa-spin" style={{ animation: "spin 1s linear infinite" }} />
+                            ) : (
+                              <FaPaperPlane />
+                            )}
+                          </button>
                         </td>
                       </tr>
                     );
