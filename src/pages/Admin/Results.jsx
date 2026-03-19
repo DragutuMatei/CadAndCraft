@@ -92,6 +92,10 @@ function Results() {
 
   const updateConfirmare = async () => {
     if (!docRef) return;
+    if (!data || data.status !== STATUS_CONFIRMARE.CONFIRMAT) {
+      alert("Check-in-ul nu este posibil. Participantul trebuie să completeze mai întâi formularul de confirmare prezență.");
+      return;
+    }
     try {
       await updateDoc(docRef, {
         status: STATUS_CONFIRMARE.VENIT,
@@ -174,14 +178,22 @@ function Results() {
                 
                 <div className="actions">
                     {data.status === STATUS_CONFIRMARE.VENIT ? (
-                         <div style={{ textAlign: "center", color: "#2e7d32", fontWeight: "bold" }}>
+                        <div style={{ textAlign: "center", color: "#2e7d32", fontWeight: "bold" }}>
                             <FaCheckCircle size={20} style={{verticalAlign: "middle", marginRight: "8px"}} />
                             Participantul a făcut check-in deja.
-                         </div>
-                    ) : (
+                        </div>
+                    ) : data.status === STATUS_CONFIRMARE.CONFIRMAT ? (
                         <button onClick={updateConfirmare}>
                             Confirmă Prezența
                         </button>
+                    ) : (
+                        <div style={{ textAlign: "center", color: "#b45309", fontWeight: "bold", display: "flex", flexDirection: "column", alignItems: "center", gap: "8px" }}>
+                            <FaExclamationCircle size={20} style={{verticalAlign: "middle", marginRight: "8px"}} />
+                            Participantul nu a completat formularul de confirmare.
+                            <span style={{ fontWeight: "normal", fontSize: "0.9em", color: "#78350f" }}>
+                                Check-in-ul nu poate fi efectuat până când participantul nu completează formularul de confirmare prezență.
+                            </span>
+                        </div>
                     )}
                 </div>
             </div>
