@@ -1,0 +1,370 @@
+[1]
+4. Rules 
+CAD&amp;Craft
+4.1. Reguli Generale
+Fiecare echip&#259; trebuie s&#259; proiecteze &#537;i s&#259;
+                construiasc&#259; un produs func&#539;ional conform temei anun&#539;ate la &icirc;nceputul
+                competi&#539;iei.
+Sunt permise orice platforme de proiectare CAD, 
+inclusiv
+&nbsp;Onshape, Fusion 360, SolidWorks, dar este
+                &icirc;ncurajat&#259; folosirea platformei Onshape.
+Participan&#539;ii trebuie s&#259; respecte regulile de fair-play
+                &#537;i s&#259; colaboreze &icirc;n mod etic.
+Organizatorii vor oferi suport logistic, dar nu vor interveni
+                &icirc;n procesul de proiectare sau construc&#539;ie.
+Este interzis&#259; utilizarea altor componente electrice ce nu
+                se afl&#259; &icirc;n kitul de participare.
+Echipele trebuie s&#259; finalizeze proiectele &icirc;n
+                intervalul de timp stabilit.
+Orice form&#259; de sabotaj asupra echipelor 
+concurente
+&nbsp;sau a echipamentelor este strict
+                interzis&#259;.
+Fiecare echip&#259; este responsabil&#259; de siguran&#539;a
+                &#537;i buna func&#539;ionare a propriului echipament.
+Comunicarea &#537;i colaborarea &icirc;ntre echipe sunt permise,
+                dar fiecare echip&#259; trebuie s&#259; realizeze un proiect propriu.
+4.1.1.&Icirc;nscrieri individuale &#537;i completarea echipelor:
+De&#537;i echipele sunt formate ideal din 3 participan&#539;i, se
+                accept&#259; &#537;i &icirc;nscrieri individuale sau cu un num&#259;r mai mic de membri.
+Participan&#539;ii &icirc;nscri&#537;i &icirc;n echipe
+                &rdquo;incomplete&rdquo; vor fi aloca&#539;i altor echipe pentru a asigura completarea acestora &#537;i
+                pentru a maximiza num&#259;rul de echipe participante.
+4.2. Etic&#259; &#537;i Respect &icirc;n Competi&#539;ie
+&Icirc;n cadrul evenimentului, participan&#539;ii sunt &icirc;ncuraja&#539;i s&#259;
+            adopte un comportament care promoveaz&#259; respectul reciproc:
+Echipele sunt &icirc;ncurajate s&#259; &icirc;&#537;i demonstreze
+                abilit&#259;&#539;ile &icirc;ntr-un mod etic, respect&acirc;nd regulile competi&#539;iei &#537;i
+                deciziile juriului.
+Competi&#539;ia trebuie s&#259; se desf&#259;&#537;oare
+                &icirc;ntr-un cadru fair-play, f&#259;r&#259; practici incorecte, sau lips&#259; de respect
+                fa&#539;&#259; de ceilal&#539;i participan&#539;i.
+Fiecare membru al echipei are responsabilitatea de a contribui activ
+                la efortul colectiv al echipei sale.
+Excluderea sau marginalizarea unui participant pe orice criteriu
+                este strict descurajat&#259;.
+Respectarea deciziilor juriului este obligatorie &#537;i face parte
+                din spiritul competi&#539;iei.
+Orice conflict trebuie gestionat &icirc;n mod civilizat, iar
+                &icirc;n caz de necesitate, organizatorii vor interveni pentru a asigura o solu&#539;ionare
+                adecvat&#259;.
+4.3. Regulile din timpul competi&#539;iei 
+Proba Maraton
+Proba
+&nbsp;de Maraton
+&nbsp;const&#259; &icirc;ntr-o 
+confruntare
+&nbsp;direct&#259; &icirc;ntre dou&#259; sau mai multe echipe, &icirc;n care proiectele realizate
+            sunt testate &icirc;n condi&#539;ii identice.
+Obiectiv:
+Proba practic&#259; va pune la &icirc;ncercare adaptabilitatea &#537;i
+            eficien&#539;a robo&#539;ilor, prin 3 trasee, cu scopul de a le parcurge &icirc;n cel mai scurt timp
+            posibil.
+Specifica&#539;ii ale proiectelor (robotul):
+Lungime maxim&#259; admis&#259;: 160 mm;
+L&#259;&#539;ime maxim&#259; admis&#259;: 160 mm;
+&Icirc;n&#259;l&#539;ime maxim&#259; admis&#259;: 200 mm;
+Robotul poate dispune de un mecanism de prindere,
+                ac&#539;ionare, str&acirc;ngere etc. modificabil &icirc;ntre probe prin ac&#539;ionarea unor componente
+                mecanice. Se consider&#259; acceptat&#259; orice metod&#259; de modificare a robotului cu condi&#539;ia
+                ca structura sa ini&#539;ial&#259; (design-ul final) s&#259; nu sufere schimb&#259;ri (ad&#259;ugarea
+                sau eliminarea de componente);
+Robotul trebuie s&#259; permit&#259; montarea &#537;i
+                transportarea unei doze, &icirc;n momentele indicate de c&#259;tre organizatori;
+&Icirc;ncerc&#259;rile de &icirc;ndeplinire a probelor nu
+                trebuie s&#259; afecteze starea traseului. Prin aceasta se &icirc;n&#539;elege c&#259; pe timpul
+                test&#259;rii &#537;i a valid&#259;rii pe timpul probelor, contactul traseelor cu robotul s&#259; nu se
+                soldeze cu deteriorarea componentelor din care sunt alc&#259;tuite traseele.
+&#10071; 
+&nbsp;Este interzis&#259; utilizarea altor
+            componente electronice &icirc;n alc&#259;tuirea robo&#539;ilor, &icirc;n afara celor oferite de c&#259;tre
+            organizatori! Se interzice utilizarea oric&#259;ror componente mecanice care nu sunt ob&#539;inute prin
+            fabrica&#539;ie aditiv&#259; &icirc;n timpul competi&#539;iei sau furnizate de organizatori. 
+Este permis&#259; utilizarea componentelor proprii de leg&#259;tur&#259;
+            (&#537;uruburi, &#537;aibe, piuli&#539;e etc.) care nu faciliteaz&#259; mecanismul final de ac&#539;ionare.
+Specifica&#539;ii pentru obiectul transportat:
+&Icirc;n timpul probelor care specific&#259; acest aspect ,
+                robo&#539;ii vor trebui s&#259; transporte o doz&#259; de 250 ml.
+Doza trebuie s&#259; fie sigilat&#259; &#537;i plin&#259; (nu se
+                accept&#259; doze goale sau perforate);
+Ansamblul robotului cu doza trebuie s&#259; se &icirc;ncadreze
+                &icirc;n dimensiunile de gabarit definite ca limite de dimensionare ale robotului &icirc;n prezentul
+                document;
+Ansamblul robotului cu doza trebuie s&#259; se realizeze
+                f&#259;r&#259; &icirc;ndep&#259;rtarea sau ad&#259;ugarea de componente;
+Doza, din moment ce este ata&#537;at&#259; robotului, nu are
+                voie s&#259; ating&#259; componentele traseelor &icirc;n mod direct sau solul;
+Specifica&#539;iile traseelor &#537;i desf&#259;&#537;urarea probelor:
+Proba practic&#259; este alc&#259;tuit&#259; din 3 (trei) trasee
+                care trebuie parcurse de c&#259;tre fiecare robot:
+Traseul 1 (format din 2 p&#259;r&#539;i):
+Prima parte:
+&nbsp;O scar&#259; de
+                lungimea de 220 mm care face trecerea de la sol la o sfoar&#259; orizontal&#259;. Scara presupune un
+                num&#259;r de 8 trepte cu diametru de 10mm, aflate la 25 mm una de alta, paralele cu sfoara
+                orizontal&#259;. L&#259;&#539;imea sc&#259;rii este de 70 mm, iar aceasta se afl&#259; &icirc;n contact
+                permanent cu solul. Parcurgerea sc&#259;rii se efectueaz&#259; &icirc;n mod obligatoriu f&#259;r&#259;
+                doz&#259;, dar se acord&#259; o bonifica&#539;ie echipei care reu&#537;e&#537;te parcurgerea cu tot cu
+                doz&#259;. Parcurgerea sc&#259;rii are loc dinspre sol c&#259;tre sfoar&#259;, sfoara fiind
+                considerat&#259; a 9-a treapt&#259;, de care robotul trebuie s&#259; se ata&#537;eze, moment &icirc;n
+                care aceast&#259; parte a traseului se consider&#259; &icirc;ndeplint&#259;. 
+La finalizarea parcurgerii sc&#259;rii, echipele pot dispune robotul pe noua
+            direc&#539;ie de deplasare. Dac&#259; ace&#537;tia doresc s&#259; reconfigureze robotul (f&#259;r&#259; a
+            elimina sau a ad&#259;uga componente), vor fi depuncta&#539;i. &Icirc;n eventualitatea &icirc;n care robotul
+            nu va necesita o reorientare a direc&#539;iei de deplasare, echipa va primi puncte extra. Pentru partea a
+            doua, robotul trebuie &icirc;nc&#259;rcat cu doza &icirc;n mod obligatoriu. &Icirc;n acest moment, se poate
+            &icirc;ncepe parcurgerea p&#259;r&#539;ii secundare a traseului.
+A doua parte parte:
+&nbsp;Sfoara
+                orizontal&#259; de care este ata&#537;at&#259; scara anterior descris&#259;, trebuie parcurs&#259;
+                &icirc;n direc&#539;ia indicat&#259; de organizatori. Distan&#539;a care trebuie parcurs&#259; este de
+                1500 mm, iar traseul se consider&#259; &icirc;ndeplinit prin parcurgerea acestei distan&#539;e. Robotul
+                trebuie s&#259; se afle permanent &icirc;n contact cu sfoara. 
+Dup&#259; finalizarea primului traseu, echipa care tocmai a terminat va exclude doza
+            din ansamblul robotului, va reconfigura robotul f&#259;r&#259; a ad&#259;uga sau a elimina componente
+            &#537;i va dispune robotul la urm&#259;torul traseu, &icirc;ntr-o zon&#259; indicat&#259; de organizatori.
+            Se a&#537;teapt&#259; &icirc;ncercarea primului traseu de c&#259;tre toate echipele, dup&#259; care cele
+            care au finalizat cu succes primul traseu, vor dispune robotul pe al doilea traseu &icirc;n aceea&#537;i
+            ordine a &icirc;ncerc&#259;rii primului.
+Parcurgerea traseului urm&#259;tor este condi&#539;ionat de &icirc;ndeplinirea
+            primului traseu, integral. 
+Traseul 2:
+O sfoar&#259; dispus&#259; perpendicular cu solul,
+                ag&#259;&#539;at&#259;, care trebuie parcurs&#259; pe &icirc;n&#259;l&#539;imea de 1500 mm. Traseul
+                &icirc;ncepe de la punctul indicat de organizatori, pozi&#539;ia ini&#539;ial&#259; a robotului fiind
+                &icirc;n contact cu sfoara. Se parcurge traseul de la sol &icirc;n sus, astfel robotul &rdquo;se
+                ca&#539;&#259;r&#259;&rdquo;, f&#259;r&#259; doz&#259;. Traseul este finalizat la momentul atingerii
+                &icirc;n&#259;l&#539;imii indicate, punct &icirc;n care robotul trebuie s&#259; fie &icirc;n reapus.
+                Prin aceasta se &icirc;n&#539;elege c&#259; robotul r&#259;m&acirc;ne ag&#259;&#539;at de sfoara
+                vertical&#259; la finalul acestui traseu, reprezent&acirc;nd punctul de &icirc;ncepere celui de-al
+                treilea traseu. Pe tot parcursul acestui traseu, robotul trebuie s&#259; fie &icirc;n contact permanent
+                cu sfoara. 
+Finalizarea cu succes a treseului doi reprezint&#259; condi&#539;ia pentru
+            &icirc;ncercarea traseului trei. Se respect&#259; regula anterioar&#259;, prin care echipele dispun pe
+            r&acirc;nd robo&#539;ii pentru a &icirc;ncerca al treilea traseu, dup&#259; care vor asambla doza, vor
+            reconfigura robotul f&#259;r&#259; a ad&#259;uga sau a elimina componente &#537;i vor a&#537;tepta
+            finalizarea acestui traseu de c&#259;tre toate echipele. Ordinea finaliz&#259;rii reprezint&#259; ordinea
+            &icirc;nceperii ultimului traseu.
+Traseul 3:
+O sfoar&#259; vertical&#259;, aceea&#537;i ca la traseul
+                num&#259;rul doi care trebuie parcurs&#259; &icirc;n sens invers, adic&#259; de la punctul de finalizare
+                al traseului anterior p&acirc;n&#259; la punctul de &icirc;ncepere al traseului anterior, printr-o
+                cobor&acirc;re controlat&#259;, cu tot cu doza. Robotul trebuie s&#259; fie &icirc;n contact permanent
+                cu sfoara, iar finalizarea traseului este considerat&#259; valid&#259; dac&#259; robotul coboar&#259;
+                controlat, adic&#259; nu se poate interpreta drept c&#259;dere parcugerea acestui traseu.
+&nbsp;
+Toate sforile din componen&#539;a traseelor vor avea material
+                termocontractant pe suprafa&#539;a lor;
+Sforile au un diametru de 10mm;
+Scara utlizat&#259; la primul traseu este din acid polilactic,
+                fabricat aditiv, iar profilele treptelor sunt circulare pe o parte &#537;i paralelipipedice pe partea
+                opus&#259;;
+Toate sforile care se vor afla &icirc;n contact cu robo&#539;ii
+                vor fi tensionate prin noduri &#537;i &#537;uruburi de tensionare astfel &icirc;nc&acirc;t robo&#539;ii
+                s&#259; parcurg&#259; un traseu c&acirc;t mai rigid;
+Este responsabilitatea fiec&#259;rei echipe ca &icirc;n momentul
+                test&#259;rii robo&#539;ilor, &icirc;n cazul &icirc;n care prototipul e&#537;ueaz&#259;, s&#259; nu se
+                piard&#259; progresul realizat p&acirc;n&#259; la acel punct. 
+Regulament privind incercarile:
+Parcurgerea componentei secundare &#537;i traseele doi &#537;i trei
+                sunt condi&#539;ionate;
+Echipele au trei &icirc;ncerc&#259;ri pentru fiecare traseu,
+                &icirc;n cazul &icirc;n care &icirc;ndeplinesc condi&#539;iile de parcurgere;
+Jurizarea din punct de vedere al func&#539;ionalit&#259;&#539;ii are
+                &icirc;n vedere criteriul &icirc;ndeplinirii traseelor, iar pentru ierarhizare timpul de
+                parcurgere;
+&Icirc;n timpul alocat fiec&#259;rui traseu, chiar dac&#259; un
+                robot parcurge traseul f&#259;r&#259; a necesita &icirc;ncerc&#259;ri ulterioare din cele trei, echipa
+                se poate folosi de acele &icirc;ncerc&#259;ri pentru a ob&#539;ine, eventual, un timp mai bun;
+Fiecare &icirc;ncercare va fi cronometrat&#259; de c&#259;tre un
+                membru al organiz&#259;rii;
+Se va lua &icirc;n considerare timpul cel mai bun de parcurgere al
+                traseelor
+Pentru primul traseu, echipele dispun de 3 minute (pentru
+                &icirc;ntregul traseu) pentru a-l &icirc;ndeplini;
+Pentru cel de-al doilea &#537;i cel de-al treilea traseu, sunt
+                dispuse c&acirc;te un minut &#537;i 30 de secunde pentru fiecare dintre cele dou&#259; trasee;;
+Dac&#259; durata maxim&#259; alocat&#259; traseului 
+expir&#259;
+&nbsp;&icirc;n timpul unei parcurgeri, echipa pierde
+                dreptul de a sus&#539;ine &icirc;ncerc&#259;rile r&#259;mase;
+&Icirc;n cazul &icirc;n care robotul unei echipe, &icirc;ntr-una din
+                cele trei &icirc;ncerc&#259;ri cu timp r&#259;mas pentru parcurgere, se defecteaz&#259;, timpul nu este
+                oprit pentru ca echipa s&#259; remedieze problema ap&#259;rut&#259;. Orice timp de mentenan&#539;&#259;
+                intervenit &icirc;n timpul probei se include &icirc;n timpul total alocat acelui traseu;
+Repararea unei defec&#539;iuni se poate realiza doar dac&#259;
+                configura&#539;ia final&#259; a robotului nu se modific&#259;; 
+Jura&#539;ii vor fi prezen&#539;i la fiecare dintre
+                &icirc;ncerc&#259;ri pentru a evalua performan&#539;a;
+Organizatorii au dreptul de a dispune orice metod&#259;
+                organizatoric&#259; pentru buna desf&#259;&#537;urare a probelor;
+Participan&#539;ii sunt obliga&#539;i s&#259; men&#539;in&#259; o
+                conduit&#259; decent&#259; &icirc;n timpul &icirc;ncerc&#259;rilor proprii &#537;i a echipelor
+                celelalte.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+4.1. General Rules
+Each team must design and build a functional product according to
+                the theme announced at the beginning of the competition.
+Any CAD design platform is allowed, including Onshape, Fusion 360,
+                and SolidWorks, but the use of Onshape is encouraged.
+Participants must adhere to fair-play rules and collaborate
+                ethically.
+Organizers will provide logistical support but will not intervene in
+                the design or construction process.
+The use of electrical components not included in the participation
+                kit is strictly prohibited.
+Teams must complete their projects within the allotted time
+                frame.
+Any form of sabotage against competing teams or equipment is
+                strictly forbidden.
+Each team is responsible for the safety and proper functioning of
+                its own equipment.
+Communication and collaboration between teams are allowed, but each
+                team must develop its own project.
+4.1.1. Individual Registrations and Team Completion
+Although teams are ideally composed of three participants,
+                individual or smaller-team registrations are accepted.
+Participants in &ldquo;incomplete&rdquo; teams will be allocated to
+                other teams to ensure full participation and maximize the number of competing teams.
+4.2. Ethics and Respect in Competition
+During the event, participants are encouraged to uphold a respectful and fair
+            competition environment:
+Teams should demonstrate their skills ethically, respecting the
+                competition rules and jury decisions.
+The competition must be conducted fairly, without unfair practices
+                or disrespect toward other participants.
+Each team member has a responsibility to actively contribute to
+                their team&#39;s collective effort.
+Exclusion or marginalization of any participant based on any
+                criteria is strictly discouraged.
+Respecting the jury&#39;s decisions is mandatory and part of the
+                competition spirit.
+Any conflicts must be handled civilly; if necessary, organizers will
+                intervene to ensure a proper resolution.
+4.3. Competition Rules
+Marathon Challenge
+The 
+Marathon Challenge
+&nbsp;is a
+            direct showdown between two or more teams, where their completed projects are tested under identical
+            conditions.
+Objective
+The practical test will challenge the robots&rsquo; adaptability and efficiency
+            through three courses, with the goal of completing them in the shortest possible time.
+Project Specifications (Robot)
+Maximum length: 125 mm
+Maximum width: 125 mm
+Maximum height: 200 mm
+The robot may include a gripping, actuating, or clamping mechanism
+                that can be adjusted between trials by operating mechanical components. Any modification method is
+                allowed, provided that the robot&rsquo;s initial structure (final design) is not altered (no components
+                may be added or removed).
+The robot must be capable of mounting and transporting a can at
+                moments specified by the organizers.
+Attempts to complete the courses must not damage the track. This
+                means that during testing and official runs, any contact between the robot and the track must not result
+                in deterioration of the track components.
+&#10071; The use of any electronic components other than those provided by the
+            organizers is strictly prohibited.
+ The use of mechanical components not produced through additive
+            manufacturing during the competition or supplied by the organizers is also prohibited.
+Participants are allowed to use their own fastening components (screws, washers,
+            nuts, etc.), as long as they do not contribute to the robot&rsquo;s functional mechanism.
+Specifications for the Transported Object
+During tasks that require it, robots must transport a 250 ml
+                can.
+The can must be sealed and full (empty or punctured cans are not
+                allowed).
+The robot + can assembly must fit within the size constraints
+                defined above.
+The can must be attached without adding or removing
+                components.
+Once attached, the can must not directly touch the track components
+                or the ground.
+Course Specifications and Trial Structure
+The practical test consists of three courses that each robot must complete:
+Course 1 (Two Parts)
+Part 1:
+&nbsp;A ladder of length Y mm that transitions from the
+                    ground to a horizontal rope. The ladder has 8 steps, each with a diameter of 10 mm, spaced 25 mm
+                    apart, and parallel to the horizontal rope. The ladder is 70 mm wide and remains in constant contact
+                    with the ground.
+&nbsp;
+The ladder must be
+                    completed without the can; however, a bonus is awarded if a team completes it while carrying the
+                    can.
+&nbsp;
+The climb is performed from the
+                    ground upward, with the rope considered the 9th step. The robot must attach itself to the
+                    rope&mdash;at that point, this part is considered complete.
+-
+After finishing the ladder,
+            teams may reposition the robot in the new direction of movement, reconfigure it (without adding or removing
+            components), and must attach the can before starting the second part.
+Part 2:
+&nbsp;The horizontal rope attached to the ladder must be traversed in the direction specified
+                by the organizers. Distance: X mm. The robot must remain in continuous contact with the rope. The course
+                is completed once this distance is covered.
+-After completing Course 1, teams must remove the can, reconfigure the robot
+            (without adding/removing components), and position it at the next course in a designated area. All teams
+            must attempt Course 1 before moving on. Only those who successfully complete it may proceed to Course 2, in
+            the same order.
+Course 2
+A vertical rope suspended perpendicular to the ground must be
+                climbed over a height of X mm.
+The robot starts at a position indicated by the organizers, already
+                in contact with the rope.
+The robot climbs upward without the can.
+The course is completed when the required height is reached.
+At the end, the robot must remain attached to the rope&mdash;this
+                becomes the starting point for Course 3.
+The robot must maintain continuous contact with the rope
+                throughout.
+Course 3
+The same vertical rope from Course 2 must now be traversed in
+                reverse&mdash;from the previous endpoint back to the starting point&mdash;by a controlled descent, this
+                time carrying the can.
+The robot must remain in continuous contact with the rope.
+The descent must be controlled (it must not simply fall).
+-The course is considered complete only if the descent is clearly controlled.
+Additional Track Details
+All ropes will be covered with heat-shrink material.
+Rope diameter: 10 mm.
+The ladder is made of additively manufactured polylactic acid (PLA),
+                with steps that are circular on one side and rectangular on the other.
+All ropes will be properly tensioned to ensure rigidity.
+-Each team is responsible for ensuring that, during testing, any failure of their
+            prototype does not result in losing previously achieved progress.
+Attempt Rules
+The second part of Course 1, as well as Courses 2 and 3, are
+                conditional upon completing the previous stages.
+Each team has three attempts per course (if progression conditions
+                are met).
+Evaluation is based on course completion, with ranking determined by
+                completion time.
+Even if a robot completes a course in one attempt, remaining
+                attempts may be used to improve the time.
+Each attempt is timed by an organizer.
+The best completion time will be considered.
+Time limit for Course 1: 3 minutes (total).
+Time limit for Courses 2 and 3: 1 minute 30 seconds each.
+If the time limit expires during an attempt, the team loses any
+                remaining attempts.
+If a robot malfunctions during an attempt, the timer will not be
+                stopped. Any repair time counts toward the total allotted time.
+Repairs are allowed only if the robot&rsquo;s final configuration
+                remains unchanged.
+Judges will be present during all attempts.
+Organizers reserve the right to implement any necessary measures to
+                ensure the smooth running of the competition.
+Participants are required to maintain proper conduct during both
+                their own attempts and those of other teams.
+Splaiul Independen&#539;ei nr. 313, Sala CB 010, Corp CB, FIIR
+CIF: 25354119
+www.osfiir.ro
+, 
+cadathon2026@osfiir.ro
+, 
+office@osfiir.ro
+[1]
