@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import {
-    FaInfoCircle, FaBook, FaCalendarAlt, FaPenNib, FaEnvelope, FaListUl
+    FaInfoCircle, FaBook, FaCalendarAlt, FaPenNib, FaEnvelope, FaListUl, FaDownload
 } from 'react-icons/fa';
 import { HiMenu, HiX } from 'react-icons/hi';
 import './HandbookSidebar.scss';
@@ -24,6 +24,7 @@ const HandbookSidebar = ({ language, setLanguage }) => {
         { label: language === 'RO' ? 'Format Eveniment' : 'Event Format', icon: <FaListUl />, link: '/handbook/format' },
         { label: language === 'RO' ? 'Regulament' : 'Rules', icon: <FaBook />, link: '/handbook/rules' },
         { label: language === 'RO' ? 'Premii' : 'Awards', icon: <FaPenNib />, link: '/handbook/awards' },
+        { label: language === 'RO' ? 'Șablon Fișă Tehnică' : 'Technical Sheet Template', icon: <FaDownload />, link: '/Șablon Fișa Tehnică.docx', download: true },
         { label: language === 'RO' ? 'Profil Candidat' : 'Candidate Profile', icon: <FaInfoCircle />, link: '/handbook/profile' },
         { label: 'Contact', icon: <FaEnvelope />, link: '/handbook/contact' }
     ];
@@ -55,15 +56,28 @@ const HandbookSidebar = ({ language, setLanguage }) => {
 
                     <nav className="handbook-sidebar__nav">
                         {sections.map((section, index) => (
-                            <NavLink
-                                key={index}
-                                to={section.link}
-                                className={({ isActive }) => `handbook-sidebar__link ${isActive ? 'active' : ''}`}
-                                onClick={() => setIsOpen(false)}
-                            >
-                                <span className="icon">{section.icon}</span>
-                                <span className="text">{section.label}</span>
-                            </NavLink>
+                            section.download ? (
+                                <a
+                                    key={index}
+                                    href={section.link}
+                                    download
+                                    className="handbook-sidebar__link"
+                                    onClick={() => setIsOpen(false)}
+                                >
+                                    <span className="icon">{section.icon}</span>
+                                    <span className="text">{section.label}</span>
+                                </a>
+                            ) : (
+                                <NavLink
+                                    key={index}
+                                    to={section.link}
+                                    className={({ isActive }) => `handbook-sidebar__link ${isActive ? 'active' : ''}`}
+                                    onClick={() => setIsOpen(false)}
+                                >
+                                    <span className="icon">{section.icon}</span>
+                                    <span className="text">{section.label}</span>
+                                </NavLink>
+                            )
                         ))}
                     </nav>
 
