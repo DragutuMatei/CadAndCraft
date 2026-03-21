@@ -65,7 +65,7 @@ const HandbookRules = () => {
 
                     <p><strong>Specificații pentru obiectul transportat:</strong></p>
                     <ul>
-                        <li>În timpul probelor care specifică acest aspect, roboții vor trebui să transporte o doză de <span className="num-font">250</span> ml.</li>
+                        <li>În timpul probelor care specifică acest aspect , roboții vor trebui să transporte o doză de <span className="num-font">250</span> ml.</li>
                         <li>Doza trebuie să fie sigilată și plină (nu se acceptă doze goale sau perforate);</li>
                         <li>Ansamblul robotului cu doza trebuie să se încadreze în dimensiunile de gabarit definite ca limite de dimensionare ale robotului în prezentul document;</li>
                         <li>Ansamblul robotului cu doza trebuie să se realizeze fără îndepărtarea sau adăugarea de componente;</li>
@@ -76,7 +76,7 @@ const HandbookRules = () => {
                     Proba practică este alcătuită din <span className="num-font">3</span> (trei) trasee care trebuie parcurse de către fiecare robot:</p>
 
                     <p><strong>Traseul 1 (format din <span className="num-font">2</span> părți):</strong><br />
-                    <strong>Prima parte:</strong> O scară de lungimea de <span className="num-font">220</span> mm care face trecerea de la sol la o sfoară orizontală. Scara presupune un număr de <span className="num-font">8</span> trepte cu diametru de <span className="num-font">10</span> mm, aflate la <span className="num-font">25</span> mm una de alta, paralele cu sfoara orizontală. Lățimea scării este de <span className="num-font">70</span> mm, iar aceasta se află în contact permanent cu solul. Parcurgerea scării se efectuează în mod obligatoriu fără doză, dar se acordă o bonificație echipei care reușește parcurgerea cu tot cu doză. Parcurgerea scării are loc dinspre sol către sfoară, sfoara fiind considerată a <span className="num-font">9</span>-a treaptă, de care robotul trebuie să se atașeze, moment în care această parte a traseului se consideră îndeplintă.</p>
+                    <strong>Prima parte:</strong> O scară de lungimea de <span className="num-font">220</span> mm care face trecerea dinspre sol la o sfoară orizontală. Scara presupune un număr de <span className="num-font">8</span> trepte cu diametru de <span className="num-font">5</span> mm, aflate la <span className="num-font">25</span> mm una de alta, paralele cu sfoara orizontală. Lățimea scării este de <span className="num-font">70</span> mm și este suspendată de sfoară, orientată spre sol. Parcurgerea scării se efectuează fără doză, dar se acordă o bonificație echipei care reușește parcurgerea cu tot cu doză. Parcurgerea scării are loc dinspre sol către sfoară, sfoara fiind considerată a <span className="num-font">9</span>-a treaptă, de care robotul trebuie să se atașeze, moment în care această parte a traseului se consideră îndeplintă.</p>
                     <p>La finalizarea parcurgerii scării, echipele pot dispune robotul pe noua direcție de deplasare. Dacă aceștia doresc să reconfigureze robotul (fără a elimina sau a adăuga componente), vor fi depunctați. În eventualitatea în care robotul nu va necesita o reorientare a direcției de deplasare, echipa va primi puncte extra. Pentru partea a doua, robotul trebuie încărcat cu doza în mod obligatoriu. În acest moment, se poate începe parcurgerea părții secundare a traseului.</p>
 
                     <p><strong>A doua parte parte:</strong> Sfoara orizontală de care este atașată scara anterior descrisă, trebuie parcursă în direcția indicată de organizatori. Distanța care trebuie parcursă este de <span className="num-font">1500</span> mm, iar traseul se consideră îndeplinit prin parcurgerea acestei distanțe. Robotul trebuie să se afle permanent în contact cu sfoara.</p>
@@ -84,7 +84,7 @@ const HandbookRules = () => {
                     <p>Parcurgerea traseului următor este condiționat de îndeplinirea primului traseu, integral.</p>
 
                     <p><strong>Traseul 2:</strong><br />
-                    O sfoară dispusă perpendicular cu solul, agățată, care trebuie parcursă pe înălțimea de <span className="num-font">1500</span> mm. Traseul începe de la punctul indicat de organizatori, poziția inițială a robotului fiind în contact cu sfoara. Se parcurge traseul de la sol în sus, astfel robotul ”se cațără”, fără doză. Traseul este finalizat la momentul atingerii înălțimii indicate, punct în care robotul trebuie să fie în reapus. Prin aceasta se înțelege că robotul rămâne agățat de sfoara verticală la finalul acestui traseu, reprezentând punctul de începere celui de-al treilea traseu. Pe tot parcursul acestui traseu, robotul trebuie să fie în contact permanent cu sfoara.</p>
+                    O sfoară dispusă perpendicular cu solul, agățată, care trebuie parcursă pe distanța de <span className="num-font">1500</span> mm. Traseul începe de la punctul indicat de organizatori, poziția inițială a robotului fiind în contact cu sfoara. Se parcurge traseul dinspre sol în sus, astfel robotul ”se cațără”, fără doză. Traseul este finalizat la momentul atingerii înălțimii indicate, punct în care robotul trebuie să fie în reapus. Prin aceasta se înțelege că robotul rămâne agățat de sfoara verticală la finalul acestui traseu, reprezentând punctul de începere celui de-al treilea traseu. Pe tot parcursul acestui traseu, robotul trebuie să fie în contact permanent cu sfoara.</p>
                     <p>Finalizarea cu succes a treseului doi reprezintă condiția pentru încercarea traseului trei. Se respectă regula anterioară, prin care echipele dispun pe rând roboții pentru a încerca al treilea traseu, după care vor asambla doza, vor reconfigura robotul fără a adăuga sau a elimina componente și vor aștepta finalizarea acestui traseu de către toate echipele. Ordinea finalizării reprezintă ordinea începerii ultimului traseu.</p>
 
                     <p><strong>Traseul 3:</strong><br />
@@ -186,10 +186,10 @@ const HandbookRules = () => {
                     <strong>Part 1:</strong> A ladder of length Y mm that transitions from the ground to a horizontal rope. The ladder has <span className="num-font">8</span> steps, each with a diameter of <span className="num-font">10</span> mm, spaced <span className="num-font">25</span> mm apart, and parallel to the horizontal rope. The ladder is <span className="num-font">70</span> mm wide and remains in constant contact with the ground.<br />
                     The ladder must be completed without the can; however, a bonus is awarded if a team completes it while carrying the can.<br />
                     The climb is performed from the ground upward, with the rope considered the <span className="num-font">9</span>th step. The robot must attach itself to the rope—at that point, this part is considered complete.</p>
-                    <p>After finishing the ladder, teams may reposition the robot in the new direction of movement, reconfigure it (without adding or removing components), and must attach the can before starting the second part.</p>
+                    <p>-After finishing the ladder, teams may reposition the robot in the new direction of movement, reconfigure it (without adding or removing components), and must attach the can before starting the second part.</p>
 
                     <p><strong>Part 2:</strong> The horizontal rope attached to the ladder must be traversed in the direction specified by the organizers. Distance: X mm. The robot must remain in continuous contact with the rope. The course is completed once this distance is covered.</p>
-                    <p>After completing Course 1, teams must remove the can, reconfigure the robot (without adding/removing components), and position it at the next course in a designated area. All teams must attempt Course 1 before moving on. Only those who successfully complete it may proceed to Course 2, in the same order.</p>
+                    <p>-After completing Course 1, teams must remove the can, reconfigure the robot (without adding/removing components), and position it at the next course in a designated area. All teams must attempt Course 1 before moving on. Only those who successfully complete it may proceed to Course 2, in the same order.</p>
 
                     <p><strong>Course 2</strong><br />
                     A vertical rope suspended perpendicular to the ground must be climbed over a height of X mm.<br />
@@ -203,7 +203,7 @@ const HandbookRules = () => {
                     The same vertical rope from Course 2 must now be traversed in reverse—from the previous endpoint back to the starting point—by a controlled descent, this time carrying the can.<br />
                     The robot must remain in continuous contact with the rope.<br />
                     The descent must be controlled (it must not simply fall).<br />
-                    The course is considered complete only if the descent is clearly controlled.</p>
+                    -The course is considered complete only if the descent is clearly controlled.</p>
 
                     <p><strong>Additional Track Details</strong></p>
                     <ul>
@@ -211,7 +211,7 @@ const HandbookRules = () => {
                         <li>Rope diameter: <span className="num-font">10</span> mm.</li>
                         <li>The ladder is made of additively manufactured polylactic acid (PLA), with steps that are circular on one side and rectangular on the other.</li>
                         <li>All ropes will be properly tensioned to ensure rigidity.</li>
-                        <li>Each team is responsible for ensuring that, during testing, any failure of their prototype does not result in losing previously achieved progress.</li>
+                        <li>-Each team is responsible for ensuring that, during testing, any failure of their prototype does not result in losing previously achieved progress.</li>
                     </ul>
 
                     <p><strong>Attempt Rules</strong></p>
