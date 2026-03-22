@@ -44,8 +44,6 @@ const HandbookRules = () => {
 
                     <SectionHeading level={2} id="competition-rules"><span className="num-font">4.3</span>. Regulile din timpul competiției</SectionHeading>
                     
-                    <p><strong>Proba Maraton</strong><br />
-                    Proba de Maraton constă într-o confruntare directă între două sau mai multe echipe, în care proiectele realizate sunt testate în condiții identice.</p>
 
                     <p><strong>Obiectiv:</strong><br />
                     Proba practică va pune la încercare adaptabilitatea și eficiența roboților, prin <span className="num-font">3</span> trasee, cu scopul de a le parcurge în cel mai scurt timp posibil.</p>
